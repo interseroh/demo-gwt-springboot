@@ -100,7 +100,7 @@ public class DemoGwtWebApp implements EntryPoint {
 				injector.getPersonPanelView());
 
 		mainPanelView.setContentAreaVisible(true);
-		mainPanelView.updateArbeitsliste();
+		mainPanelView.updatePersonPanelView();
 
 		RootPanel.get().add(mainPanelView);
 
@@ -108,8 +108,7 @@ public class DemoGwtWebApp implements EntryPoint {
 	}
 
 	private void setupBootbox() {
-		if (LocaleInfo.getCurrentLocale().getLocaleName()
-				.equals(LOCALE)) {
+		if (LocaleInfo.getCurrentLocale().getLocaleName().equals(LOCALE)) {
 			logger.info(
 					"Locale: " + LocaleInfo.getCurrentLocale().getLocaleName());
 			Bootbox.setLocale(BootboxLocale.DE);

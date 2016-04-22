@@ -121,7 +121,7 @@ public class MainPanelView extends Composite {
 		this.contentColumn.setVisible(visible);
 	}
 
-	public void updateArbeitsliste() {
+	public void updatePersonPanelView() {
 		showWidget(WidgetName.PERSONLIST);
 		// Workaround for DataGrid, the same for GwtBootstrap3:
 		// https://github.com/gwtbootstrap/gwt-bootstrap/issues/279
@@ -131,7 +131,7 @@ public class MainPanelView extends Composite {
 		PersonPanelView personPanelView = (PersonPanelView) this.widgets
 				.get(WidgetName.PERSONLIST);
 
-		logger.info("UpdateArbeitsliste finished...");
+		logger.info("Method updatePersonPanelView finished...");
 	}
 
 	@EventHandler
