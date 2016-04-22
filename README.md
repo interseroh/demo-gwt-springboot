@@ -1,5 +1,7 @@
 # demo-gwt-springboot
 
+## Introduction
+
 This is an example Maven project for following frameworks:
 
 - User Interfaces: 
@@ -17,8 +19,18 @@ This is an example Maven project for following frameworks:
   - KissMDA
   - JPA Hibernate
   
-Starting GWT SuperDev Mode Compiler
-mvn -P development process-classes gwt:run-codeserver
+## Start GWT SuperDev Mode compiler
 
-Application URL
+Starting GWT SuperDev Mode Compiler:
+
+```java
+mvn -P development process-classes gwt:run-codeserver
+```
+
+## Run the WebApp demo-gwt-springboot
+
+Application URL:
+
+```java
 http://localhost:9014/demogwt/demogwt.html
+```
