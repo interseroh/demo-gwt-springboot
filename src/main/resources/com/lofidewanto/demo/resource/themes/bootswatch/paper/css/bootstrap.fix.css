@@ -1,0 +1,5 @@
+/* Fix for Bootstrap theme Paper */
+/* Checkbox and label does not have any empty space */
+.checkbox label span {
+  padding-left: 10px;	
+}

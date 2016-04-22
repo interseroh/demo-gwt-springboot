@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module rename-to='demogwt'>
+	<!-- Inherit the core Web Toolkit stuff. -->
+	<inherits name='com.lofidewanto.demo.DemoGwt' />
+
+	<!-- Compiler agent - we only need to compile for one web browser in development -->
+	<set-property name="user.agent" value="gecko1_8" />
+
+	<!-- SuperDev Mode -->
+	<set-configuration-property name="devModeRedirectEnabled"
+		value="true" />
+	<set-property name="compiler.useSourceMaps" value="true" />
+
+	<set-property name="compiler.emulatedStack" value="true" />
+	<set-configuration-property name="compiler.emulatedStack.recordFileNames"
+		value="true" />
+
+	<!-- Logging -->
+	<set-property name="gwt.logging.logLevel" value="INFO" />
+</module>

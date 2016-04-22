@@ -45,6 +45,9 @@
 		<gwt.eventbinder.version>1.1.0</gwt.eventbinder.version>
 		<gwt.resty.version>2.0.3</gwt.resty.version>
 		<gwt.mockito.version>1.1.6</gwt.mockito.version>
+		<kissmda.maven.plugin.version>2.0.0</kissmda.maven.plugin.version>
+		<kissmda.cartridges.simple.java.version>2.0.2</kissmda.cartridges.simple.java.version>
+		<kissmda.extensions.importpacker.version>1.0.0</kissmda.extensions.importpacker.version>
 	</properties>
 
 	<dependencies>
@@ -61,10 +64,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		
+		<!-- Use this Spring Tool for restarting the app automatically -->
+		<!-- Only use this if you don't use JRebel! -->
+		<!-- 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
+		-->
+		 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -160,7 +169,191 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<version>${gwt.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>i18n</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<sourceLevel>1.7</sourceLevel>
+					<module>com.lofidewanto.demo.DemoGwtDevelopment</module>
+					<extraJvmArgs>-Xmx1024M -Xss1024k</extraJvmArgs>
+					<runTarget>belegpruefung.html</runTarget>
+					<persistentunitcachedir>${project.build.directory}</persistentunitcachedir>
+					<webappDirectory>${project.build.directory}/classes/public</webappDirectory>
+					<deploy>${project.build.directory}/gwt-deploy</deploy>
+					<i18nMessagesBundle>com.lofidewanto.demo.client.Messages</i18nMessagesBundle>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${project.build.directory}/generated-sources/java</source>
+								<source>${project.build.directory}/generated-sources/gwt</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<groupId>de.crowdcode.kissmda.maven</groupId>
+				<artifactId>kissmda-maven-plugin</artifactId>
+				<version>${kissmda.maven.plugin.version}</version>
+				<dependencies>
+					<!-- Cartridges and Extensions should be used in the generation phase -->
+					<dependency>
+						<groupId>de.crowdcode.kissmda.cartridges</groupId>
+						<artifactId>kissmda-cartridges-simple-java</artifactId>
+						<version>${kissmda.cartridges.simple.java.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>de.crowdcode.kissmda.cartridges</groupId>
+						<artifactId>kissmda-extensions-import-packer</artifactId>
+						<version>${kissmda.extensions.importpacker.version}</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<!-- You have to choose between transformerScanPackageNames and transformerNameWithOrders 
+						If you put both the transformerNameWithOrders wins -->
+					<transformerScanPackageNames>
+						<!-- You get all the transformers under this package name -->
+						<transformerScanPackageName>de.crowdcode.kissmda.cartridges</transformerScanPackageName>
+					</transformerScanPackageNames>
+					<!-- We put both, so this transformerNameWithOrders wins -->
+					<transformerNameWithOrders>
+						<!-- You put the transformers with order -->
+						<transformerNameWithOrder>
+							2:de.crowdcode.kissmda.extensions.importpacker.ImportPackerTransformer
+						</transformerNameWithOrder>
+						<transformerNameWithOrder>
+							3:de.crowdcode.kissmda.cartridges.simplejava.SimpleJavaTransformer
+						</transformerNameWithOrder>
+					</transformerNameWithOrders>
+					<modelFile>src/main/resources/model/emf/demo-gwt-springboot.uml</modelFile>
+					<loggingLevel>SEVERE</loggingLevel>
+					<targetEncoding>UTF-8</targetEncoding>					
+				</configuration>
+			</plugin>
 		</plugins>
+		
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											de.crowdcode.kissmda.maven
+										</groupId>
+										<artifactId>
+											kissmda-maven-plugin
+										</artifactId>
+										<versionRange>
+											[2.0.0,)
+										</versionRange>
+										<goals>
+											<goal>generate</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
+	
+	<profiles>
+		<profile>
+			<id>development</id>
+			<build>
+				<plugins>
+					<!-- JRebel plugin, you need to turn off Spring Tool! -->
+					<plugin>
+						<groupId>org.zeroturnaround</groupId>
+						<artifactId>jrebel-maven-plugin</artifactId>
+						<version>1.1.5</version>
+						<configuration>
+							<relativePath>.</relativePath>
+							<classpath>
+								<fallback>default</fallback>
+								<resources>
+									<resource>
+									</resource>
+								</resources>
+							</classpath>
+						</configuration>
+						<executions>
+							<execution>
+								<id>generate-rebel-xml</id>
+								<phase>process-resources</phase>
+								<goals>
+									<goal>generate</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<!-- GWT Maven Plugin -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<version>${gwt.version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>compile</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<sourceLevel>1.7</sourceLevel>
+							<module>com.lofidewanto.demo.DemoGwtDevelopment</module>
+							<extraJvmArgs>-Xmx1024M -Xss1024k</extraJvmArgs>
+							<runTarget>belegpruefung.html</runTarget>
+							<persistentunitcachedir>${project.build.directory}</persistentunitcachedir>
+							<webappDirectory>${project.build.directory}/classes/public</webappDirectory>
+							<deploy>${project.build.directory}/gwt-deploy</deploy>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 </project>

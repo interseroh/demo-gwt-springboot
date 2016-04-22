@@ -16,3 +16,9 @@ This is an example Maven project for following frameworks:
 - Domain Models: 
   - KissMDA
   - JPA Hibernate
+  
+Starting GWT SuperDev Mode Compiler
+mvn -P development process-classes gwt:run-codeserver
+
+Application URL
+http://localhost:9014/demogwt/demogwt.html
