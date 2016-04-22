@@ -1,5 +1,9 @@
 # demo-gwt-springboot
 
+## Build Status
+
+[![Build Status](https://travis-ci.org/lofidewanto/demo-gwt-springboot.svg?branch=master)](https://travis-ci.org/lofidewanto/demo-gwt-springboot)
+
 ## Introduction
 
 This is an example Maven project for following frameworks:
@@ -9,16 +13,29 @@ This is an example Maven project for following frameworks:
   - GWTBootstrap3 for the UI
   - RestyGWT for the RESTful access to backend services
   - GIN for Dependency Injection
-  - GWT Event Binder for events
+  - GWT Event Binder for event bus
   - GWT Mockito for UI logic test
-- Services: 
+- Controllers and Services: 
   - KissMDA
-  - Spring Boot for Service logic
+  - Spring Boot for business logic implementations
   - All the standard stuffs used by Spring Framework
-- Domain Models: 
+- Domains: 
   - KissMDA
-  - JPA Hibernate
-  
+  - JPA with Hibernate
+ 
+The idea of this project is to offer a simple application template 
+for the mentioned frameworks above.
+
+The development is based on Eclipse or IDEAJ and Maven.
+
+## Architecture
+
+...  
+
+## Start the WebApp with Spring Boot
+
+...
+
 ## Start GWT SuperDev Mode compiler
 
 Starting GWT SuperDev Mode Compiler:
