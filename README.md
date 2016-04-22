@@ -24,13 +24,22 @@ This is an example Maven project for following frameworks:
   - JPA with Hibernate
  
 The idea of this project is to offer a simple application template 
-for the mentioned frameworks above.
+for the mentioned frameworks above. If you need a more sophisticated GWT application
+framework you can use following frameworks:
+- ArcBees GWT-Platform: Model-View-Presenter Framework for GWT
+- JBoss Errai Framework
 
 The development is based on Eclipse or IDEAJ and Maven.
 
 ## Architecture
 
+### Models for Services and Domains
+
 ...  
+
+### Java Package Description
+
+...
 
 ## Start the WebApp with Spring Boot
 
@@ -51,3 +60,13 @@ Application URL:
 ```java
 http://localhost:9014/demogwt/demogwt.html
 ```
+
+## Unit and Integration Testing
+
+### GWT Mockito
+
+...
+
+### Spring Test
+
+...
