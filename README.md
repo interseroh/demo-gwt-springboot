@@ -77,7 +77,7 @@ In this package you can put any classes which will be used from both sides: clie
 
 #### Server
 
-All the controller, service and domain classes - based on Spring Framework - should reside in this package. This package will __not be included__ in GWT transpiler.
+All the *controller*, *service*, *repository* and *domain* classes - based on Spring Framework - should reside in this package. This package will __not be included__ in GWT transpiler.
 
 #### Resource
 
