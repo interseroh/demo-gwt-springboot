@@ -1,5 +1,8 @@
 # demo-gwt-springboot
 
+:toc:
+:toc-placement: preamble
+
 ## Build Status
 
 [![Build Status](https://travis-ci.org/lofidewanto/demo-gwt-springboot.svg?branch=master)](https://travis-ci.org/lofidewanto/demo-gwt-springboot)
@@ -137,6 +140,9 @@ At the end you can see following message:
 [INFO] The code server is ready at http://localhost:9876/
 ...
 ```
+
+#### Bookmark *Dev Mode On*
+
 Now you can go to the given address and boomark the *Dev Mode On* through *drag and drop* into your bookmark menu.
 
 ![GWT SuperDev Mode](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/gwt-bookmarks.png)
@@ -145,7 +151,7 @@ That's it. You can just push *Dev Mode On* to run the transpiler directly and th
 
 ![GWT SuperDev Mode](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/gwt-compiler.png)
 
-### Call the WebApp demo-gwt-springboot from a web browser
+### Browser: Call the WebApp demo-gwt-springboot from a web browser
 
 Go to the application URL with a web browser:
 
@@ -153,25 +159,25 @@ Go to the application URL with a web browser:
 http://localhost:9014/demogwt/demogwt.html
 ```
 
-### GWT Logging
+## Logging
 
 The GWT logging is activated (see [configuration file](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwt.gwt.xml) at both sides: Client and Server.
 
-#### Server logging at the Spring Boot Console
+### Server logging at the Spring Boot Console
 
 ![GWT Server Logging](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/gwt-logging-server.png)
 
-#### Client logging at the Browser Console
+### Client logging at the Browser Console
 
 ![GWT Client Logging](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/gwt-logging-client.png)
 
-### Debugging GWT SuperDev Mode
+## Debugging
 
-#### Server Debugging
+### Server Debugging
 
 Debugging the Spring Boot part can be achieved easily by starting the Spring Boot with Debug mode.
 
-#### Client Debugging with GWT SuperDev Mode
+### Client Debugging with GWT SuperDev Mode
 
 Debugging the GWT part should be done by using [SDBG](https://sdbg.github.io/). For this purpose you need to use Google Chrome as your browser.
 
