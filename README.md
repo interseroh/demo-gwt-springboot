@@ -53,7 +53,7 @@ All the GWT (UI and REST client) classes should stay in this package. GWT transp
 
 #### Shared
 
-In this package you can put any classes which will be used from both sides: client and server. It is advisable to put *constants* and *endpoints* of the RESTful services so that they point to the same address. Also *DTO* (Data Transfer Objects) for RESTful services should be included in this package. GWT will transpile this package into JavaScript.
+In this package you can put any classes which will be used from both sides: client and server. It is advisable to put *constants* and *endpoints* of the RESTful services so that they point to the same address. Also *DTO* (Data Transfer Objects) for RESTful services should be included in this package. GWT will transpile this package into JavaScript sources.
 
 #### Server
 
@@ -61,7 +61,9 @@ All the Spring Boot classes should stay in this package. This package will __not
 
 #### Resource
 
-All the themes for GWTBootstrap3 and general Bootstrap themes like Bootswatch should stay in this package.
+All the themes for GWTBootstrap3 and general Bootstrap themes like Bootswatch should stay in this package. 
+
+You can take a look the GWT [configuration file](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwt.gwt.xml) to see which packages will be included in GWT transpiler.
 
 ## Run the WebApp
 
