@@ -10,7 +10,7 @@
 - [Architecture](#architecture)
 	- [Model for Services and Domains](#model-for-services-and-domains)
 	- [Architecture](#architecture)
-- [Run the WebApp](#run-the-webapp)
+- [Run the WebApp for Development](#run-the-webapp-for-development)
 	- [Server: Start the WebApp with Spring Boot](#server-start-the-webapp-with-spring-boot)
 	- [Client: Start GWT SuperDev Mode transpiler](#client-start-gwt-superdev-mode-transpiler)
 	- [Browser: Call the WebApp demo-gwt-springboot from a web browser](#browser-call-the-webapp-demo-gwt-springboot-from-a-web-browser)
@@ -85,7 +85,7 @@ All the themes for GWTBootstrap3 and general Bootstrap themes like Bootswatch sh
 
 You can take a look the GWT [configuration file](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwt.gwt.xml) to see which packages will be included in GWT transpiler.
 
-## Run the WebApp
+## Run the WebApp for Development
 
 ### Server: Start the WebApp with Spring Boot
 
@@ -178,7 +178,7 @@ http://localhost:9014/demogwt/demogwt.html
 
 ## Logging
 
-The GWT logging is activated (see [configuration file](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwt.gwt.xml) at both sides: Client and Server.
+The GWT logging is activated (see [configuration file](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwt.gwt.xml)) at both sides: Client and Server.
 
 ### Server: Logging at the Spring Boot Console
 
