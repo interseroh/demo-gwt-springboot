@@ -34,9 +34,9 @@ The development is based on Maven so this project can be used by Eclipse, Intell
 
 ## Architecture
 
-### Models for Services and Domains
+### Model for Services and Domains
 
-Following diagram shows the structure of the services and the domains.
+There are two services: *UserService* and *PersonService* and two Entities: *Person* and *Address*. Following diagram shows the structure of the services and the domains.
 
 ![Service and Domain Model](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/demo-gwt-springboot-model.jpg)
 
