@@ -36,11 +36,33 @@ The development is based on Maven so this project can be used by Eclipse, Intell
 
 ### Models for Services and Domains
 
+Following diagram shows the structure of the services and the domains.
+
 ![Service and Domain Model](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/demo-gwt-springboot-model.jpg)
 
 ### Architecture
 
+Following diagram shows the architecture of the Microservice Demo.
+The naming of the packages client, server, shared and resource (not shown in diagram) based
+on the architecture.
+
 ![Architecture](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/demo-gwt-springboot-architecture.jpg)
+
+#### Client
+
+All the GWT classes (UI) should stay in this package. They will transpilled by GWT into JavaScript.
+
+#### Shared
+
+In this package you can put any classes which will be used from both sides: client and server
+
+#### Server
+
+All the Spring Boot classes should stay in this package.
+
+#### Resource
+
+All the themes for GWTBootstrap3 should stay in this package.
 
 ## Run the WebApp
 
