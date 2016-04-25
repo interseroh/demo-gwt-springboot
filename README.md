@@ -1,7 +1,7 @@
-# demo-gwt-springboot
-
 :toc:
-:toc-placement: preamble
+:toc-placement: demo-gwt-springboot
+
+# demo-gwt-springboot
 
 ## Build Status
 
