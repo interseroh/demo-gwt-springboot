@@ -77,7 +77,6 @@ Just run the class *DemoGwtSpringbootApplication* or if you are using Spring Too
 
 #### Tips
 
-
 ##### JRebel
 
 - If you are using JRebel you need to put following parameter in VM Arguments, something like:
@@ -107,14 +106,44 @@ Just run the class *DemoGwtSpringbootApplication* or if you are using Spring Too
 
 ##### Spring Boot Dev Tools
 
+Spring Boot Dev Tools will restart the Spring Boot App automatically if codes have changed.
+You have to deactivate JRebel if you want to use this tool. This dependency should be activated:
 
-### Client: Start GWT SuperDev Mode compiler
+```java
+        <!-- Use this Spring Tool for restarting the app automatically -->
+		<!-- Only use this if you don't use JRebel! -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+```
 
-Starting GWT SuperDev Mode Compiler:
+### Client: Start GWT SuperDev Mode transpiler
+
+To be able to test quickly you can use GWT SuperDev Mode. With this tool you can just recompile the changes in GWT Java codes into JavaScript codes without restarting the process.
+
+Following steps are needed to be followed.
+
+#### Starting GWT SuperDev Mode
+
+Starting GWT SuperDev Mode Compiler from command line or within the development environment:
 
 ```java
 mvn -P development process-classes gwt:run-codeserver
 ```
+
+At the end you can see following message:
+
+```java
+...
+[INFO] The code server is ready at http://localhost:9876/
+...
+```
+Now you can go the given address and boomark the *Dev Mode On* through *drag and drop* into your bookmark menu.
+
+![GWT SuperDev Mode](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/gwt-bookmarks.png)
+
+#### Debugging GWT SuperDev Mode
 
 
 
