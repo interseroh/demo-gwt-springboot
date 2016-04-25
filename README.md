@@ -49,7 +49,7 @@ The naming of the packages *client*, *server*, *shared* and *resource* (not show
 
 #### Client
 
-All the GWT classes should stay in this package. GWT transpiles the Java source into JavaScript source.
+All the GWT (UI and REST client) classes should stay in this package. GWT transpiles all the Java sources into JavaScript sources.
 
 #### Shared
 
@@ -61,7 +61,7 @@ All the Spring Boot classes should stay in this package. This package will __not
 
 #### Resource
 
-All the themes for GWTBootstrap3 should stay in this package.
+All the themes for GWTBootstrap3 and general Bootstrap themes like Bootswatch should stay in this package.
 
 ## Run the WebApp
 
