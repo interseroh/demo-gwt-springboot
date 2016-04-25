@@ -28,24 +28,27 @@ for the mentioned frameworks above. If you need a more sophisticated GWT applica
 framework you can use following frameworks:
 - ArcBees GWT-Platform: Model-View-Presenter Framework for GWT
 - JBoss Errai Framework
+- Sencha GXT
 
-The development is based on Eclipse or IDEAJ and Maven.
+The development is based on Maven so this project can be used by Eclipse, IntelliJ or NetBeans.
 
 ## Architecture
 
 ### Models for Services and Domains
 
-...  
+[[https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/demo-gwt-springboot-model.jpg]]
 
 ### Java Package Description
 
+[[https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/demo-gwt-springboot-architecture.jpg]]
+
+## Run the WebApp
+
+### Start the WebApp with Spring Boot
+
 ...
 
-## Start the WebApp with Spring Boot
-
-...
-
-## Start GWT SuperDev Mode compiler
+### Start GWT SuperDev Mode compiler
 
 Starting GWT SuperDev Mode Compiler:
 
@@ -53,7 +56,9 @@ Starting GWT SuperDev Mode Compiler:
 mvn -P development process-classes gwt:run-codeserver
 ```
 
-## Run the WebApp demo-gwt-springboot
+
+
+### Call the WebApp demo-gwt-springboot from a web browser
 
 Application URL:
 
