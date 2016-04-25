@@ -41,12 +41,12 @@ public class PersonPanelView extends Composite implements Startable {
 	private static Logger logger = Logger
 			.getLogger(PersonPanelView.class.getName());
 
-	private static PersonPanelViewUiBinder uiBinder = GWT
-			.create(PersonPanelViewUiBinder.class);
-
 	interface PersonPanelViewUiBinder
 			extends UiBinder<Widget, PersonPanelView> {
 	}
+
+	private static PersonPanelViewUiBinder uiBinder = GWT
+			.create(PersonPanelViewUiBinder.class);
 
 	private final EventBus eventBus;
 

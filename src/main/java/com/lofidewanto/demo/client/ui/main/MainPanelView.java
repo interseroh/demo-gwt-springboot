@@ -50,17 +50,17 @@ public class MainPanelView extends Composite {
 	private static Logger logger = Logger
 			.getLogger(MainPanelView.class.getName());
 
+	interface MainPanelViewUiBinder extends UiBinder<Widget, MainPanelView> {
+	}
+
 	private static MainPanelViewUiBinder uiBinder = GWT
 			.create(MainPanelViewUiBinder.class);
 
-	interface MainPanelViewUiBinder extends UiBinder<Widget, MainPanelView> {
+	interface MainPanelEventBinder extends EventBinder<MainPanelView> {
 	}
 
 	private final MainPanelEventBinder eventBinder = GWT
 			.create(MainPanelEventBinder.class);
-
-	interface MainPanelEventBinder extends EventBinder<MainPanelView> {
-	}
 
 	private final Map<WidgetName, Widget> widgets = new HashMap<>();
 
