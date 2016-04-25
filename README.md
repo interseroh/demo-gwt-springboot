@@ -153,7 +153,7 @@ Go to the application URL with a web browser:
 http://localhost:9014/demogwt/demogwt.html
 ```
 
-### Logging
+### GWT Logging
 
 The GWT logging is activated (see [configuration file](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwt.gwt.xml) at both sides: Client and Server.
 
@@ -167,7 +167,20 @@ Server logging:
 
 ### Debugging GWT SuperDev Mode
 
-...
+Debugging the GWT part should be done by using ![SDBG](https://sdbg.github.io/). For this purpose you need to use Chrome as your browser.
+
+You need to update following file: [configuration file for development](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwtDevelopment.gwt.xml)
+
+```java
+    <!-- Compiler agent - we only need to compile for one web browser in development -->
+	<!-- If you want to use SDBG for debugging you need to use Chrome == safari -->
+	<set-property name="user.agent" value="safari" />  
+```
+
+**Attention:**
+- There are two GWT configuration files: [_DemoGwtDevelopment.gwt.xml_](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwtDevelopment.gwt.xml) and [_DemoGwt.gwt.xml_](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwt.gwt.xml).
+- _DemoGwtDevelopment.gwt.xml_: this config will be used to make the GWT compiling process faster. This only compiles for one web browser and use INFO as logging output.
+- _DemoGwt.gwt.xml_: this config will be used for production transpilling. This is optimized for many purposes.
 
 ## Unit and Integration Testing
 
