@@ -67,11 +67,15 @@ You can take a look the GWT [configuration file](https://github.com/lofidewanto/
 
 ## Run the WebApp
 
-### Start the WebApp with Spring Boot
+### Server: Start the WebApp with Spring Boot
 
-...
+To start the Server WebApp with Spring Boot:
 
-### Start GWT SuperDev Mode compiler
+Just run the class *DemoGwtSpringbootApplication* or if you are using Spring Tool Suite just run it with Spring Boot Dashboard:
+
+
+
+### Client: Start GWT SuperDev Mode compiler
 
 Starting GWT SuperDev Mode Compiler:
 

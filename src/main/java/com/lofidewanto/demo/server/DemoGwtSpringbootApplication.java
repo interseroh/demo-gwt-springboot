@@ -16,15 +16,26 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.lofidewanto.demo;
+package com.lofidewanto.demo.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.embedded.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
+
+import com.google.gwt.logging.server.RemoteLoggingServiceImpl;
+import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
 
 @SpringBootApplication
 public class DemoGwtSpringbootApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoGwtSpringbootApplication.class, args);
+	}
+
+	@Bean
+	public ServletRegistrationBean servletRegistrationBean() {
+		return new ServletRegistrationBean(new RemoteLoggingServiceImpl(),
+				DemoGwtServiceEndpoint.GWT_REMOTE_LOGGING + "/*");
 	}
 }

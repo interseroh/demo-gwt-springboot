@@ -6,4 +6,6 @@ public interface DemoGwtServiceEndpoint {
 
 	public static final String LOGIN_USER = "v1/loginuser";
 
+	public static final String GWT_REMOTE_LOGGING = "/demogwt/remote_logging";
+
 }
