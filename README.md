@@ -43,22 +43,21 @@ Following diagram shows the structure of the services and the domains.
 ### Architecture
 
 Following diagram shows the architecture of the Microservice Demo.
-The naming of the packages client, server, shared and resource (not shown in diagram) based
-on the architecture.
+The naming of the packages *client*, *server*, *shared* and *resource* (not shown in diagram) based on this architecture.
 
 ![Architecture](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/demo-gwt-springboot-architecture.jpg)
 
 #### Client
 
-All the GWT classes (UI) should stay in this package. They will transpilled by GWT into JavaScript.
+All the GWT classes should stay in this package. GWT transpiles the Java source into JavaScript source.
 
 #### Shared
 
-In this package you can put any classes which will be used from both sides: client and server
+In this package you can put any classes which will be used from both sides: client and server. It is advisable to put *constants* and *endpoints* of the RESTful services so that they point to the same address. Also *DTO* (Data Transfer Objects) for RESTful services should be included in this package. GWT will transpile this package into JavaScript.
 
 #### Server
 
-All the Spring Boot classes should stay in this package.
+All the Spring Boot classes should stay in this package. This package will __not be included__ in GWT transpiler.
 
 #### Resource
 
