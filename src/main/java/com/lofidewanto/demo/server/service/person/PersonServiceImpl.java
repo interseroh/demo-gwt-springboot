@@ -18,6 +18,8 @@
  */
 package com.lofidewanto.demo.server.service.person;
 
+import java.util.Collection;
+
 import org.springframework.stereotype.Service;
 
 import com.lofidewanto.demo.server.domain.Address;
@@ -33,6 +35,12 @@ public class PersonServiceImpl implements PersonService {
 			throws CreateAddressException, CreatePersonException {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public Collection<Person> findAllPersons(Integer start, Integer length) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

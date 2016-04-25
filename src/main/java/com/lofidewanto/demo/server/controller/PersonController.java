@@ -19,6 +19,7 @@
 package com.lofidewanto.demo.server.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.ws.rs.core.MediaType;
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lofidewanto.demo.server.domain.Person;
 import com.lofidewanto.demo.server.service.person.PersonService;
 import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
 import com.lofidewanto.demo.shared.PersonDto;
@@ -44,8 +46,10 @@ public class PersonController {
 	public @ResponseBody List<PersonDto> getPersons(
 			@RequestParam("start") Integer start,
 			@RequestParam("length") Integer length) {
-
 		ArrayList<PersonDto> persons = new ArrayList<>();
+
+		Collection<Person> findAllPersons = personService.findAllPersons(start,
+				length);
 
 		return persons;
 	}

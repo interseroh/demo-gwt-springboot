@@ -38,7 +38,10 @@ public class UserController {
 
 	@RequestMapping(value = DemoGwtServiceEndpoint.LOGIN_USER, method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON)
 	public @ResponseBody UserDto getLoginUser() {
+		String loginUser = userService.getLoginUser();
+
 		UserDto userDto = new UserDto();
+		userDto.setName(loginUser);
 
 		return userDto;
 	}
