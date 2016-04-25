@@ -1,11 +1,30 @@
-:toc:
-:toc-placement: demo-gwt-springboot
-
 # demo-gwt-springboot
 
 ## Build Status
 
 [![Build Status](https://travis-ci.org/lofidewanto/demo-gwt-springboot.svg?branch=master)](https://travis-ci.org/lofidewanto/demo-gwt-springboot)
+
+## Table of Contents
+
+- [demo-gwt-springboot](#)
+	- [Build Status](#)
+	- [Introduction](#)
+	- [Architecture](#)
+		- [Model for Services and Domains](#)
+		- [Architecture](#)
+	- [Run the WebApp](#)
+		- [Server: Start the WebApp with Spring Boot](#)
+		- [Client: Start GWT SuperDev Mode transpiler](#)
+		- [Browser: Call the WebApp demo-gwt-springboot from a web browser](#)
+	- [Logging](#)
+		- [Server logging at the Spring Boot Console](#)
+		- [Client logging at the Browser Console](#)
+	- [Debugging](#)
+		- [Server Debugging](#)
+		- [Client Debugging with GWT SuperDev Mode](#)
+	- [Unit and Integration Testing](#)
+		- [GWT Mockito](#)
+		- [Spring Test](#)
 
 ## Introduction
 
