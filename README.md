@@ -69,11 +69,42 @@ You can take a look the GWT [configuration file](https://github.com/lofidewanto/
 
 ### Server: Start the WebApp with Spring Boot
 
-To start the Server WebApp with Spring Boot:
+Starting the Server WebApp with Spring Boot:
 
 Just run the class *DemoGwtSpringbootApplication* or if you are using Spring Tool Suite just run it with Spring Boot Dashboard:
 
 ![STS Spring Boot Dashboard](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/sts-boot-dashboard.png)
+
+#### Tips
+
+
+##### JRebel
+
+- If you are using JRebel you need to put following parameter in VM Arguments, something like:
+
+```java
+-javaagent:C:\progjava\jrebel\jrebel.jar
+```
+
+- You also have to comment out the dependency in pom.xml.
+
+```java
+        <!-- Use this Spring Tool for restarting the app automatically -->
+		<!-- Only use this if you don't use JRebel! -->
+		<!-- 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+		-->
+```
+
+- You need to compile the project with Maven profile *development*.
+
+![Maven compile with Profile development](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/sts-maven-development-profile.png)
+
+##### Spring Boot Dev Tools
+
 
 ### Client: Start GWT SuperDev Mode compiler
 
