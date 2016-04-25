@@ -18,63 +18,92 @@
  */
 package com.lofidewanto.demo.server.domain;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Optional;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class PersonImpl implements Person {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
+	private String name;
+
+	private String nickname;
+
+	@OneToMany
+	private Collection<AddressImpl> addresses;
+
+	private Boolean isInRetirement;
 
 	@Override
 	public Integer calculateAge() {
-		// TODO Auto-generated method stub
-		return null;
+		// The age depends on the nickname
+		if (nickname.equalsIgnoreCase("Oldie")) {
+			return 80;
+		} else {
+			return 10;
+		}
 	}
 
 	@Override
 	public Date[] run(byte[] content) {
-		// TODO Auto-generated method stub
-		return null;
+		Date[] dates = { getDateFromString("25/11/2009"),
+				getDateFromString("24/12/2009") };
+		return dates;
+	}
+
+	private Date getDateFromString(String string) {
+		return new Date();
 	}
 
 	@Override
 	public void changeLastAddress(Address address, Boolean isLastOne) {
-		// TODO Auto-generated method stub
-
+		if (!isLastOne) {
+			Optional<AddressImpl> findFirst = addresses.stream().findFirst();
+			Address addressFound = findFirst.get();
+			addressFound.setStreet("New Street on the Blocks");
+		}
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
 
 	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
-
+		this.name = name;
 	}
 
 	@Override
 	public Collection<Address> getAddresses() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Address> copyOfAddresses = new ArrayList<>(addresses);
+		return copyOfAddresses;
 	}
 
 	@Override
 	public void addAddress(Address address) {
-		// TODO Auto-generated method stub
-
+		this.addresses.add((AddressImpl) address);
 	}
 
 	@Override
 	public String getNickname() {
-		// TODO Auto-generated method stub
-		return null;
+		return nickname;
 	}
 
 	@Override
 	public Boolean isInRetirement() {
-		// TODO Auto-generated method stub
-		return null;
+		return isInRetirement;
 	}
 
 }

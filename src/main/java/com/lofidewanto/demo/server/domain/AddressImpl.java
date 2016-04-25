@@ -20,60 +20,75 @@ package com.lofidewanto.demo.server.domain;
 
 import java.util.Collection;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
+@Entity
 public class AddressImpl implements Address {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
+	private String street;
+
+	@ManyToOne
+	private PersonImpl person;
+
+	private AddressType addressType;
+
+	private boolean isOld;
+
+	@Transient
+	private Collection<String> newAddresses;
 
 	@Override
 	public Collection<String> getNewAddresses() {
-		// TODO Auto-generated method stub
-		return null;
+		return newAddresses;
 	}
 
 	@Override
 	public String getStreet() {
-		// TODO Auto-generated method stub
-		return null;
+		return street;
 	}
 
 	@Override
 	public void setStreet(String street) {
-		// TODO Auto-generated method stub
-
+		this.street = street;
 	}
 
 	@Override
 	public Person getPerson() {
-		// TODO Auto-generated method stub
-		return null;
+		return person;
 	}
 
 	@Override
 	public void setPerson(Person person) {
-		// TODO Auto-generated method stub
-
+		this.person = (PersonImpl) person;
 	}
 
 	@Override
 	public AddressType getAddressType() {
-		// TODO Auto-generated method stub
-		return null;
+		return addressType;
 	}
 
 	@Override
 	public void setAddressType(AddressType addressType) {
-		// TODO Auto-generated method stub
-
+		this.addressType = addressType;
 	}
 
 	@Override
 	public boolean isOld() {
-		// TODO Auto-generated method stub
-		return false;
+		return isOld;
 	}
 
 	@Override
-	public void setOld(boolean old) {
-		// TODO Auto-generated method stub
-
+	public void setOld(boolean isOld) {
+		this.isOld = isOld;
 	}
 
 }
