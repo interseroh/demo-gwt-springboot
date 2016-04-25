@@ -73,7 +73,7 @@ To start the Server WebApp with Spring Boot:
 
 Just run the class *DemoGwtSpringbootApplication* or if you are using Spring Tool Suite just run it with Spring Boot Dashboard:
 
-
+![STS Spring Boot Dashboard](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/sts-boot-dashboard.png)
 
 ### Client: Start GWT SuperDev Mode compiler
 
