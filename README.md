@@ -86,6 +86,8 @@ Just run the class *DemoGwtSpringbootApplication* or if you are using Spring Too
 -javaagent:C:\progjava\jrebel\jrebel.jar
 ```
 
+![Spring Boot with JRebel parameter](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/sts-boot-jrebel.png)
+
 - You also have to comment out the dependency in pom.xml.
 
 ```java
