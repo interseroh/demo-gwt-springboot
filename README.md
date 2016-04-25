@@ -8,18 +8,18 @@
 
 This is an example Maven project for following frameworks:
 
-- User Interfaces: 
+- User Interfaces (Client): 
   - GWT
   - GWTBootstrap3 for the UI
   - RestyGWT for the RESTful access to backend services
   - GIN for Dependency Injection
   - GWT Event Binder for event bus
   - GWT Mockito for UI logic test
-- Controllers and Services: 
+- Controllers and Services (Server): 
   - KissMDA
   - Spring Boot for business logic implementations
   - All the standard stuffs used by Spring Framework
-- Domains: 
+- Domains (Server): 
   - KissMDA
   - JPA with Hibernate
  
@@ -30,7 +30,7 @@ framework you can use following frameworks:
 - JBoss Errai Framework
 - Sencha GXT
 
-The development is based on Maven so this project can be used by Eclipse, IntelliJ or NetBeans.
+The development is based on Maven so this project can be used with Eclipse, IntelliJ or NetBeans.
 
 ## Architecture
 
@@ -42,26 +42,26 @@ There are two services: *UserService* and *PersonService* and two Entities: *Per
 
 ### Architecture
 
-Following diagram shows the architecture of the Microservice Demo.
-The naming of the packages *client*, *server*, *shared* and *resource* (not shown in diagram) based on this architecture.
+Following diagram shows the architecture of the **Microservice Demo**.
+The naming of the packages *client*, *server*, *shared* and *resource* (not shown in diagram) is based on this architecture.
 
 ![Architecture](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/demo-gwt-springboot-architecture.jpg)
 
 #### Client
 
-All the GWT (UI and REST client) classes should stay in this package. GWT transpiles all the Java sources into JavaScript sources.
+All the GWT (UI and REST client) classes should be located in this package. GWT transpiles all the Java sources into JavaScript sources.
 
 #### Shared
 
-In this package you can put any classes which will be used from both sides: client and server. It is advisable to put *constants* and *endpoints* of the RESTful services so that they point to the same address. Also *DTO* (Data Transfer Objects) for RESTful services should be included in this package. GWT will transpile this package into JavaScript sources.
+In this package you can put any classes which will be used from both sides: client and server. It is advisable to put *constants* and *endpoints* of the RESTful services so that they point to the same address. Also *DTO* (Data Transfer Objects) for RESTful services should be included in this package. GWT transpiles this package into JavaScript sources.
 
 #### Server
 
-All the Spring Boot classes should stay in this package. This package will __not be included__ in GWT transpiler.
+All the controller, service and domain classes - based on Spring Framework - should reside in this package. This package will __not be included__ in GWT transpiler.
 
 #### Resource
 
-All the themes for GWTBootstrap3 and general Bootstrap themes like Bootswatch should stay in this package. 
+All the themes for GWTBootstrap3 and general Bootstrap themes like Bootswatch should be located in this package. 
 
 You can take a look the GWT [configuration file](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwt.gwt.xml) to see which packages will be included in GWT transpiler.
 
@@ -73,7 +73,7 @@ Just run the class *DemoGwtSpringbootApplication* or if you are using Spring Too
 
 ![STS Spring Boot Dashboard](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/sts-boot-dashboard.png)
 
-#### Tips
+#### Tips and Tricks
 
 ##### JRebel
 
@@ -85,7 +85,7 @@ Just run the class *DemoGwtSpringbootApplication* or if you are using Spring Too
 
 ![Spring Boot with JRebel parameter](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/sts-boot-jrebel.png)
 
-- You also have to comment out the dependency in pom.xml.
+- You also have to comment out the Spring Boot Dev Tools dependency in pom.xml.
 
 ```java
         <!-- Use this Spring Tool for restarting the app automatically -->
@@ -98,14 +98,14 @@ Just run the class *DemoGwtSpringbootApplication* or if you are using Spring Too
 		-->
 ```
 
-- You need to compile the project with Maven profile *development*.
+- To be able to generate the *rebel.xml* you need to compile the project with Maven profile *development*.
 
 ![Maven compile with Profile development](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/sts-maven-development-profile.png)
 
 ##### Spring Boot Dev Tools
 
-Spring Boot Dev Tools will restart the Spring Boot App automatically if codes have changed.
-You have to deactivate JRebel if you want to use this tool. This dependency should be activated:
+Spring Boot Dev Tools restarts the Spring Boot App automatically if your codes have changed.
+You have to deactivate JRebel if you want to use this tool. This Spring Boot Dev Tools dependency should be activated:
 
 ```java
         <!-- Use this Spring Tool for restarting the app automatically -->
@@ -157,17 +157,23 @@ http://localhost:9014/demogwt/demogwt.html
 
 The GWT logging is activated (see [configuration file](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwt.gwt.xml) at both sides: Client and Server.
 
-Client logging:
-
-![GWT Client Logging](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/gwt-logging-client.png)
-
-Server logging:
+#### Server logging at the Spring Boot Console
 
 ![GWT Server Logging](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/gwt-logging-server.png)
 
+#### Client logging at the Browser Console
+
+![GWT Client Logging](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/gwt-logging-client.png)
+
 ### Debugging GWT SuperDev Mode
 
-Debugging the GWT part should be done by using ![SDBG](https://sdbg.github.io/). For this purpose you need to use Chrome as your browser.
+#### Server Debugging
+
+Debugging the Spring Boot part can be achieved easily by starting the Spring Boot with Debug mode.
+
+#### Client Debugging with GWT SuperDev Mode
+
+Debugging the GWT part should be done by using [SDBG](https://sdbg.github.io/). For this purpose you need to use Google Chrome as your browser.
 
 You need to update following file: [configuration file for development](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwtDevelopment.gwt.xml)
 
@@ -177,8 +183,9 @@ You need to update following file: [configuration file for development](https://
 	<set-property name="user.agent" value="safari" />  
 ```
 
-**Attention:**
-- There are two GWT configuration files: [_DemoGwtDevelopment.gwt.xml_](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwtDevelopment.gwt.xml) and [_DemoGwt.gwt.xml_](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwt.gwt.xml).
+**Tip and Tricks for Optimizing Transpiler Speed**
+
+There are two GWT configuration files: [_DemoGwtDevelopment.gwt.xml_](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwtDevelopment.gwt.xml) and [_DemoGwt.gwt.xml_](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwt.gwt.xml).
 - _DemoGwtDevelopment.gwt.xml_: this config will be used to make the GWT compiling process faster. This only compiles for one web browser and use INFO as logging output.
 - _DemoGwt.gwt.xml_: this config will be used for production transpilling. This is optimized for many many production purposes.
 
