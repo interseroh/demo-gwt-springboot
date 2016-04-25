@@ -36,11 +36,11 @@ The development is based on Maven so this project can be used by Eclipse, Intell
 
 ### Models for Services and Domains
 
-[[https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/demo-gwt-springboot-model.jpg]]
+![Service and Domain Model](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/demo-gwt-springboot-model.jpg)
 
-### Java Package Description
+### Architecture
 
-[[https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/demo-gwt-springboot-architecture.jpg]]
+![Architecture](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/demo-gwt-springboot-architecture.jpg)
 
 ## Run the WebApp
 
