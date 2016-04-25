@@ -124,7 +124,7 @@ Follow following steps:
 
 #### Starting GWT SuperDev Mode
 
-Starting GWT SuperDev Mode Compiler from command line or within the development environment:
+Starting GWT SuperDev Mode Compiler from command line or within the development environment with Maven:
 
 ```java
 mvn -P development process-classes gwt:run-codeserver
@@ -137,7 +137,7 @@ At the end you can see following message:
 [INFO] The code server is ready at http://localhost:9876/
 ...
 ```
-Now you can go the given address and boomark the *Dev Mode On* through *drag and drop* into your bookmark menu.
+Now you can go to the given address and boomark the *Dev Mode On* through *drag and drop* into your bookmark menu.
 
 ![GWT SuperDev Mode](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/gwt-bookmarks.png)
 
@@ -155,7 +155,15 @@ http://localhost:9014/demogwt/demogwt.html
 
 ### Logging
 
-...
+The GWT logging is activated (see [configuration file](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwt.gwt.xml) at both sides: Client and Server.
+
+Client logging:
+
+![GWT Client Logging](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/gwt-logging-client.png)
+
+Server logging:
+
+![GWT Server Logging](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/gwt-logging-server.png)
 
 ### Debugging GWT SuperDev Mode
 
