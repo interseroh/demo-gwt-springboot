@@ -180,7 +180,7 @@ You need to update following file: [configuration file for development](https://
 **Attention:**
 - There are two GWT configuration files: [_DemoGwtDevelopment.gwt.xml_](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwtDevelopment.gwt.xml) and [_DemoGwt.gwt.xml_](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwt.gwt.xml).
 - _DemoGwtDevelopment.gwt.xml_: this config will be used to make the GWT compiling process faster. This only compiles for one web browser and use INFO as logging output.
-- _DemoGwt.gwt.xml_: this config will be used for production transpilling. This is optimized for many purposes.
+- _DemoGwt.gwt.xml_: this config will be used for production transpilling. This is optimized for many many production purposes.
 
 ## Unit and Integration Testing
 
