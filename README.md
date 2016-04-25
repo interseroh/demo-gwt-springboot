@@ -69,8 +69,6 @@ You can take a look the GWT [configuration file](https://github.com/lofidewanto/
 
 ### Server: Start the WebApp with Spring Boot
 
-Starting the Server WebApp with Spring Boot:
-
 Just run the class *DemoGwtSpringbootApplication* or if you are using Spring Tool Suite just run it with Spring Boot Dashboard:
 
 ![STS Spring Boot Dashboard](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/sts-boot-dashboard.png)
@@ -122,7 +120,7 @@ You have to deactivate JRebel if you want to use this tool. This dependency shou
 
 To be able to test quickly you can use GWT SuperDev Mode. With this tool you can just recompile the changes in GWT Java codes into JavaScript codes without restarting the process.
 
-Following steps are needed to be followed.
+Follow following steps:
 
 #### Starting GWT SuperDev Mode
 
@@ -143,17 +141,21 @@ Now you can go the given address and boomark the *Dev Mode On* through *drag and
 
 ![GWT SuperDev Mode](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/gwt-bookmarks.png)
 
-That's it. Now you can just push *Dev Mode On* to run the transpiler to directly run the WebApp.
+That's it. You can just push *Dev Mode On* to run the transpiler directly and the WebApp will be reloaded automatically. 
 
 ![GWT SuperDev Mode](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/gwt-compiler.png)
 
 ### Call the WebApp demo-gwt-springboot from a web browser
 
-Application URL:
+Go to the application URL with a web browser:
 
 ```java
 http://localhost:9014/demogwt/demogwt.html
 ```
+
+### Logging
+
+...
 
 ### Debugging GWT SuperDev Mode
 
