@@ -15,12 +15,14 @@
 	- [Client: Start GWT SuperDev Mode transpiler](#client-start-gwt-superdev-mode-transpiler)
 	- [Browser: Call the WebApp demo-gwt-springboot from a web browser](#browser-call-the-webapp-demo-gwt-springboot-from-a-web-browser)
 - [Logging](#logging)
-	- [Server logging at the Spring Boot Console](#server-logging-at-the-spring-boot-console)
-	- [Client logging at the Browser Console](#client-logging-at-the-browser-console)
+	- [Server: Logging at the Spring Boot Console](#server-logging-at-the-spring-boot-console)
+	- [Client: Logging at the Browser Console](#client-logging-at-the-browser-console)
 - [Debugging](#debugging)
-	- [Server Debugging](#server-debugging)
-	- [Client Debugging with GWT SuperDev Mode](#client-debugging-with-gwt-superdev-mode)
+	- [Server: Debugging Spring Boot](#server-debugging-spring-boot)
+	- [Client: Debugging with GWT SuperDev Mode](#client-debugging-with-gwt-superdev-mode)
 - [Unit and Integration Testing](#unit-and-integration-testing)
+    - [Server: Spring Test](#server-spring-test)
+    - [Client: GWT Mockito](#client-gwt-mockito)
 
 ## Introduction
 
@@ -178,21 +180,21 @@ http://localhost:9014/demogwt/demogwt.html
 
 The GWT logging is activated (see [configuration file](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwt.gwt.xml) at both sides: Client and Server.
 
-### Server logging at the Spring Boot Console
+### Server: Logging at the Spring Boot Console
 
 ![GWT Server Logging](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/gwt-logging-server.png)
 
-### Client logging at the Browser Console
+### Client: Logging at the Browser Console
 
 ![GWT Client Logging](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/gwt-logging-client.png)
 
 ## Debugging
 
-### Server Debugging
+### Server: Debugging Spring Boot
 
 Debugging the Spring Boot part can be achieved easily by starting the Spring Boot with Debug mode.
 
-### Client Debugging with GWT SuperDev Mode
+### Client: Debugging with GWT SuperDev Mode
 
 Debugging the GWT part should be done by using [SDBG](https://sdbg.github.io/). For this purpose you need to use Google Chrome as your browser.
 
@@ -212,10 +214,11 @@ There are two GWT configuration files: [_DemoGwtDevelopment.gwt.xml_](https://gi
 
 ## Unit and Integration Testing
 
-### GWT Mockito
+### Server: Spring Test
 
 ...
 
-### Spring Test
+### Client: GWT Mockito
 
 ...
+
