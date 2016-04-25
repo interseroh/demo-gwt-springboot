@@ -143,9 +143,9 @@ Now you can go the given address and boomark the *Dev Mode On* through *drag and
 
 ![GWT SuperDev Mode](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/gwt-bookmarks.png)
 
-#### Debugging GWT SuperDev Mode
+That's it. Now you can just push *Dev Mode On* to run the transpiler to directly run the WebApp.
 
-
+![GWT SuperDev Mode](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/gwt-compiler.png)
 
 ### Call the WebApp demo-gwt-springboot from a web browser
 
@@ -154,6 +154,10 @@ Application URL:
 ```java
 http://localhost:9014/demogwt/demogwt.html
 ```
+
+### Debugging GWT SuperDev Mode
+
+...
 
 ## Unit and Integration Testing
 
