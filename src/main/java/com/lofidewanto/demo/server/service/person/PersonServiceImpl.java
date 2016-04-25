@@ -18,11 +18,14 @@
  */
 package com.lofidewanto.demo.server.service.person;
 
+import org.springframework.stereotype.Service;
+
 import com.lofidewanto.demo.server.domain.Address;
 import com.lofidewanto.demo.server.domain.Person;
 import com.lofidewanto.demo.server.exception.CreateAddressException;
 import com.lofidewanto.demo.server.exception.CreatePersonException;
 
+@Service
 public class PersonServiceImpl implements PersonService {
 
 	@Override

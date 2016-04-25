@@ -18,6 +18,9 @@
  */
 package com.lofidewanto.demo.server.service.user;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class UserServiceImpl implements UserService {
 
 	@Override
