@@ -18,12 +18,38 @@
  */
 package com.lofidewanto.demo.shared;
 
-public interface DemoGwtServiceEndpoint {
+import com.lofidewanto.demo.server.domain.AddressType;
 
-	public static final String GWT_REMOTE_LOGGING = "/demogwt/remote_logging";
+public class AddressDto {
 
-	public static final String PERSON_LIST = "v1/persons";
+	private String street;
 
-	public static final String LOGIN_USER = "v1/loginuser";
+	private AddressType addressType;
+
+	private boolean isOld;
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public AddressType getAddressType() {
+		return addressType;
+	}
+
+	public void setAddressType(AddressType addressType) {
+		this.addressType = addressType;
+	}
+
+	public boolean isOld() {
+		return isOld;
+	}
+
+	public void setOld(boolean isOld) {
+		this.isOld = isOld;
+	}
 
 }

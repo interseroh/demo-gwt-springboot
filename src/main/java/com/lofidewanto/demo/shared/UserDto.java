@@ -18,12 +18,16 @@
  */
 package com.lofidewanto.demo.shared;
 
-public interface DemoGwtServiceEndpoint {
+public class UserDto {
 
-	public static final String GWT_REMOTE_LOGGING = "/demogwt/remote_logging";
+	private String name;
 
-	public static final String PERSON_LIST = "v1/persons";
+	public String getName() {
+		return name;
+	}
 
-	public static final String LOGIN_USER = "v1/loginuser";
+	public void setName(String name) {
+		this.name = name;
+	}
 
 }
