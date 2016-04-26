@@ -2,7 +2,7 @@
 
 ## Build Status
 
-[![Build Status](https://travis-ci.org/lofidewanto/demo-gwt-springboot.svg?branch=master)](https://travis-ci.org/lofidewanto/demo-gwt-springboot)
+[![Build Status](https://travis-ci.org/interseroh/demo-gwt-springboot.svg?branch=master)](https://travis-ci.org/interseroh/demo-gwt-springboot)
 
 ## Table of Contents
 
