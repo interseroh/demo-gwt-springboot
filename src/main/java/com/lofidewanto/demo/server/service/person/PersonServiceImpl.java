@@ -31,7 +31,6 @@ import org.springframework.stereotype.Service;
 import com.lofidewanto.demo.server.domain.Address;
 import com.lofidewanto.demo.server.domain.Person;
 import com.lofidewanto.demo.server.domain.PersonImpl;
-import com.lofidewanto.demo.server.exception.CreateAddressException;
 import com.lofidewanto.demo.server.exception.CreatePersonException;
 import com.lofidewanto.demo.server.repository.PersonRepository;
 
@@ -45,14 +44,22 @@ public class PersonServiceImpl implements PersonService {
 	private PersonRepository personRepository;
 
 	@Override
-	public void createAddressFromPerson(Address address, Person person)
-			throws CreateAddressException, CreatePersonException {
-		// Create a Person and add an Address
+	public Person createAddressFromPerson(Address address, Person person)
+			throws CreatePersonException {
+		// Create a Person and add an Address to it
 		person.addAddress(address);
+		
+		try {
+			PersonImpl personImplSaved = personRepository.save((PersonImpl) person);
 
-		PersonImpl personImplSaved = personRepository.save((PersonImpl) person);
+			logger.info("Following person created: " + personImplSaved.getName());
 
-		logger.info("Following person created: " + personImplSaved.getName());
+			return personImplSaved;
+		} catch (Exception e) {
+			logger.error(
+					"Error saving the person and address - exception: " + e);
+			throw new CreatePersonException();
+		}
 	}
 
 	@Override
