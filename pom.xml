@@ -183,7 +183,7 @@
 				</executions>
 				<configuration>
 					<sourceLevel>1.7</sourceLevel>
-					<module>com.lofidewanto.demo.DemoGwtDevelopment</module>
+					<module>com.lofidewanto.demo.DemoGwt</module>
 					<extraJvmArgs>-Xmx1024M -Xss1024k</extraJvmArgs>
 					<runTarget>belegpruefung.html</runTarget>
 					<persistentunitcachedir>${project.build.directory}</persistentunitcachedir>
