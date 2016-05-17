@@ -50,8 +50,19 @@ public class PersonController {
 
 		Collection<Person> findAllPersons = personService.findAllPersons(start,
 				length);
+		for (Person person : findAllPersons) {
+			PersonDto personDto = buildPerson(person);
+			persons.add(personDto);
+		}
 
 		return persons;
+	}
+
+	private PersonDto buildPerson(Person person) {
+		PersonDto personDto = new PersonDto();
+		personDto.setName(person.getName());
+		personDto.setNickname(person.getNickname());
+		return personDto;
 	}
 
 }

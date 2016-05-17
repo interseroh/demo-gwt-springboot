@@ -40,9 +40,14 @@ public class UserController {
 	public @ResponseBody UserDto getLoginUser() {
 		String loginUser = userService.getLoginUser();
 
+		UserDto userDto = buildUser(loginUser);
+
+		return userDto;
+	}
+
+	private UserDto buildUser(String loginUser) {
 		UserDto userDto = new UserDto();
 		userDto.setName(loginUser);
-
 		return userDto;
 	}
 }

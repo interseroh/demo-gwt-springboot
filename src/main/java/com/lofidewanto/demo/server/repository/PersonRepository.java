@@ -18,10 +18,11 @@
  */
 package com.lofidewanto.demo.server.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.lofidewanto.demo.server.domain.PersonImpl;
 
-public interface PersonRepository extends CrudRepository<PersonImpl, Long> {
+public interface PersonRepository
+		extends PagingAndSortingRepository<PersonImpl, Long> {
 
 }

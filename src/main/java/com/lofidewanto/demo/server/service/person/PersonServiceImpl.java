@@ -18,29 +18,57 @@
  */
 package com.lofidewanto.demo.server.service.person;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.lofidewanto.demo.server.domain.Address;
 import com.lofidewanto.demo.server.domain.Person;
+import com.lofidewanto.demo.server.domain.PersonImpl;
 import com.lofidewanto.demo.server.exception.CreateAddressException;
 import com.lofidewanto.demo.server.exception.CreatePersonException;
+import com.lofidewanto.demo.server.repository.PersonRepository;
 
 @Service
 public class PersonServiceImpl implements PersonService {
 
+	private static final Logger logger = LoggerFactory
+			.getLogger(PersonServiceImpl.class);
+
+	@Autowired
+	private PersonRepository personRepository;
+
 	@Override
 	public void createAddressFromPerson(Address address, Person person)
 			throws CreateAddressException, CreatePersonException {
-		// TODO Auto-generated method stub
+		// Create a Person and add an Address
+		person.addAddress(address);
 
+		PersonImpl personImplSaved = personRepository.save((PersonImpl) person);
+
+		logger.info("Following person created: " + personImplSaved.getName());
 	}
 
 	@Override
 	public Collection<Person> findAllPersons(Integer start, Integer length) {
-		// TODO Auto-generated method stub
-		return null;
+		Collection<Person> personsAsCollection = new ArrayList<>();
+		Pageable pageable = new PageRequest(start, length);
+		Iterable<PersonImpl> persons = personRepository.findAll(pageable);
+
+		persons.forEach(person -> {
+			personsAsCollection.add(person);
+		});
+		
+		logger.info("Find all persons with start and length amount: "
+				+ personsAsCollection.size());
+		
+		return personsAsCollection;
 	}
 
 }
