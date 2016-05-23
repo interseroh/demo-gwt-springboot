@@ -33,6 +33,7 @@ import com.lofidewanto.demo.server.domain.AddressImpl;
 import com.lofidewanto.demo.server.domain.Person;
 import com.lofidewanto.demo.server.domain.PersonImpl;
 import com.lofidewanto.demo.server.exception.CreatePersonException;
+import com.lofidewanto.demo.server.repository.AddressRepository;
 import com.lofidewanto.demo.server.repository.PersonRepository;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -43,6 +44,9 @@ public class PersonServiceImplTest {
 
 	@Mock
 	private PersonRepository personRepository;
+
+	@Mock
+	private AddressRepository addressRepository;
 
 	@Before
 	public void setUp() throws Exception {
@@ -55,6 +59,7 @@ public class PersonServiceImplTest {
 		Address address = new AddressImpl();
 
 		doReturn(person).when(personRepository).save((PersonImpl) person);
+		doReturn(address).when(addressRepository).save((AddressImpl) address);
 
 		// CUT
 		Person createAddressFromPerson = personService
