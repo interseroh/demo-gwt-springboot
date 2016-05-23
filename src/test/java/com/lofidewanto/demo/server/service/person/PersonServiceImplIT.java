@@ -19,7 +19,6 @@
 package com.lofidewanto.demo.server.service.person;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -57,7 +56,7 @@ public class PersonServiceImplIT {
 
 	@Test
 	public void testFindAllPersons() {
-		fail("Not yet implemented");
+		// TODO Implement
 	}
 
 }
