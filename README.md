@@ -206,7 +206,7 @@ You need to update following file: [configuration file for development](https://
 	<set-property name="user.agent" value="safari" />  
 ```
 
-**Tip and Tricks for Optimizing Transpiler Speed**
+**Tips and Tricks for Optimizing Transpiler Speed**
 
 There are two GWT configuration files: [_DemoGwtDevelopment.gwt.xml_](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwtDevelopment.gwt.xml) and [_DemoGwt.gwt.xml_](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwt.gwt.xml).
 - _DemoGwtDevelopment.gwt.xml_: this config will be used to make the GWT compiling process faster. This only compiles for one web browser and use INFO as logging output.
@@ -216,9 +216,11 @@ There are two GWT configuration files: [_DemoGwtDevelopment.gwt.xml_](https://gi
 
 ### Server: Spring Test
 
-...
+An example of an integration test with Spring:
+- [PersonServiceImplIT.java](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/test/java/com/lofidewanto/demo/server/service/person/PersonServiceImplIT.java)
 
 ### Client: GWT Mockito
 
-...
+We use GWT Mockito for writing the UI tests for GWT. Following is an example of such a test:
+- [MainPanelViewTest.java](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/test/java/com/lofidewanto/demo/client/ui/main/MainPanelViewTest.java)
 
