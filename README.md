@@ -216,7 +216,11 @@ There are two GWT configuration files: [_DemoGwtDevelopment.gwt.xml_](https://gi
 
 ### Server: Spring Test
 
-An example of an integration test with Spring:
+An example of unit test with POJO:
+- [PersonServiceImplTest.java](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/test/java/com/lofidewanto/demo/server/service/person/PersonServiceImplTest.java)
+- [PersonImplTest.java](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/test/java/com/lofidewanto/demo/server/domain/PersonImplTest.java)
+
+An example of an integration test with Spring and in memory database:
 - [PersonServiceImplIT.java](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/test/java/com/lofidewanto/demo/server/service/person/PersonServiceImplIT.java)
 
 ### Client: GWT Mockito
