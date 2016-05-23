@@ -41,9 +41,17 @@ public class PersonImpl implements Person {
 	private String nickname;
 
 	@OneToMany
-	private Collection<AddressImpl> addresses;
+	private Collection<AddressImpl> addresses = new ArrayList<>();
 
 	private Boolean isInRetirement;
+
+	public PersonImpl() {
+	}
+
+	public PersonImpl(String nickname) {
+		super();
+		this.nickname = nickname;
+	}
 
 	@Override
 	public Integer calculateAge() {

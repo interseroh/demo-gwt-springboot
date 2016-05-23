@@ -29,9 +29,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.lofidewanto.demo.server.domain.Address;
+import com.lofidewanto.demo.server.domain.AddressImpl;
 import com.lofidewanto.demo.server.domain.Person;
 import com.lofidewanto.demo.server.domain.PersonImpl;
 import com.lofidewanto.demo.server.exception.CreatePersonException;
+import com.lofidewanto.demo.server.repository.AddressRepository;
 import com.lofidewanto.demo.server.repository.PersonRepository;
 
 @Service
@@ -43,10 +45,19 @@ public class PersonServiceImpl implements PersonService {
 	@Autowired
 	private PersonRepository personRepository;
 
+	@Autowired
+	private AddressRepository addressRepository;
+
 	@Override
 	public Person createAddressFromPerson(Address address, Person person)
 			throws CreatePersonException {
 		// Create a Person and add an Address to it
+		AddressImpl addressImplSaved = addressRepository
+				.save((AddressImpl) address);
+		
+		logger.info(
+				"Following address created: " + addressImplSaved.getStreet());
+		
 		person.addAddress(address);
 		
 		try {

@@ -18,31 +18,31 @@
  */
 package com.lofidewanto.demo.server.service.person;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-
-import java.util.Collection;
+import static org.mockito.Mockito.doReturn;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import com.lofidewanto.demo.server.DemoGwtSpringbootApplication;
 import com.lofidewanto.demo.server.domain.Address;
 import com.lofidewanto.demo.server.domain.AddressImpl;
 import com.lofidewanto.demo.server.domain.Person;
 import com.lofidewanto.demo.server.domain.PersonImpl;
 import com.lofidewanto.demo.server.exception.CreatePersonException;
+import com.lofidewanto.demo.server.repository.PersonRepository;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = DemoGwtSpringbootApplication.class)
-public class PersonServiceImplIT {
+@RunWith(MockitoJUnitRunner.class)
+public class PersonServiceImplTest {
 
-	@Autowired
-	private PersonService personService;
+	@InjectMocks
+	private PersonService personService = new PersonServiceImpl();
+
+	@Mock
+	private PersonRepository personRepository;
 
 	@Before
 	public void setUp() throws Exception {
@@ -54,28 +54,14 @@ public class PersonServiceImplIT {
 		Person person = new PersonImpl();
 		Address address = new AddressImpl();
 
+		doReturn(person).when(personRepository).save((PersonImpl) person);
+
 		// CUT
-		Person createAddressFromPerson = personService.createAddressFromPerson(address, person);
-		
-		// Asserts
-		assertNotNull(createAddressFromPerson);
-	}
-
-	@Test
-	public void testFindAllPersons() throws CreatePersonException {
-		// Prepare
-		Person person = new PersonImpl();
-		Address address = new AddressImpl();
-
 		Person createAddressFromPerson = personService
 				.createAddressFromPerson(address, person);
-		assertNotNull(createAddressFromPerson);
 
-		// CUT
-		Collection<Person> persons = personService.findAllPersons(0, 10);
-		
 		// Asserts
-		assertEquals(1, persons.size());
+		assertNotNull(createAddressFromPerson);
 	}
 
 }
