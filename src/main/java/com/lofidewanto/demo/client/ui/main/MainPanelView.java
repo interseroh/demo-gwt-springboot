@@ -62,7 +62,7 @@ public class MainPanelView extends Composite {
 	private final MainPanelEventBinder eventBinder = GWT
 			.create(MainPanelEventBinder.class);
 
-	private final Map<WidgetName, Widget> widgets = new HashMap<>();
+	final Map<WidgetName, Widget> widgets = new HashMap<>();
 
 	private final LoadingMessagePopupPanel loadingMessagePopupPanel;
 
