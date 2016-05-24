@@ -26,7 +26,7 @@ import com.lofidewanto.demo.client.ui.main.MainPanelView;
 import com.lofidewanto.demo.client.ui.person.PersonPanelView;
 
 @GinModules(DemoGwtWebAppGinModule.class)
-public interface DemoGwtWebbAppGinjector extends Ginjector {
+public interface DemoGwtWebAppGinjector extends Ginjector {
 
 	ServicePreparator getServicePreparator();
 

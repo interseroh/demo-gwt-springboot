@@ -46,8 +46,8 @@ public class DemoGwtWebApp implements EntryPoint {
 	private static final String LOCALE = "de_DE";
 
 	// Create Gin Injector
-	private final DemoGwtWebbAppGinjector injector = GWT
-			.create(DemoGwtWebbAppGinjector.class);
+	private final DemoGwtWebAppGinjector injector = GWT
+			.create(DemoGwtWebAppGinjector.class);
 
 	@Override
 	public void onModuleLoad() {
