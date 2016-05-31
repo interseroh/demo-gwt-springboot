@@ -3,7 +3,7 @@
 ## Build Status
 
 [![Build Status](https://travis-ci.org/interseroh/demo-gwt-springboot.svg?branch=master)](https://travis-ci.org/interseroh/demo-gwt-springboot)
-[![Heroku](https://heroku-badge.herokuapp.com/?app=demo-gwt-springboot&root=demogwt/demogwt.html)]
+[![Heroku](https://heroku-badge.herokuapp.com/?app=demo-gwt-springboot&root=demogwt/demogwt.html)](https://demo-gwt-springboot.herokuapp.com/demogwt/demogwt.html)
 
 ## Table of Contents
 
