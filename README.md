@@ -14,6 +14,7 @@
 	- [Server: Start the WebApp with Spring Boot](#server-start-the-webapp-with-spring-boot)
 	- [Client: Start GWT SuperDev Mode transpiler](#client-start-gwt-superdev-mode-transpiler)
 	- [Browser: Call the WebApp demo-gwt-springboot from a web browser](#browser-call-the-webapp-demo-gwt-springboot-from-a-web-browser)
+	- [Heroku: Test the Webapp from Heroku](#heroku-test-the-webapp-from-heroku)
 - [Logging](#logging)
 	- [Server: Logging at the Spring Boot Console](#server-logging-at-the-spring-boot-console)
 	- [Client: Logging at the Browser Console](#client-logging-at-the-browser-console)
@@ -175,6 +176,10 @@ Go to the application URL with a web browser:
 ```java
 http://localhost:9014/demogwt/demogwt.html
 ```
+
+### Heroku: Test the Webapp from Heroku
+
+The webapp is installed in Heroku and you can test it from this address: https://demo-gwt-springboot.herokuapp.com/demogwt/demogwt.html
 
 ## Logging
 
