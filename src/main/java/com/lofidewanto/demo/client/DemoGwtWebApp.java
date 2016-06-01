@@ -25,6 +25,10 @@ import org.gwtbootstrap3.extras.bootbox.client.options.BootboxLocale;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Document;
+import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.MetaElement;
+import com.google.gwt.dom.client.NodeList;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.i18n.client.LocaleInfo;
@@ -51,6 +55,8 @@ public class DemoGwtWebApp implements EntryPoint {
 
 	@Override
 	public void onModuleLoad() {
+		addMetaElements();
+
 		// Disable Back Button
 		setupHistory();
 
@@ -61,6 +67,17 @@ public class DemoGwtWebApp implements EntryPoint {
 		createViews();
 
 		removeLoadingImage();
+	}
+
+	private void addMetaElements() {
+		logger.info("Add viewport");
+		MetaElement element = Document.get().createMetaElement();
+		element.setName("viewport");
+		element.setContent("width=device-width, initial-scale=1.0");
+
+		NodeList<Element> node = Document.get().getElementsByTagName("head");
+		Element elementHead = node.getItem(0);
+		elementHead.appendChild(element);
 	}
 
 	private void removeLoadingImage() {
