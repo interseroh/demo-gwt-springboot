@@ -15,7 +15,9 @@
 		}
 		
 		.margin-logo {
-			margin-left: 10px;
+			margin-left: 15px;
+			margin-top: 5px;
+			margin-bottom: 5px;
 		}
 		
 		.margin-user {
@@ -29,13 +31,17 @@
 		}
 		
 		.margin-top-bottom {
-			margin-top: 20px;
+			margin-top: 30px;
 			margin-bottom: 10px;
 		}
 		
 		.margin-top-bottom-search-field {
 			margin-top: 10px;
 			margin-bottom: 10px;
+		}
+		
+		.margin-title {
+			padding-top: 5px;
 		}
 	</ui:style>
 	
@@ -59,7 +65,7 @@
 								</b:NavbarNav>
 				
 								<b:NavbarCollapse b:id="navbar-collapse">
-									<b:NavbarNav addStyleNames="col-lg-4">
+									<b:NavbarNav addStyleNames="col-lg-4 {style.margin-title}">
 										<b:AnchorListItem ui:field="taskListAnchorListItem"
 											text="{i18n.app_title}"></b:AnchorListItem>
 										<b:ListDropDown>
@@ -72,7 +78,7 @@
 										</b:ListDropDown>					
 									</b:NavbarNav>			
 									
-									 <b:NavbarNav pull="RIGHT" addStyleNames="col-lg-4">
+									 <b:NavbarNav pull="RIGHT" addStyleNames="col-lg-4 {style.margin-title}">
 										<b:NavbarText addStyleNames="{style.margin-user}">
 											<b:NavbarLink ui:field="userNavbarLink" text="+Lofi Dewanto" />
 										</b:NavbarText>
