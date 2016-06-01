@@ -15,7 +15,7 @@
 		}
 		
 		.margin-logo {
-			margin-left: 15px;
+			margin-left: 20px;
 			margin-top: 5px;
 			margin-bottom: 5px;
 		}
