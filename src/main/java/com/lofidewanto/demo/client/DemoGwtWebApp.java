@@ -82,8 +82,10 @@ public class DemoGwtWebApp implements EntryPoint {
 
 	private void removeLoadingImage() {
 		// Remove loadingImage from Host HTML page
-		RootPanel.getBodyElement()
-				.removeChild(RootPanel.get(HOST_LOADING_IMAGE).getElement());
+		RootPanel rootPanel = RootPanel.get(HOST_LOADING_IMAGE);
+		if (rootPanel != null) {
+			RootPanel.getBodyElement().removeChild(rootPanel.getElement());
+		}
 	}
 
 	private void initServices() {
