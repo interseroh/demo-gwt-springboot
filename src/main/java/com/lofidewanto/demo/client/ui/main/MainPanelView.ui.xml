@@ -49,16 +49,16 @@
 					<b:Panel>
 						<b:PanelBody>
 							<b:Navbar addStyleNames="{style.margin-fix}" position="FIXED_TOP">
-								<b:NavbarCollapse b:id="navbar-collapse2">
-									<b:NavbarNav addStyleNames="col-lg-1">
-										<!-- This is where you can use image but there are some -->
-										<!-- problems with image for different themes -->
-										<b:Image ui:field="mainImage" type="ROUNDED"
-											resource="{asset.logo}" width="120px" height="60px"
-											addStyleNames="{style.margin-logo}" />
-										<b:NavbarCollapseButton dataTarget="#navbar-collapse2" />
-									</b:NavbarNav>
+								<b:NavbarNav addStyleNames="col-lg-1">
+									<!-- This is where you can use image but there are some -->
+									<!-- problems with image for different themes -->
+									<b:Image ui:field="mainImage" type="ROUNDED"
+										resource="{asset.logo}" width="120px" height="60px"
+										addStyleNames="{style.margin-logo}" />
+									<b:NavbarCollapseButton dataTarget="#navbar-collapse" />
+								</b:NavbarNav>
 				
+								<b:NavbarCollapse b:id="navbar-collapse">
 									<b:NavbarNav addStyleNames="col-lg-4">
 										<b:AnchorListItem ui:field="taskListAnchorListItem"
 											text="{i18n.app_title}"></b:AnchorListItem>
@@ -69,8 +69,7 @@
 												<b:AnchorListItem ui:field="menuListItem"
 													text="{i18n.menu_text_2}"></b:AnchorListItem>
 											</b:DropDownMenu>
-										</b:ListDropDown>
-										
+										</b:ListDropDown>					
 									</b:NavbarNav>			
 									
 									 <b:NavbarNav pull="RIGHT" addStyleNames="col-lg-4">
@@ -79,8 +78,7 @@
 										</b:NavbarText>
 										<b:ListDropDown addStyleNames="{style.margin-webapps}">
 											 <b:AnchorButton dataToggle="DROPDOWN"
-												text="{i18n.menu_text_3}"></b:AnchorButton>
-												
+												text="{i18n.menu_text_3}"></b:AnchorButton>					
 											<b:DropDownMenu>
 												  <b:AnchorListItem ui:field="menuAnchorListItem"
 													text="{i18n.menu_text_4}"></b:AnchorListItem>
