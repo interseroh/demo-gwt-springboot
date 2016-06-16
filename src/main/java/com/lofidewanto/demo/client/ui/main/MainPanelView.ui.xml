@@ -54,16 +54,17 @@
 				<b:Column size="MD_12">
 					<b:Panel>
 						<b:PanelBody>
-							<b:Navbar addStyleNames="{style.margin-fix}" position="FIXED_TOP">
-								<b:NavbarNav addStyleNames="col-lg-1">
-									<!-- This is where you can use image but there are some -->
-									<!-- problems with image for different themes -->
-									<b:Image ui:field="mainImage" type="ROUNDED"
-										resource="{asset.logo}" width="120px" height="60px"
-										addStyleNames="{style.margin-logo}" />
-									<b:NavbarCollapseButton dataTarget="#navbar-collapse" />
-								</b:NavbarNav>
-				
+							<b:Navbar position="FIXED_TOP">
+								<b:NavbarHeader addStyleNames="{style.margin-fix}">
+									<b:NavbarNav addStyleNames="col-lg-1">
+										<!-- This is where you can use image but there are some -->
+										<!-- problems with image for different themes -->
+										<b:Image ui:field="mainImage" type="ROUNDED"
+											resource="{asset.logo}" width="120px" height="60px"
+											addStyleNames="{style.margin-logo}" />
+										<b:NavbarCollapseButton dataTarget="#navbar-collapse" />
+									</b:NavbarNav>
+								</b:NavbarHeader>
 								<b:NavbarCollapse b:id="navbar-collapse">
 									<b:NavbarNav addStyleNames="col-lg-4 {style.margin-title}">
 										<b:AnchorListItem ui:field="taskListAnchorListItem"
@@ -91,7 +92,7 @@
 											</b:DropDownMenu>
 										</b:ListDropDown>
 									</b:NavbarNav> 			
-								</b:NavbarCollapse>
+								</b:NavbarCollapse>		
 							</b:Navbar>
 						</b:PanelBody>
 					</b:Panel>
