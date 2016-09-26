@@ -43,6 +43,10 @@
 		.margin-title {
 			padding-top: 5px;
 		}
+
+				
+		
+		
 	</ui:style>
 	
 	<ui:with field='i18n' type='com.lofidewanto.demo.client.Messages' />
@@ -79,16 +83,43 @@
 										</b:ListDropDown>					
 									</b:NavbarNav>			
 									
-									 <b:NavbarNav pull="RIGHT" addStyleNames="col-lg-4 {style.margin-title}">
-										<b:NavbarText addStyleNames="{style.margin-user}">
+									 <b:NavbarNav pull="RIGHT" addStyleNames="col-lg-2 {style.margin-title}">
+										<!-- <b:NavbarText addStyleNames="{style.margin-user}">
 											<b:NavbarLink ui:field="userNavbarLink" text="+Lofi Dewanto" />
-										</b:NavbarText>
-										<b:ListDropDown addStyleNames="{style.margin-webapps}">
-											 <b:AnchorButton dataToggle="DROPDOWN"
-												text="{i18n.menu_text_3}"></b:AnchorButton>					
+										</b:NavbarText> -->
+										<b:ListDropDown>
+											<b:Popover ui:field="webAppsPopOver" title="Interseroh WabApps" isHtml="true" trigger="CLICK" placement="BOTTOM">
+												<b:AnchorButton ui:field="webAppsButton"></b:AnchorButton>
+											</b:Popover>
+										<!-- <b:ListDropDown> --><!-- addStyleNames="{style.margin-webapps}"> 
+											<b:AnchorButton ui:field="webAppsButton1" dataToggle="DROPDOWN" toggleCaret="false"/>
 											<b:DropDownMenu>
-												  <b:AnchorListItem ui:field="menuAnchorListItem"
+												
+										  		<b:AnchorListItem ui:field="auftragsCockpitAnchorListItem"
+													text="{i18n.menu_text_1}"></b:AnchorListItem>											
+												<b:AnchorListItem ui:field="dienstleisterPortalAnchorListItem"
+													text="{i18n.menu_text_2}"></b:AnchorListItem>
+												<b:AnchorListItem ui:field="isupplierPortalAnchorListItem"
+													text="{i18n.menu_text_3}"></b:AnchorListItem>
+												<b:AnchorListItem ui:field="oracleBiPortalAnchorListItem"
 													text="{i18n.menu_text_4}"></b:AnchorListItem>
+
+											</b:DropDownMenu> -->
+										</b:ListDropDown>
+
+										<b:ListDropDown> <!-- addStyleNames="{style.margin-webapps}"> -->
+ 											<b:AnchorButton ui:field="notificationButton" dataToggle="DROPDOWN" toggleCaret="false"/>
+											<b:DropDownMenu>
+												  <b:AnchorListItem ui:field="notificationListItem"
+													text="{i18n.menu_text_1}"></b:AnchorListItem>
+											</b:DropDownMenu>
+										</b:ListDropDown>
+
+										<b:ListDropDown> <!-- addStyleNames="{style.margin-webapps}"> -->
+ 											<b:AnchorButton ui:field="wrenchButton" text="Lofi Dewanto" dataToggle="DROPDOWN" toggleCaret="false"/>
+											<b:DropDownMenu>
+												  <b:AnchorListItem ui:field="wrenchListItem"
+													text="{i18n.menu_text_1}"></b:AnchorListItem>
 											</b:DropDownMenu>
 										</b:ListDropDown>
 									</b:NavbarNav> 			
