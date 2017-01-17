@@ -1,0 +1,145 @@
+/* 
+
+### Primaerfarben ###
+(Interseroh-Blau) 
+100% #183362, rgba(0,38,82,1);
+90%  rgb(3,60,105);
+80%  rgb(40,74,117);
+70%  rgb(40,74,114);
+60%  rgb(89,113,150);
+50%  rgb(114,135,167);
+40%  rgb(141,155,182);
+30%  rgb(169,179,200);
+20%  rgb(196,202,217);
+10%  rgb(225,229,238);
+
+(Interseroh-Grau)
+100% #a1a1a3, rgba(161,161,163,1);
+20% rgba(218,218,218,1);
+10% rgba(236,236,236,1);
+
+(Interseroh-Rot)
+100% #aa2321, rgb(170,35,33);
+
+(Interseroh-Gruen)
+100% #4a8726, rgb(74,135,38);
+50% #4a8726, rgba(74,135,38, 0.5);
+
+(Interseroh-Gelb)
+100% #e9c819, rgb(233,200,25);
+50% rgba(233,200,25, 0.5);
+
+(ALBA Group Watermarke) Rgb
+HKS 41 #002f5d;
+Pantone Cool Gray 6C #c5c6c6;
+ */
+
+
+ *, *:before, *:after {
+   -webkit-box-sizing: border-box; 
+   -moz-box-sizing: border-box; 
+   box-sizing: border-box;
+ }
+
+ html {
+ 	font-family: sans-serif; /* 1 */
+ 	-ms-text-size-adjust: 100%; /* 2 */
+ 	-webkit-text-size-adjust: 100%; /* 2 */
+ }
+
+body {
+ 	font-family: 'Arial', sans-serif;
+ 	margin:0;
+}
+
+h1 {
+	font-size:32px;
+	font-weight: bold;
+
+}
+
+h2 {
+	font-size:26px;
+	font-weight: bold;
+}
+
+h3 {
+	font-size:20px;
+	font-weight: bold;
+}
+
+h4 {
+	font-size:16px;
+	font-weight: bold;
+}
+
+h5 {
+	font-size:14px;
+	font-weight: bold;
+}
+
+p {
+	color:#000;
+	font-size:12px;
+	line-height:16px;
+	margin: 0px
+}
+
+p+p {
+ 	margin: 12px 0px
+}
+
+.jumbotron p {
+    font-size: 21px;
+    font-weight: 200;
+    margin-bottom: 15px;
+    line-height:1;
+}
+
+.btn-example {
+	background-color: #183362;
+}
+
+.interseroh-blau100 {
+	background-color: rgba(0,38,82,1);
+}
+.interseroh-blau90 {
+	background-color: rgb(3,60,105);
+}
+.interseroh-blau80 {
+	background-color: rgb(40,74,117);
+}
+.interseroh-blau70 {
+	background-color: rgb(40,74,114);
+}
+.interseroh-blau60 {
+	background-color: rgb(89,113,150);
+}
+.interseroh-blau50 {
+	background-color: rgb(114,135,167);
+}
+.interseroh-blau40 {
+	background-color: rgb(141,155,182);
+}
+.interseroh-blau30 {
+	background-color: rgb(169,179,200);
+}
+.interseroh-blau20 {
+	background-color: rgb(196,202,217);
+}
+.interseroh-blau10 {
+	background-color: rgb(225,229,238);
+}
+
+
+.interseroh-rot {
+	background-color: rgb(170,35,33)
+}
+
+.interseroh-gelb {
+	background-color: rgb(233,200,25);
+}
+
+.interseroh-gruen {
+	background-color: rgb(74,135,38);
+}

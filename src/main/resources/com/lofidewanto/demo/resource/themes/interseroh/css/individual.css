@@ -1,0 +1,14 @@
+body
+{
+	/* background: url('https://www.interseroh-portal.de/dienstleistungsportal/uploads/Image/header.png'); */
+    /* background: url('http://www.interseroh.com/fileadmin/interseroh/system/templates/images/bg_country.jpg') no-repeat center center fixed; 
+    background-size: cover; */
+    padding-top: 95px;
+    background-color: white
+}
+
+.modal-dialog-sidebar {
+	position: relative;
+    margin: 30px auto;
+	width: 300px
+}
