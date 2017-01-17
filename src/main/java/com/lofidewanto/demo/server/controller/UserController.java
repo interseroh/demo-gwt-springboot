@@ -18,8 +18,6 @@
  */
 package com.lofidewanto.demo.server.controller;
 
-import javax.ws.rs.core.MediaType;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +34,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = DemoGwtServiceEndpoint.LOGIN_USER, method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON)
+	@RequestMapping(value = DemoGwtServiceEndpoint.LOGIN_USER, method = RequestMethod.GET)
 	public @ResponseBody UserDto getLoginUser() {
 		String loginUser = userService.getLoginUser();
 
