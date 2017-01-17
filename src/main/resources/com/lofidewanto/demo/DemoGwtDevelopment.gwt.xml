@@ -6,7 +6,7 @@
 
 	<!-- Compiler agent - we only need to compile for one web browser in development -->
 	<!-- If you want to use SDBG for debugging you need to use Chrome == safari -->
-	<set-property name="user.agent" value="gecko1_8" />
+	<set-property name="user.agent" value="safari" />
 
 	<!-- SuperDev Mode -->
 	<set-configuration-property name="devModeRedirectEnabled"
