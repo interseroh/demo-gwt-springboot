@@ -48,6 +48,7 @@
 		<include name="**/*.svg" />
 		<include name="**/*.ttf" />
 		<include name="**/*.woff" />
+		<include name="**/*.woff2" />
 		<include name="**/*.png" />
 		<include name="**/*.gif" />
 		<include name="**/*.jpg" />
@@ -55,7 +56,7 @@
 
 	<!-- Themes -->
 	<!-- <stylesheet src='bootswatch/paper/css/bootstrap.min.css' /> -->
-	<stylesheet src='interseroh/css/interseroh-bootstrap.min.css' />
+	<stylesheet src='interseroh/css/interseroh-bootstrap.css' />
 	
 	<!-- Fix themes Paper Bootswatch with GwtBootstrap3 -->
 	<!-- <stylesheet src='bootswatch/paper/css/bootstrap.fix.css' /> -->  
