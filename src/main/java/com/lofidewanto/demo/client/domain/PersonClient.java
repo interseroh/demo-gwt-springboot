@@ -37,7 +37,7 @@ import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
 public interface PersonClient extends RestService {
 
 	@GET
-	@Path(DemoGwtServiceEndpoint.PERSON_LIST)
+	@Path(DemoGwtServiceEndpoint.CONTEXT + DemoGwtServiceEndpoint.PERSON_LIST)
 	void getPersons(@QueryParam("start") Integer start,
 			@QueryParam("length") Integer length,
 			MethodCallback<Object> callback);

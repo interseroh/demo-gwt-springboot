@@ -22,13 +22,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lofidewanto.demo.server.domain.Person;
@@ -37,15 +40,20 @@ import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
 import com.lofidewanto.demo.shared.PersonDto;
 
 @Controller
+@CrossOrigin
 public class PersonController {
+
+	private static final Logger logger = LoggerFactory
+			.getLogger(PersonController.class);
 
 	@Autowired
 	private PersonService personService;
 
 	@RequestMapping(value = DemoGwtServiceEndpoint.PERSON_LIST, method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON)
 	public @ResponseBody List<PersonDto> getPersons(
-			@RequestParam("start") Integer start,
-			@RequestParam("length") Integer length) {
+			@QueryParam("start") Integer start,
+			@QueryParam("length") Integer length) {
+		logger.info("Method getPersons begins...");
 		ArrayList<PersonDto> persons = new ArrayList<>();
 
 		Collection<Person> findAllPersons = personService.findAllPersons(start,

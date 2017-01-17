@@ -25,6 +25,7 @@ import org.gwtbootstrap3.extras.bootbox.client.options.BootboxLocale;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.MetaElement;
@@ -60,14 +61,31 @@ public class DemoGwtWebApp implements EntryPoint {
 		// Disable Back Button
 		setupHistory();
 
+		logger.info("Test");
+
 		setupBootbox();
 
 		initServices();
 
-		createViews();
+		GWT.runAsync(new RunAsyncCallback() {
+			@Override
+			public void onFailure(Throwable reason) {
+			}
 
-		removeLoadingImage();
+			@Override
+			public void onSuccess() {
+				createViews();
+				removeLoadingImage();
+				// alert("LOFI");
+			}
+		});
 	}
+
+	// @formatter:off
+	public static native void alert(String msg) /*-{
+	    $wnd.alert(msg);
+	}-*/;
+	// @formatter:on
 
 	private void addMetaElements() {
 		logger.info("Add viewport");

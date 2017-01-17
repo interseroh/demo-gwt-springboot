@@ -22,7 +22,10 @@ import java.util.logging.Logger;
 
 import javax.inject.Singleton;
 
+import org.fusesource.restygwt.client.Method;
+import org.fusesource.restygwt.client.MethodCallback;
 import org.gwtbootstrap3.client.ui.Button;
+import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
@@ -34,6 +37,7 @@ import com.google.inject.Inject;
 import com.lofidewanto.demo.client.common.ErrorFormatter;
 import com.lofidewanto.demo.client.common.LoadingMessagePopupPanel;
 import com.lofidewanto.demo.client.common.Startable;
+import com.lofidewanto.demo.client.domain.PersonClient;
 
 @Singleton
 public class PersonPanelView extends Composite implements Startable {
@@ -48,18 +52,47 @@ public class PersonPanelView extends Composite implements Startable {
 	private static PersonPanelViewUiBinder uiBinder = GWT
 			.create(PersonPanelViewUiBinder.class);
 
+	@SuppressWarnings("unused")
 	private final EventBus eventBus;
 
 	@UiField
 	Button refreshButton;
 
+	private final PersonClient personClient;
+
 	@Inject
 	public PersonPanelView(EventBus eventbus, ErrorFormatter errorFormatter,
-			LoadingMessagePopupPanel loadingMessagePopupPanel) {
+			LoadingMessagePopupPanel loadingMessagePopupPanel,
+			PersonClient personClient) {
 		initWidget(uiBinder.createAndBindUi(this));
 		this.eventBus = eventbus;
+		this.personClient = personClient;
 
 		logger.info("PersonPanelView created...");
+
+		getPersons();
+	}
+
+	private void getPersons() {
+		MethodCallback<Object> callback = new MethodCallback<Object>() {
+			@Override
+			public void onFailure(Method method, Throwable exception) {
+				logger.info("Error: " + exception);
+				Bootbox.alert("Error: " + exception);
+			}
+
+			@Override
+			public void onSuccess(Method method, Object response) {
+				logger.info("The result is ok");
+				Bootbox.alert("The result is ok");
+			}
+		};
+
+		logger.info("Get persons begins...");
+
+		personClient.getPersons(0, 100, callback);
+
+		logger.info("Get persons ends...");
 	}
 
 	@Override
