@@ -54,10 +54,11 @@
 	</public>
 
 	<!-- Themes -->
-	<stylesheet src='bootswatch/paper/css/bootstrap.min.css' />
+	<!-- <stylesheet src='bootswatch/paper/css/bootstrap.min.css' /> -->
+	<stylesheet src='interseroh/css/interseroh-bootstrap.min.css' />
 	
 	<!-- Fix themes Paper Bootswatch with GwtBootstrap3 -->
-	<stylesheet src='bootswatch/paper/css/bootstrap.fix.css' />  
+	<!-- <stylesheet src='bootswatch/paper/css/bootstrap.fix.css' /> -->  
 	
 	<!-- Logging -->
 	<inherits name="com.google.gwt.logging.Logging" />
