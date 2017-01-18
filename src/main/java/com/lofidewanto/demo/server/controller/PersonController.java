@@ -20,6 +20,7 @@ package com.lofidewanto.demo.server.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -37,6 +38,8 @@ import com.lofidewanto.demo.server.service.person.PersonService;
 import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
 import com.lofidewanto.demo.shared.PersonDto;
 
+import javax.ws.rs.QueryParam;
+
 @Controller
 @CrossOrigin
 public class PersonController {
@@ -47,6 +50,9 @@ public class PersonController {
 	@Autowired
 	private PersonService personService;
 
+
+
+
 	@RequestMapping(value = DemoGwtServiceEndpoint.PERSON_LIST, method = RequestMethod.GET)
 	public @ResponseBody List<PersonDto> getPersons(
 			@RequestParam("start") Integer start,
@@ -54,13 +60,34 @@ public class PersonController {
 		logger.info("Method getPersons begins...");
 		ArrayList<PersonDto> persons = new ArrayList<>();
 
-		Collection<Person> findAllPersons = personService.findAllPersons(start,
-				length);
-		for (Person person : findAllPersons) {
-			PersonDto personDto = buildPerson(person);
-			persons.add(personDto);
-		}
+//		Collection<Person> findAllPersons = personService.findAllPersons(start,
+//				length);
+//		for (Person person : findAllPersons) {
+//			PersonDto personDto = buildPerson(person);
+//			persons.add(personDto);
+//		}
 
+		PersonDto dto= new PersonDto();
+		dto.setName("PersonName_0");
+		dto.setNickname("PersonName_0_Nickname");
+
+		persons.add(dto);
+
+
+		return persons;
+	}
+
+	@RequestMapping(value = DemoGwtServiceEndpoint.PERSON_FILTER, method = RequestMethod.GET)
+	public @ResponseBody List<PersonDto> filterPersons(
+			@RequestParam("nameSuggestBox") String personName,
+			@RequestParam("fromDateTimePicker") Date fromDate,
+			@RequestParam("untilDateTimePicker") Date toDate) {
+		logger.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++Method filterPersons begins...");
+		ArrayList<PersonDto> persons = new ArrayList<>();
+		PersonDto dto= new PersonDto();
+		dto.setName("PersonName_1");
+		dto.setNickname("PersonName_1_Nickname");
+		persons.add(dto);
 		return persons;
 	}
 

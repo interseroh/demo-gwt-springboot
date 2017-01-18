@@ -26,10 +26,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import com.lofidewanto.demo.shared.PersonDto;
 import org.fusesource.restygwt.client.MethodCallback;
 import org.fusesource.restygwt.client.RestService;
 
 import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
+
+import java.util.Date;
+import java.util.List;
 
 @Singleton
 @Produces(MediaType.APPLICATION_JSON)
@@ -40,6 +44,12 @@ public interface PersonClient extends RestService {
 	@Path(DemoGwtServiceEndpoint.CONTEXT + DemoGwtServiceEndpoint.PERSON_LIST)
 	void getPersons(@QueryParam("start") Integer start,
 			@QueryParam("length") Integer length,
-			MethodCallback<Object> callback);
+			MethodCallback<List<PersonDto>> callback);
 
+	@GET
+	@Path(DemoGwtServiceEndpoint.CONTEXT + DemoGwtServiceEndpoint.PERSON_FILTER)
+	void filterPerson(@QueryParam("nameSuggestBox") String personName,
+					  @QueryParam("fromDateTimePicker") Date fromDate,
+					  @QueryParam("untilDateTimePicker") Date toDate,
+					  MethodCallback<List<PersonDto>> callback);
 }
