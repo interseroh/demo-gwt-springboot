@@ -18,15 +18,6 @@
  */
 package com.lofidewanto.demo.client.ui.person;
 
-import java.util.logging.Logger;
-
-import javax.inject.Singleton;
-
-import org.fusesource.restygwt.client.Method;
-import org.fusesource.restygwt.client.MethodCallback;
-import org.gwtbootstrap3.client.ui.Button;
-import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -34,31 +25,30 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.lofidewanto.demo.client.common.ErrorFormatter;
 import com.lofidewanto.demo.client.common.LoadingMessagePopupPanel;
 import com.lofidewanto.demo.client.common.Startable;
 import com.lofidewanto.demo.client.domain.PersonClient;
+import org.fusesource.restygwt.client.Method;
+import org.fusesource.restygwt.client.MethodCallback;
+import org.gwtbootstrap3.client.ui.Button;
+import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
+
+import java.util.logging.Logger;
 
 @Singleton
 public class PersonPanelView extends Composite implements Startable {
 
 	private static Logger logger = Logger
 			.getLogger(PersonPanelView.class.getName());
-
-	interface PersonPanelViewUiBinder
-			extends UiBinder<Widget, PersonPanelView> {
-	}
-
 	private static PersonPanelViewUiBinder uiBinder = GWT
 			.create(PersonPanelViewUiBinder.class);
-
 	@SuppressWarnings("unused")
 	private final EventBus eventBus;
-
+	private final PersonClient personClient;
 	@UiField
 	Button refreshButton;
-
-	private final PersonClient personClient;
 
 	@Inject
 	public PersonPanelView(EventBus eventbus, ErrorFormatter errorFormatter,
@@ -98,6 +88,10 @@ public class PersonPanelView extends Composite implements Startable {
 	@Override
 	public void start() {
 
+	}
+
+	interface PersonPanelViewUiBinder
+			extends UiBinder<Widget, PersonPanelView> {
 	}
 
 }
