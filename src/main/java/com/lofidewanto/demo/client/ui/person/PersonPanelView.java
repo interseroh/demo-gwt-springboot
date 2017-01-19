@@ -94,7 +94,7 @@ public class PersonPanelView extends Composite implements Startable {
 		filterButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent clickEvent) {
-				Bootbox.alert("Button Filter is Clicked!!!"+clickEvent.getNativeEvent().getString());
+				Bootbox.alert("Button Filter is clicked!!!"+clickEvent.getNativeEvent().getString());
 				filterPerson();
 			}
 		});
@@ -110,20 +110,18 @@ public class PersonPanelView extends Composite implements Startable {
 
 					@Override
 					public void onFailure(Method method, Throwable throwable) {
-
-						Bootbox.alert("Method call cack is ERROR :"+nameSuggestBox.getValue());
+						Bootbox.alert("Method call back has ERROR:"+throwable.getLocalizedMessage());
 						throwable.printStackTrace();
-						Bootbox.alert("ERROR :"+throwable.getLocalizedMessage());
 					}
 
 					@Override
 					public void onSuccess(Method method, List<PersonDto>  persons) {
-						Bootbox.alert("Method call back is OK :"+persons);
-						listTab.setActive(true);
-						searchTab.setActive(false);
-
+						Bootbox.alert("Method call back is OK :"+persons.get(0));
+						listTab.setActive(false);
+						searchTab.setActive(true);
 						dataGrid2.setRowData(persons);
-						dataGrid2.setVisible(true);
+
+
 					}
 				};
 
@@ -145,10 +143,10 @@ public class PersonPanelView extends Composite implements Startable {
 			public void onSuccess(Method method, List<PersonDto> response) {
 				logger.info("The result is ok");
 				Bootbox.alert("The result is ok");
-				searchTab.setActive(true);
-				listTab.setActive(false);
+				searchTab.setActive(false);
+				listTab.setActive(true);
+
 				dataGrid1.setRowData(response);
-				dataGrid2.setVisible(true);
 			}
 		};
 

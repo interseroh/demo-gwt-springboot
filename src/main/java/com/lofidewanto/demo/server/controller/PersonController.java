@@ -59,20 +59,12 @@ public class PersonController {
 			@RequestParam("length") Integer length) {
 		logger.info("Method getPersons begins...");
 		ArrayList<PersonDto> persons = new ArrayList<>();
-
-//		Collection<Person> findAllPersons = personService.findAllPersons(start,
-//				length);
-//		for (Person person : findAllPersons) {
-//			PersonDto personDto = buildPerson(person);
-//			persons.add(personDto);
-//		}
-
-		PersonDto dto= new PersonDto();
-		dto.setName("PersonName_0");
-		dto.setNickname("PersonName_0_Nickname");
-
-		persons.add(dto);
-
+		Collection<Person> findAllPersons = personService.findAllPersons(start,
+				length);
+		for (Person person : findAllPersons) {
+			PersonDto personDto = buildPerson(person);
+			persons.add(personDto);
+		}
 
 		return persons;
 	}
@@ -82,7 +74,7 @@ public class PersonController {
 			@RequestParam("nameSuggestBox") String personName,
 			@RequestParam("fromDateTimePicker") Date fromDate,
 			@RequestParam("untilDateTimePicker") Date toDate) {
-		logger.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++Method filterPersons begins...");
+		logger.info("Method filterPersons begins...");
 		ArrayList<PersonDto> persons = new ArrayList<>();
 		PersonDto dto= new PersonDto();
 		dto.setName("PersonName_1");
