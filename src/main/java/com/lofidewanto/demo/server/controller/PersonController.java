@@ -75,11 +75,18 @@ public class PersonController {
 			@RequestParam("fromDateTimePicker") Date fromDate,
 			@RequestParam("untilDateTimePicker") Date toDate) {
 		logger.info("Method filterPersons begins...");
-		ArrayList<PersonDto> persons = new ArrayList<>();
+		List<PersonDto> persons = new ArrayList<>();
 		PersonDto dto= new PersonDto();
 		dto.setName("PersonName_1");
 		dto.setNickname("PersonName_1_Nickname");
 		persons.add(dto);
+
+		dto= new PersonDto();
+		dto.setName("PersonName_2");
+		dto.setNickname("PersonName_2_Nickname");
+
+		persons.add(dto);
+
 		return persons;
 	}
 

@@ -18,7 +18,9 @@
  */
 package com.lofidewanto.demo.shared;
 
-public class PersonDto {
+import java.io.Serializable;
+
+public class PersonDto implements Serializable {
 
 	private String name;
 
@@ -43,7 +45,7 @@ public class PersonDto {
 	}
 
 	public Boolean isInRetirement() {
-		return isInRetirement;
+		return isInRetirement==null?false:isInRetirement;
 	}
 
 }

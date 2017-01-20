@@ -18,14 +18,20 @@
  */
 package com.lofidewanto.demo.client.ui.person;
 
+import com.google.gwt.cell.client.CheckboxCell;
+import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
+
+import com.google.gwt.view.client.ListDataProvider;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.lofidewanto.demo.client.common.ErrorFormatter;
@@ -35,14 +41,13 @@ import com.lofidewanto.demo.client.domain.PersonClient;
 import com.lofidewanto.demo.shared.PersonDto;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
-import org.gwtbootstrap3.client.ui.Button;
-import org.gwtbootstrap3.client.ui.SuggestBox;
-import org.gwtbootstrap3.client.ui.TabListItem;
+import org.gwtbootstrap3.client.ui.*;
 import org.gwtbootstrap3.client.ui.gwt.DataGrid;
 import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
 import org.gwtbootstrap3.extras.datetimepicker.client.ui.DateTimePicker;
 
 import javax.ws.rs.QueryParam;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -83,6 +88,16 @@ public class PersonPanelView extends Composite implements Startable {
 	@UiField
 	DataGrid dataGrid2;
 
+	@UiField
+	Pagination dataGridPagination1;
+
+	@UiField
+	Pagination dataGridPagination2;
+
+	ListDataProvider<PersonDto> dataProviderList;
+
+	ListDataProvider<PersonDto> dataProviderFilter;
+
 
 	@Inject
 	public PersonPanelView(EventBus eventbus, ErrorFormatter errorFormatter,
@@ -100,9 +115,84 @@ public class PersonPanelView extends Composite implements Startable {
 		});
 		logger.info("PersonPanelView created...");
 
+
+		initTableColumns(dataGrid1);
+		initTableColumns(dataGrid2);
+		initListDataProvider(dataGrid1);
+		initFilterDataProvider( dataGrid2);
 		getPersons();
 	}
 
+
+	private void initTableColumns(DataGrid dataGrid) {
+		dataGrid.setWidth("100%");
+		dataGrid.setHeight("300px");
+		dataGrid.setAutoHeaderRefreshDisabled(true);
+		// Nick name.
+		Column<PersonDto, String> nicknameColumn =
+				new Column<PersonDto, String>(new TextCell()) {
+					@Override
+					public String getValue(PersonDto object) {
+						return object.getNickname();
+					}
+				};
+		dataGrid.addColumn(nicknameColumn, "Nickname");
+		dataGrid.setColumnWidth(nicknameColumn, 40, Style.Unit.PCT);
+
+		// Nick name.
+		Column<PersonDto, String> nameColumn =
+				new Column<PersonDto, String>(new TextCell()) {
+					@Override
+					public String getValue(PersonDto object) {
+						return object.getName();
+					}
+				};
+		dataGrid.addColumn(nameColumn, "Name");
+		dataGrid.setColumnWidth(nameColumn, 40, Style.Unit.PCT);
+
+		// Retired
+		Column<PersonDto, Boolean> isRetiredColumn =
+				new Column<PersonDto, Boolean>(new CheckboxCell(true, false)) {
+					@Override
+					public Boolean getValue(PersonDto object) {
+						if(object.isInRetirement()==null){
+							return false;
+						}else {
+							return object.isInRetirement();
+						}
+					};
+				} ;
+		dataGrid.addColumn(isRetiredColumn, "Retired");
+		dataGrid.setColumnWidth(isRetiredColumn, 20, Style.Unit.PCT);
+
+
+	}
+
+	/**
+	 *
+	 * @param dataGrid
+	 */
+	private void initListDataProvider(DataGrid dataGrid) {
+		dataProviderList = new ListDataProvider<>(new ArrayList<PersonDto>(0));
+		dataProviderList.addDataDisplay(dataGrid);
+
+		// Set the message to display when the table is empty.
+		dataGrid.setEmptyTableWidget(new Label("No Data"));
+
+	}
+
+	/**
+	 *
+	 * @param dataGrid
+	 */
+	private void initFilterDataProvider(DataGrid dataGrid) {
+		dataProviderFilter = new ListDataProvider<>(new ArrayList<PersonDto>(0));
+		dataProviderFilter.addDataDisplay(dataGrid);
+
+		// Set the message to display when the table is empty.
+		dataGrid.setEmptyTableWidget(new Label("No Data"));
+
+	}
 
 	private void filterPerson(){
 		MethodCallback<List<PersonDto>> filterCallBack=new
@@ -119,7 +209,7 @@ public class PersonPanelView extends Composite implements Startable {
 						Bootbox.alert("Method call back is OK :"+persons.get(0));
 						listTab.setActive(false);
 						searchTab.setActive(true);
-						dataGrid2.setRowData(persons);
+						refreshGrid(persons,dataProviderFilter);
 
 
 					}
@@ -140,13 +230,13 @@ public class PersonPanelView extends Composite implements Startable {
 			}
 
 			@Override
-			public void onSuccess(Method method, List<PersonDto> response) {
+			public void onSuccess(Method method, List<PersonDto> persons) {
 				logger.info("The result is ok");
 				Bootbox.alert("The result is ok");
 				searchTab.setActive(false);
 				listTab.setActive(true);
 
-				dataGrid1.setRowData(response);
+				refreshGrid(persons,dataProviderList);
 			}
 		};
 
@@ -156,6 +246,20 @@ public class PersonPanelView extends Composite implements Startable {
 
 		logger.info("Get persons ends...");
 	}
+
+	/**
+	 *
+	 * @param personDtos
+	 * @param dataProvider
+	 */
+	private void refreshGrid(List<PersonDto> personDtos, ListDataProvider<PersonDto> dataProvider) {
+		for(PersonDto p : personDtos) {
+			logger.info(p.getNickname() + " " + p.isInRetirement());
+		}
+		dataProvider.setList(personDtos);
+
+	}
+
 
 	@Override
 	public void start() {
