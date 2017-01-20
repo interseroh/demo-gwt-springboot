@@ -23,6 +23,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import com.lofidewanto.demo.server.domain.PersonImpl;
+import com.lofidewanto.demo.server.repository.PersonRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +52,9 @@ public class PersonController {
 	@Autowired
 	private PersonService personService;
 
+	@Autowired
+	PersonRepository personRepository;
+
 
 
 
@@ -57,6 +62,7 @@ public class PersonController {
 	public @ResponseBody List<PersonDto> getPersons(
 			@RequestParam("start") Integer start,
 			@RequestParam("length") Integer length) {
+		addTestDateToDb();
 		logger.info("Method getPersons begins...");
 		ArrayList<PersonDto> persons = new ArrayList<>();
 		Collection<Person> findAllPersons = personService.findAllPersons(start,
@@ -77,15 +83,17 @@ public class PersonController {
 		logger.info("Method filterPersons begins...");
 		List<PersonDto> persons = new ArrayList<>();
 		PersonDto dto= new PersonDto();
-		dto.setName("PersonName_1");
-		dto.setNickname("PersonName_1_Nickname");
+		dto.setName("Mustermann_Filter");
+		dto.setNickname("muster");
 		persons.add(dto);
 
 		dto= new PersonDto();
-		dto.setName("PersonName_2");
-		dto.setNickname("PersonName_2_Nickname");
+		dto.setName("Bauer_Filter");
+		dto.setNickname("baur");
 
 		persons.add(dto);
+
+
 
 		return persons;
 	}
@@ -95,6 +103,20 @@ public class PersonController {
 		personDto.setName(person.getName());
 		personDto.setNickname(person.getNickname());
 		return personDto;
+	}
+
+	/**
+	 *
+	 */
+	private void addTestDateToDb(){
+		PersonImpl dto= new PersonImpl("muster");
+		dto.setName("Mustermann");
+		personRepository.save(dto);
+
+		dto= new PersonImpl("baur");
+		dto.setName("Bauer");
+		personRepository.save(dto);
+
 	}
 
 }

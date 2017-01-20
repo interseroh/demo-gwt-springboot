@@ -34,10 +34,13 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.lofidewanto.demo.client.common.ErrorFormatter;
 import com.lofidewanto.demo.client.common.LoadingMessagePopupPanel;
 import com.lofidewanto.demo.client.common.Startable;
 import com.lofidewanto.demo.client.domain.PersonClient;
+import com.lofidewanto.demo.client.ui.event.FilterEvent;
+import com.lofidewanto.demo.client.ui.event.PersonEventHandler;
 import com.lofidewanto.demo.shared.PersonDto;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
@@ -58,6 +61,16 @@ public class PersonPanelView extends Composite implements Startable {
 			.getLogger(PersonPanelView.class.getName());
 	private static PersonPanelViewUiBinder uiBinder = GWT
 			.create(PersonPanelViewUiBinder.class);
+
+
+//	interface PersonPanelEventBinder extends EventBinder<PersonEventHandler> {
+//	}
+//
+//	private final PersonPanelEventBinder personEventBinder = GWT
+//			.create(PersonPanelEventBinder.class);
+
+
+
 	@SuppressWarnings("unused")
 	private final EventBus eventBus;
 	private final PersonClient personClient;
@@ -105,11 +118,17 @@ public class PersonPanelView extends Composite implements Startable {
 			PersonClient personClient) {
 		initWidget(uiBinder.createAndBindUi(this));
 		this.eventBus = eventbus;
+
+
+		this.eventBus.addHandler(FilterEvent.TYPE,new PersonEventHandler());
+		//personEventBinder.bindEventHandlers(new PersonEventHandler(),this.eventBus);
+
 		this.personClient = personClient;
 		filterButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent clickEvent) {
-				Bootbox.alert("Button Filter is clicked!!!"+clickEvent.getNativeEvent().getString());
+				logger.info("Button Filter is clicked!!!"+clickEvent.getNativeEvent().getString());
+				eventBus.fireEvent(new FilterEvent());
 				filterPerson();
 			}
 		});
@@ -206,7 +225,7 @@ public class PersonPanelView extends Composite implements Startable {
 
 					@Override
 					public void onSuccess(Method method, List<PersonDto>  persons) {
-						Bootbox.alert("Method call back is OK :"+persons.get(0));
+						Bootbox.alert("Method call back is OK .:"+persons.get(0));
 						listTab.setActive(false);
 						searchTab.setActive(true);
 						refreshGrid(persons,dataProviderFilter);
