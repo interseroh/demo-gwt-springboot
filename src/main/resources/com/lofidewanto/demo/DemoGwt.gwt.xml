@@ -11,12 +11,16 @@
 	<extend-property name="locale" values="de_DE" />
 	<set-property-fallback name="locale" value="de_DE" />
 	<set-property name="locale" value="de_DE" />
-	
+
 	<!-- GWT Event Bus -->
 	<inherits name='com.google.web.bindery.event.EventBinder' />
-	
+
 	<!-- RestyGWT -->
 	<inherits name="org.fusesource.restygwt.RestyGWT" />
+
+	<!-- Vaadin -->
+	<inherits name="com.vaadin.Vaadin" />
+    <inherits name='com.vaadin.themes.Valo'/>
 
 	<set-configuration-property name='xsiframe.failIfScriptTag'
 		value='FALSE' />
@@ -40,6 +44,8 @@
 	<inherits name="org.gwtbootstrap3.extras.select.Select" />
 	<inherits name="org.gwtbootstrap3.extras.typeahead.Typeahead"/>
 
+
+
 	<!-- Bootstrap Themes files -->
 	<public path='resource/themes'>
 		<include name='**/*.css' />
@@ -57,17 +63,17 @@
 	<!-- Themes -->
 	<!-- <stylesheet src='bootswatch/paper/css/bootstrap.min.css' /> -->
 	<stylesheet src='interseroh/css/interseroh-bootstrap.css' />
-	
+
 	<!-- Fix themes Paper Bootswatch with GwtBootstrap3 -->
-	<!-- <stylesheet src='bootswatch/paper/css/bootstrap.fix.css' /> -->  
-	
+	<!-- <stylesheet src='bootswatch/paper/css/bootstrap.fix.css' /> -->
+
 	<!-- Logging -->
 	<inherits name="com.google.gwt.logging.Logging" />
 	<set-property name="gwt.logging.logLevel" value="INFO" />
 	<set-property name="gwt.logging.enabled" value="TRUE" />
 	<set-property name="gwt.logging.simpleRemoteHandler"
 		value="ENABLED" />
-		
+
 	<!-- Specify the app entry point class. -->
 	<entry-point class='com.lofidewanto.demo.client.DemoGwtWebApp' />
 

@@ -47,6 +47,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.web.bindery.event.shared.binder.EventBinder;
@@ -136,12 +137,19 @@ public class PersonPanelView extends Composite implements Startable {
 		});
 		logger.info("PersonPanelView created...");
 
+//		initVTable();
 		initTableColumns(dataGrid1);
 		initTableColumns(dataGrid2);
 		initListDataProvider(dataGrid1);
 		initFilterDataProvider(dataGrid2);
 		getPersons();
 	}
+
+    private void initVTable() {
+
+	    searchTab.add(new VGrid());
+    }
+
 
 	private void initTableColumns(DataGrid<PersonDto> dataGrid) {
 		dataGrid.setWidth("100%");

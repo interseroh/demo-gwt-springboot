@@ -19,5 +19,5 @@
 package com.lofidewanto.demo.client.common;
 
 public enum WidgetName {
-	PERSONLIST
+    VAARDIN, PERSONLIST
 }

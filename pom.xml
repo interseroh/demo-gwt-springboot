@@ -50,6 +50,7 @@
 		<kissmda.cartridges.simple.java.version>2.0.2</kissmda.cartridges.simple.java.version>
 		<kissmda.extensions.importpacker.version>1.0.0</kissmda.extensions.importpacker.version>
 		<gwtPolymerVersion>1.7.0.0</gwtPolymerVersion>
+		<vaadin.version>7.7.6</vaadin.version>
 	</properties>
 
 	<dependencies>
@@ -184,12 +185,15 @@
 			<artifactId>postgresql</artifactId>
 		</dependency>
 
-
+		<!-- Vaadin  -->
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-widgets</artifactId>
-			<version>7.7.6</version>
+			<version>${vaadin.version}</version>
+			<scope>provided</scope>
 		</dependency>
+
+
 	</dependencies>
 
 	<build>
