@@ -49,6 +49,7 @@
 		<kissmda.maven.plugin.version>2.0.0</kissmda.maven.plugin.version>
 		<kissmda.cartridges.simple.java.version>2.0.2</kissmda.cartridges.simple.java.version>
 		<kissmda.extensions.importpacker.version>1.0.0</kissmda.extensions.importpacker.version>
+		<gwtPolymerVersion>1.7.0.0</gwtPolymerVersion>
 	</properties>
 
 	<dependencies>
@@ -176,11 +177,18 @@
 			<version>${gwt.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- PostGreSQL for Heroku -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-widgets</artifactId>
+			<version>7.7.6</version>
 		</dependency>
 	</dependencies>
 
