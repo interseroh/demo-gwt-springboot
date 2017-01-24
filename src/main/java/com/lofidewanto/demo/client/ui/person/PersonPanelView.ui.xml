@@ -52,8 +52,6 @@
 
 	<b:Row>
 		<b:Column size="MD_12">
-            <v:Grid width="75%" height="300px" visible="true" ui:field="vGrid"
-                    addStyleNames="{style.table-word-wrap}"></v:Grid>
 			<b:Row>
 				<b:Panel addStyleNames="{style.panel-main}">
 					<b:PanelHeader>
@@ -105,9 +103,8 @@
 							<b:TabPane ui:field="listTabPane" fade="true" in="true"
 								active="true" b:id="listTab">
 								<b:PanelBody ui:field="panelBody1">
-									<b.gwt:DataGrid  bordered="true" condensed="true"
-										width="100%" height="450px" striped="true" hover="true"
-										ui:field="dataGrid1" addStyleNames="{style.table-word-wrap}" />
+                                    <v:Grid width="75%" height="300px" visible="true" ui:field="vGrid"
+                                            addStyleNames="{style.table-word-wrap}"></v:Grid>
 									<b:Pagination ui:field="dataGridPagination1" />
 								</b:PanelBody>
 								<b:ButtonToolBar addStyleNames="pull-right">
@@ -118,8 +115,10 @@
 
 							<b:TabPane ui:field="searchTabPane" fade="true" b:id="searchTab">
 								<b:PanelBody ui:field="panelBody2">
-
-
+                                    <b.gwt:HTMLPanel><p>Hello</p></b.gwt:HTMLPanel>
+                                    <b.gwt:DataGrid  bordered="true" condensed="true"
+                                                     width="100%" height="450px" striped="true" hover="true"
+                                                     ui:field="dataGrid1" addStyleNames="{style.table-word-wrap}" />
 									<!-- b:Pagination ui:field="dataGridPagination2" -->
 								</b:PanelBody>
 								<b:ButtonToolBar addStyleNames="pull-right">

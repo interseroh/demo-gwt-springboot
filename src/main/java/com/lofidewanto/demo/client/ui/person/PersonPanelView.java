@@ -124,7 +124,14 @@ public class PersonPanelView extends Composite implements Startable {
 	TabListItem searchTab;
 
 	@UiField
-	DataGrid<PersonDto> dataGrid1;
+    TabPane listTabPane;
+
+	@UiField
+    TabPane searchTabPane;
+
+	@UiField
+	DataGrid dataGrid1;
+
 
 	@UiField
 	//DataGrid dataGrid2;
@@ -152,7 +159,6 @@ public class PersonPanelView extends Composite implements Startable {
 				filterPerson();
 			}
 		});
-		logger.info("PersonPanelView created...");
 
 		initTableColumns(dataGrid1);
 		initListDataProvider(dataGrid1);
@@ -160,9 +166,12 @@ public class PersonPanelView extends Composite implements Startable {
 		//initFilterDataProvider( dataGrid2);
         initVGrid(vGrid);
 		getPersons();
+
+		logger.info("PersonPanelView created...");
 	}
 
     private void initVGrid(Grid<VPerson> vGrid) {
+	    vGrid.setVisible(false);
 	    vGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
 
         vGrid.addColumn(new Grid.Column<String, VPerson>("Name") {
@@ -179,10 +188,13 @@ public class PersonPanelView extends Composite implements Startable {
                 return row.getAge();
             }
         });
-        vGrid.getColumn(0).setWidth(150);
-        vGrid.getColumn(1).setWidth(150);
+        vGrid.getColumn(0).setWidth(250);
+        vGrid.getColumn(1).setWidth(250);
 
-        vGrid.setColumnResizeMode(ColumnResizeMode.ANIMATED);
+        vGrid.setColumnResizeMode(ColumnResizeMode.SIMPLE);
+        vGrid.setColumnReorderingAllowed(true);
+        //vGrid.setFooterVisible(true);
+        //vGrid.setHeaderVisible(true);
 
         // Some dummy data
         ArrayList<VPerson> people = new ArrayList<VPerson>();
@@ -293,8 +305,8 @@ public class PersonPanelView extends Composite implements Startable {
 			public void onSuccess(Method method, List<PersonDto> persons) {
 				logger.info("The result is ok");
 				//Bootbox.alert("The result is ok");
-				//searchTab.setActive(false);
-				//listTab.setActive(true);
+				searchTab.setActive(false);
+				listTab.setActive(true);
 
 				refreshGrid(persons, dataProviderList);
 			}
