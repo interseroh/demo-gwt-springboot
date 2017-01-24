@@ -17,3 +17,5 @@ hs_err_pid*
 .idea/
 demo-gwt-springboot.iml
 
+.DS_Store
+web/
