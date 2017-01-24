@@ -27,7 +27,7 @@ public class VGrid extends Grid<VPerson> {
 
         // Some dummy data
         ArrayList<VPerson> addons = new ArrayList<VPerson>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 2; i++) {
             addons.add(new VPerson("John", 12));
             addons.add(new VPerson("Emma", 18));
             addons.add(new VPerson("Jeff", 44));

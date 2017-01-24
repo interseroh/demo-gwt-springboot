@@ -2,62 +2,64 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
 	xmlns:b.gwt="urn:import:org.gwtbootstrap3.client.ui.gwt" xmlns:select="urn:import:org.gwtbootstrap3.extras.select.client.ui"
-	xmlns:b2="urn:import:org.gwtbootstrap3.extras.datetimepicker.client.ui"
-	xmlns:typeahead="urn:import:org.gwtbootstrap3.extras.typeahead.client.ui">
+	xmlns:b2="urn:import:org.gwtbootstrap3.extras.datetimepicker.client.ui" xmlns:v="urn:import:com.vaadin.client.widgets"
+			 xmlns:typeahead="urn:import:org.gwtbootstrap3.extras.typeahead.client.ui">
 
 	<ui:style>
 		.margin-right {
 			margin-right: 10px;
 		}
-	
+
 		.panel-left-top {
 			margin-top: 20px;
 			margin-left: 10px;
 			margin-right: 10px;
 		}
-	
+
 		.panel-left-bottom {
 			margin-top: 10px;
 			margin-left: 10px;
 			margin-right: 10px;
 		}
-	
+
 		.panel-main {
 			margin-top: 20px;
 			margin-left: 10px;
 			margin-right: 10px;
 		}
-	
+
 		.button-toolbar {
 			margin-right: 10px;
 		}
-	
+
 		.margin-fix {
 			margin-bottom: 0 !important;
 			border-bottom-width: 0px;
 			border-style:
 			none;
 		}
-	
+
 		.amount-update-time-info {
 			margin-left: 15px;
 		}
-	
+
 		.table-word-wrap {
 			word-wrap: break-word;
 		}
 	</ui:style>
-	
+
 	<ui:with field='i18n' type='com.lofidewanto.demo.client.Messages' />
 
 	<b:Row>
 		<b:Column size="MD_12">
+            <v:Grid width="75%" height="300px" visible="true" ui:field="vGrid"
+                    addStyleNames="{style.table-word-wrap}"></v:Grid>
 			<b:Row>
 				<b:Panel addStyleNames="{style.panel-main}">
 					<b:PanelHeader>
 						<b:Heading size="H4" text="Filter" />
 					</b:PanelHeader>
-					<b:PanelBody>				
+					<b:PanelBody>
 							<b:Container fluid="true">
 							<b:Form type="HORIZONTAL">
 								<b:FieldSet>
@@ -116,10 +118,9 @@
 
 							<b:TabPane ui:field="searchTabPane" fade="true" b:id="searchTab">
 								<b:PanelBody ui:field="panelBody2">
-									<b.gwt:DataGrid bordered="true" condensed="true"
-										width="100%" height="520px" striped="true" hover="true"
-										ui:field="dataGrid2" addStyleNames="{style.table-word-wrap}" />
-									<b:Pagination ui:field="dataGridPagination2" />
+
+
+									<!-- b:Pagination ui:field="dataGridPagination2" -->
 								</b:PanelBody>
 								<b:ButtonToolBar addStyleNames="pull-right">
 									<b:Button type="SUCCESS" text="{i18n.button_search}" ui:field="searchButton"></b:Button>
@@ -131,4 +132,4 @@
 			</b:Row>
 		</b:Column>
 	</b:Row>
-</ui:UiBinder> 
+</ui:UiBinder>

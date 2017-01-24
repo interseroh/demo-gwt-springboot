@@ -20,7 +20,7 @@
 
 	<!-- Vaadin -->
 	<inherits name="com.vaadin.Vaadin" />
-    <inherits name='com.vaadin.themes.Valo'/>
+    <inherits name="com.vaadin.themes.Valo"/>
 
 	<set-configuration-property name='xsiframe.failIfScriptTag'
 		value='FALSE' />

@@ -59,6 +59,22 @@ import com.lofidewanto.demo.client.domain.PersonClient;
 import com.lofidewanto.demo.client.extra.PersonUtil;
 import com.lofidewanto.demo.client.ui.event.FilterEvent;
 import com.lofidewanto.demo.shared.PersonDto;
+import com.vaadin.client.widget.grid.datasources.ListDataSource;
+import com.vaadin.client.widgets.Grid;
+import com.vaadin.shared.ui.grid.ColumnResizeMode;
+import com.vaadin.themes.valoutil.BodyStyleName;
+import org.fusesource.restygwt.client.Method;
+import org.fusesource.restygwt.client.MethodCallback;
+import org.gwtbootstrap3.client.ui.*;
+import org.gwtbootstrap3.client.ui.gwt.DataGrid;
+import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
+import org.gwtbootstrap3.extras.datetimepicker.client.ui.DateTimePicker;
+
+import javax.ws.rs.QueryParam;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+
 
 @Singleton
 public class PersonPanelView extends Composite implements Startable {
@@ -111,13 +127,14 @@ public class PersonPanelView extends Composite implements Startable {
 	DataGrid<PersonDto> dataGrid1;
 
 	@UiField
-	DataGrid<PersonDto> dataGrid2;
+	//DataGrid dataGrid2;
+    Grid<VPerson> vGrid;
 
 	@UiField
 	Pagination dataGridPagination1;
 
-	@UiField
-	Pagination dataGridPagination2;
+//	@UiField
+//	Pagination dataGridPagination2;
 
 	@Inject
 	public PersonPanelView(EventBus eventbus, ErrorFormatter errorFormatter,
@@ -137,17 +154,51 @@ public class PersonPanelView extends Composite implements Startable {
 		});
 		logger.info("PersonPanelView created...");
 
-//		initVTable();
 		initTableColumns(dataGrid1);
-		initTableColumns(dataGrid2);
 		initListDataProvider(dataGrid1);
-		initFilterDataProvider(dataGrid2);
+		//initTableColumns(dataGrid2);
+		//initFilterDataProvider( dataGrid2);
+        initVGrid(vGrid);
 		getPersons();
 	}
 
-    private void initVTable() {
+    private void initVGrid(Grid<VPerson> vGrid) {
+	    vGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
 
-	    searchTab.add(new VGrid());
+        vGrid.addColumn(new Grid.Column<String, VPerson>("Name") {
+            @Override
+            public String getValue(VPerson row) {
+                return row.getName();
+            }
+        });
+
+        // A simple String column for the add-on summary/description
+        vGrid.addColumn(new Grid.Column<Integer, VPerson>("Age") {
+            @Override
+            public Integer getValue(VPerson row) {
+                return row.getAge();
+            }
+        });
+        vGrid.getColumn(0).setWidth(150);
+        vGrid.getColumn(1).setWidth(150);
+
+        vGrid.setColumnResizeMode(ColumnResizeMode.ANIMATED);
+
+        // Some dummy data
+        ArrayList<VPerson> people = new ArrayList<VPerson>();
+        for (int i = 0; i < 2; i++) {
+            people.add(new VPerson("John", 12));
+            people.add(new VPerson("Emma", 18));
+            people.add(new VPerson("Jeff", 44));
+            people.add(new VPerson("George", 78));
+            people.add(new VPerson("Abraham", 114));
+            people.add(new VPerson("Henrik", 32));
+            people.add(new VPerson("Paul", 56));
+            people.add(new VPerson("Biff", 34));
+            people.add(new VPerson("Leo", 88));
+        }
+        vGrid.setDataSource(new ListDataSource<VPerson>(people));
+        vGrid.setVisible(true);
     }
 
 
@@ -241,9 +292,9 @@ public class PersonPanelView extends Composite implements Startable {
 			@Override
 			public void onSuccess(Method method, List<PersonDto> persons) {
 				logger.info("The result is ok");
-				Bootbox.alert("The result is ok");
-				searchTab.setActive(false);
-				listTab.setActive(true);
+				//Bootbox.alert("The result is ok");
+				//searchTab.setActive(false);
+				//listTab.setActive(true);
 
 				refreshGrid(persons, dataProviderList);
 			}
