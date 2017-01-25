@@ -59,10 +59,13 @@ import com.lofidewanto.demo.client.domain.PersonClient;
 import com.lofidewanto.demo.client.extra.PersonUtil;
 import com.lofidewanto.demo.client.ui.event.FilterEvent;
 
-import com.lofidewanto.demo.client.ui.event.PersonEventHandler;
 import com.lofidewanto.demo.client.utils.ColumnFactory;
 import com.lofidewanto.demo.shared.PersonDto;
+import com.vaadin.client.data.DataSource;
 import com.vaadin.client.widget.grid.datasources.ListDataSource;
+import com.vaadin.client.widget.grid.sort.SortEvent;
+import com.vaadin.client.widget.grid.sort.SortHandler;
+import com.vaadin.client.widget.grid.sort.SortOrder;
 import com.vaadin.client.widgets.Grid;
 import com.vaadin.shared.ui.grid.ColumnResizeMode;
 import com.vaadin.themes.valoutil.BodyStyleName;
@@ -73,16 +76,26 @@ import org.gwtbootstrap3.client.ui.gwt.DataGrid;
 import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
 import org.gwtbootstrap3.extras.datetimepicker.client.ui.DateTimePicker;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.ws.rs.QueryParam;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 import java.util.logging.Logger;
 
 
 @Singleton
 public class PersonPanelView extends Composite implements Startable {
 
+
 	private static Logger logger = Logger.getLogger(PersonPanelView.class.getName());
+    public static final String NICKNAME = "Nickname";
+    public static final String AGE = "Age";
+    public static final String ID = "Id";
+    public static final String NAME = "Name";
+    public static final String RETIRED = "Retired";
 
 	interface PersonPanelViewUiBinder extends UiBinder<Widget, PersonPanelView> {
 	}
@@ -152,7 +165,6 @@ public class PersonPanelView extends Composite implements Startable {
 		initWidget(uiBinder.createAndBindUi(this));
 		this.eventBus = eventbus;
 		eventBinder.bindEventHandlers(this, eventBus);
-
 		this.personClient = personClient;
 		filterButton.addClickHandler(new ClickHandler() {
 			@Override
@@ -176,24 +188,52 @@ public class PersonPanelView extends Composite implements Startable {
     private void initVGrid(Grid<VPerson> vGrid) {
 	    vGrid.setVisible(false);
 	    vGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
-
-        vGrid.addColumn( ColumnFactory.createIntColumn("Id", 80, VPerson::getId));
-        vGrid.addColumn(ColumnFactory.createStringColumn("Name", 250, VPerson::getName));
-        vGrid.addColumn( ColumnFactory.createIntColumn("Age", 80, VPerson::getAge));
-        vGrid.addColumn( ColumnFactory.createBooleanColumn("Retired", 80, VPerson::isRetired));
-        vGrid.addColumn(ColumnFactory.createStringColumn("Nickname", 200, VPerson::getNickName));
-
-        vGrid.getColumn(0).setWidth(250);
-        vGrid.getColumn(1).setWidth(250);
-
-        vGrid.setColumnResizeMode(ColumnResizeMode.SIMPLE);
+        vGrid.setColumnResizeMode(ColumnResizeMode.ANIMATED);
         vGrid.setColumnReorderingAllowed(true);
         //vGrid.setFooterVisible(true);
         //vGrid.setHeaderVisible(true);
 
+        vGrid.addColumn(ColumnFactory.createIntColumn(ID, 80, VPerson::getId));
+        vGrid.addColumn(ColumnFactory.createStringColumn(NAME, 250, VPerson::getName));
+        vGrid.addColumn(ColumnFactory.createIntColumn(AGE, 80, VPerson::getAge));
+        vGrid.addColumn(ColumnFactory.createBooleanColumn(RETIRED, 100, VPerson::isRetired));
+        vGrid.addColumn(ColumnFactory.createStringColumn(NICKNAME, 200, VPerson::getNickName));
+
+        vGrid.addSortHandler(new SortHandler<VPerson>() {
+            @Override
+            public void sort(SortEvent<VPerson> sortEvent) {
+                DataSource<VPerson> ds = vGrid.getDataSource();
+                List<SortOrder> order = sortEvent.getOrder();
+                if (!order.isEmpty()) {
+                    SortOrder sortOrder = order.get(0);
+                    if (sortOrder.getColumn().getHeaderCaption().equals(ID)) {
+                        ds = new ListDataSource<VPerson>(generateData((v1,v2) -> {return v1.getId() - v2.getId();}));
+                    } else if (sortOrder.getColumn().getHeaderCaption().equals(AGE)) {
+                        ds = new ListDataSource<VPerson>(generateData((v1,v2) -> {return v1.getAge() - v2.getAge();}));
+                    } else if (sortOrder.getColumn().getHeaderCaption().equals(NAME)) {
+                        ds = new ListDataSource<VPerson>(generateData((v1,v2) -> {return v1.getName().compareTo(v2.getName());}));
+                    } else if (sortOrder.getColumn().getHeaderCaption().equals(NICKNAME)) {
+                        ds = new ListDataSource<VPerson>(generateData((v1,v2) -> {return v1.getNickName().compareTo(v2.getNickName());}));
+                    } else if (sortOrder.getColumn().getHeaderCaption().equals(RETIRED)) {
+                        ds = new ListDataSource<VPerson>(generateData((v1,v2) -> {return Boolean.compare(v1.isRetired(),v2.isRetired());}));
+                    }
+                }
+                vGrid.setDataSource(ds);
+                logger.info("Sort Event");
+            }
+        });
+       // List<SortOrder> sortOrder = vGrid.getSortOrder();
+
+
+        vGrid.setDataSource(new ListDataSource<VPerson>(generateData((v1,v2) -> {return v1.getId() - v2.getId();})));
+        vGrid.setVisible(true);
+    }
+
+    private ArrayList<VPerson> generateData(Comparator<VPerson> c) {
         // Some dummy data
         ArrayList<VPerson> people = new ArrayList<VPerson>();
         for (int i = 0; i < 2; i++) {
+            people.add(new VPerson(0+(i*10),"Kevin", 82));
             people.add(new VPerson(1+(i*10),"John", 12));
             people.add(new VPerson(2+(i*10),"Emma", 18));
             people.add(new VPerson(3+(i*10),"Jeff", 44));
@@ -204,8 +244,8 @@ public class PersonPanelView extends Composite implements Startable {
             people.add(new VPerson(8+(i*10),"Biff", 34));
             people.add(new VPerson(9+(i*10),"Leo", 88));
         }
-        vGrid.setDataSource(new ListDataSource<VPerson>(people));
-        vGrid.setVisible(true);
+        people.sort(c);
+        return people;
     }
 
 
