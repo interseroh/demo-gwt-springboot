@@ -28,15 +28,15 @@ public class VGrid extends Grid<VPerson> {
         // Some dummy data
         ArrayList<VPerson> addons = new ArrayList<VPerson>();
         for (int i = 0; i < 2; i++) {
-            addons.add(new VPerson("John", 12));
-            addons.add(new VPerson("Emma", 18));
-            addons.add(new VPerson("Jeff", 44));
-            addons.add(new VPerson("George", 78));
-            addons.add(new VPerson("Abraham", 114));
-            addons.add(new VPerson("Henrik", 32));
-            addons.add(new VPerson("Paul", 56));
-            addons.add(new VPerson("Biff", 34));
-            addons.add(new VPerson("Leo", 88));
+            new VPerson(1+(i*10),"John", 12);
+            new VPerson(2+(i*10),"Emma", 18);
+            new VPerson(3+(i*10),"Jeff", 44);
+            new VPerson(4+(i*10),"George", 78);
+            new VPerson(5+(i*10),"Abraham", 114);
+            new VPerson(6+(i*10),"Henrik", 32);
+            new VPerson(7+(i*10),"Paul", 56);
+            new VPerson(8+(i*10),"Biff", 34);
+            new VPerson(9+(i*10),"Leo", 88);
         }
         setDataSource(new ListDataSource<VPerson>(addons));
     }

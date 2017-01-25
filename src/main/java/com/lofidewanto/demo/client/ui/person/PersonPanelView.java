@@ -58,6 +58,9 @@ import com.lofidewanto.demo.client.common.Startable;
 import com.lofidewanto.demo.client.domain.PersonClient;
 import com.lofidewanto.demo.client.extra.PersonUtil;
 import com.lofidewanto.demo.client.ui.event.FilterEvent;
+
+import com.lofidewanto.demo.client.ui.event.PersonEventHandler;
+import com.lofidewanto.demo.client.utils.ColumnFactory;
 import com.lofidewanto.demo.shared.PersonDto;
 import com.vaadin.client.widget.grid.datasources.ListDataSource;
 import com.vaadin.client.widgets.Grid;
@@ -174,20 +177,11 @@ public class PersonPanelView extends Composite implements Startable {
 	    vGrid.setVisible(false);
 	    vGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
 
-        vGrid.addColumn(new Grid.Column<String, VPerson>("Name") {
-            @Override
-            public String getValue(VPerson row) {
-                return row.getName();
-            }
-        });
+        vGrid.addColumn( ColumnFactory.createIntColumn("Id", 80, VPerson::getId));
+        vGrid.addColumn(ColumnFactory.createStringColumn("Name", 250, VPerson::getName));
+        vGrid.addColumn( ColumnFactory.createIntColumn("Age", 80, VPerson::getAge));
+        vGrid.addColumn(ColumnFactory.createStringColumn("Nickname", 200, VPerson::getNickName));
 
-        // A simple String column for the add-on summary/description
-        vGrid.addColumn(new Grid.Column<Integer, VPerson>("Age") {
-            @Override
-            public Integer getValue(VPerson row) {
-                return row.getAge();
-            }
-        });
         vGrid.getColumn(0).setWidth(250);
         vGrid.getColumn(1).setWidth(250);
 
@@ -199,15 +193,15 @@ public class PersonPanelView extends Composite implements Startable {
         // Some dummy data
         ArrayList<VPerson> people = new ArrayList<VPerson>();
         for (int i = 0; i < 2; i++) {
-            people.add(new VPerson("John", 12));
-            people.add(new VPerson("Emma", 18));
-            people.add(new VPerson("Jeff", 44));
-            people.add(new VPerson("George", 78));
-            people.add(new VPerson("Abraham", 114));
-            people.add(new VPerson("Henrik", 32));
-            people.add(new VPerson("Paul", 56));
-            people.add(new VPerson("Biff", 34));
-            people.add(new VPerson("Leo", 88));
+            people.add(new VPerson(1+(i*10),"John", 12));
+            people.add(new VPerson(2+(i*10),"Emma", 18));
+            people.add(new VPerson(3+(i*10),"Jeff", 44));
+            people.add(new VPerson(4+(i*10),"George", 78));
+            people.add(new VPerson(5+(i*10),"Abraham", 114));
+            people.add(new VPerson(6+(i*10),"Henrik", 32));
+            people.add(new VPerson(7+(i*10),"Paul", 56));
+            people.add(new VPerson(8+(i*10),"Biff", 34));
+            people.add(new VPerson(9+(i*10),"Leo", 88));
         }
         vGrid.setDataSource(new ListDataSource<VPerson>(people));
         vGrid.setVisible(true);
