@@ -23,8 +23,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import com.lofidewanto.demo.server.domain.PersonImpl;
-import com.lofidewanto.demo.server.repository.PersonRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +34,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lofidewanto.demo.server.domain.Person;
+import com.lofidewanto.demo.server.domain.PersonImpl;
+import com.lofidewanto.demo.server.repository.PersonRepository;
 import com.lofidewanto.demo.server.service.person.PersonService;
 import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
 import com.lofidewanto.demo.shared.PersonDto;
-
-import javax.ws.rs.QueryParam;
 
 @Controller
 @CrossOrigin
@@ -53,10 +51,7 @@ public class PersonController {
 	private PersonService personService;
 
 	@Autowired
-	PersonRepository personRepository;
-
-
-
+	private PersonRepository personRepository;
 
 	@RequestMapping(value = DemoGwtServiceEndpoint.PERSON_LIST, method = RequestMethod.GET)
 	public @ResponseBody List<PersonDto> getPersons(
@@ -93,8 +88,6 @@ public class PersonController {
 
 		persons.add(dto);
 
-
-
 		return persons;
 	}
 
@@ -105,9 +98,6 @@ public class PersonController {
 		return personDto;
 	}
 
-	/**
-	 *
-	 */
 	private void addTestDateToDb(){
 		PersonImpl dto= new PersonImpl("muster");
 		dto.setName("Mustermann");
@@ -116,7 +106,6 @@ public class PersonController {
 		dto= new PersonImpl("baur");
 		dto.setName("Bauer");
 		personRepository.save(dto);
-
 	}
 
 }
