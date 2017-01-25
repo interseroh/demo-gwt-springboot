@@ -18,9 +18,7 @@
  */
 package com.lofidewanto.demo.shared;
 
-import java.io.Serializable;
-
-public class PersonDto implements Serializable {
+public class PersonDto {
 
 	private String name;
 
