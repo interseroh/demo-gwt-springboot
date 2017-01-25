@@ -176,6 +176,12 @@
 			<version>${gwt.version}</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- PostGreSQL for Heroku -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
