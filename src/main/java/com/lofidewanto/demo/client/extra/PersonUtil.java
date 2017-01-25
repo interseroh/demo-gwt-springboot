@@ -54,7 +54,7 @@ public class PersonUtil {
 	}
 
 	public String sayHello() {
-		return "Hallo from PersonUtil";
+		return "Hello from PersonUtil";
 	}
 
 }
