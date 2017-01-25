@@ -50,7 +50,7 @@ public class PersonUtil {
 	@EventHandler
 	public void onEvent(FilterEvent event) {
 		logger.info("Get Event:" + event);
-		Bootbox.alert("FilterEvent is received in PersonUtil!!!");
+		Bootbox.alert("FilterEvent is received in PersonUtil...");
 	}
 
 	public String sayHello() {
