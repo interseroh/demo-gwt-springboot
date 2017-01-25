@@ -34,6 +34,17 @@ public class ColumnFactory{
         return col;
     }
 
+    public static Grid.Column<Boolean, VPerson> createBooleanColumn(String caption, int maxsize, Function<VPerson, Boolean> f) {
+        Grid.Column<Boolean, VPerson> col = new Grid.Column<Boolean, VPerson>(caption) {
+            @Override
+            public Boolean getValue(VPerson row) {
+                return f.apply(row);
+            }
+        };
+        col.setMaximumWidth(maxsize);
+        col.setMinimumWidth(20);
+        return col;
+    }
 
 
 

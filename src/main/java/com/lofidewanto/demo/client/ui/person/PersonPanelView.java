@@ -180,6 +180,7 @@ public class PersonPanelView extends Composite implements Startable {
         vGrid.addColumn( ColumnFactory.createIntColumn("Id", 80, VPerson::getId));
         vGrid.addColumn(ColumnFactory.createStringColumn("Name", 250, VPerson::getName));
         vGrid.addColumn( ColumnFactory.createIntColumn("Age", 80, VPerson::getAge));
+        vGrid.addColumn( ColumnFactory.createBooleanColumn("Retired", 80, VPerson::isRetired));
         vGrid.addColumn(ColumnFactory.createStringColumn("Nickname", 200, VPerson::getNickName));
 
         vGrid.getColumn(0).setWidth(250);
