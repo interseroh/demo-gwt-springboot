@@ -47,7 +47,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.web.bindery.event.shared.binder.EventBinder;
@@ -60,6 +59,7 @@ import com.lofidewanto.demo.client.extra.PersonUtil;
 import com.lofidewanto.demo.client.ui.event.FilterEvent;
 
 import com.lofidewanto.demo.client.utils.ColumnFactory;
+import com.lofidewanto.demo.client.utils.SortableStaticDataSource;
 import com.lofidewanto.demo.shared.PersonDto;
 import com.vaadin.client.data.DataSource;
 import com.vaadin.client.widget.grid.datasources.ListDataSource;
@@ -67,8 +67,8 @@ import com.vaadin.client.widget.grid.sort.SortEvent;
 import com.vaadin.client.widget.grid.sort.SortHandler;
 import com.vaadin.client.widget.grid.sort.SortOrder;
 import com.vaadin.client.widgets.Grid;
+import com.vaadin.shared.data.sort.SortDirection;
 import com.vaadin.shared.ui.grid.ColumnResizeMode;
-import com.vaadin.themes.valoutil.BodyStyleName;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 import org.gwtbootstrap3.client.ui.*;
@@ -76,26 +76,47 @@ import org.gwtbootstrap3.client.ui.gwt.DataGrid;
 import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
 import org.gwtbootstrap3.extras.datetimepicker.client.ui.DateTimePicker;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.ws.rs.QueryParam;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 import java.util.logging.Logger;
 
 
 @Singleton
 public class PersonPanelView extends Composite implements Startable {
 
+    public static enum Cols{
+        ID("Id"),
+        NAME("Name"),
+        NICKNAME("Nickname"),
+        AGE("Age"),
+        RETIRED("Retired");
 
-	private static Logger logger = Logger.getLogger(PersonPanelView.class.getName());
-    public static final String NICKNAME = "Nickname";
-    public static final String AGE = "Age";
-    public static final String ID = "Id";
-    public static final String NAME = "Name";
-    public static final String RETIRED = "Retired";
+        private String name;
+        private Cols(String name) {
+            this.name = name;
+        }
+
+        public boolean equalsIgnoreCase(String s) {
+            return s != null && this.name.toUpperCase().equals(s.toUpperCase());
+        }
+
+        public String toString() {
+            return name;
+        }
+
+        public static Cols getFromString(String s) {
+            for(Cols c :Cols.values()) {
+                if (c.equalsIgnoreCase(s)) {
+                    return c;
+                }
+            }
+            return null;
+        }
+    }
+
+    private static Logger logger = Logger
+			.getLogger(PersonPanelView.class.getName());
 
 	interface PersonPanelViewUiBinder extends UiBinder<Widget, PersonPanelView> {
 	}
@@ -150,7 +171,6 @@ public class PersonPanelView extends Composite implements Startable {
 
 
 	@UiField
-	//DataGrid dataGrid2;
     Grid<VPerson> vGrid;
 
 	@UiField
@@ -193,12 +213,13 @@ public class PersonPanelView extends Composite implements Startable {
         //vGrid.setFooterVisible(true);
         //vGrid.setHeaderVisible(true);
 
-        vGrid.addColumn(ColumnFactory.createIntColumn(ID, 80, VPerson::getId));
-        vGrid.addColumn(ColumnFactory.createStringColumn(NAME, 250, VPerson::getName));
-        vGrid.addColumn(ColumnFactory.createIntColumn(AGE, 80, VPerson::getAge));
-        vGrid.addColumn(ColumnFactory.createBooleanColumn(RETIRED, 100, VPerson::isRetired));
-        vGrid.addColumn(ColumnFactory.createStringColumn(NICKNAME, 200, VPerson::getNickName));
+        vGrid.addColumn(ColumnFactory.createIntColumn(Cols.ID.toString(), 80, VPerson::getId));
+        vGrid.addColumn(ColumnFactory.createStringColumn(Cols.NAME.toString(), 250, VPerson::getName));
+        vGrid.addColumn(ColumnFactory.createIntColumn(Cols.AGE.toString(), 80, VPerson::getAge));
+        vGrid.addColumn(ColumnFactory.createBooleanColumn(Cols.RETIRED.toString(), 100, VPerson::isRetired));
+        vGrid.addColumn(ColumnFactory.createStringColumn(Cols.NICKNAME.toString(), 200, VPerson::getNickName));
 
+        vGrid.appendHeaderRow();
         vGrid.addSortHandler(new SortHandler<VPerson>() {
             @Override
             public void sort(SortEvent<VPerson> sortEvent) {
@@ -206,47 +227,23 @@ public class PersonPanelView extends Composite implements Startable {
                 List<SortOrder> order = sortEvent.getOrder();
                 if (!order.isEmpty()) {
                     SortOrder sortOrder = order.get(0);
-                    if (sortOrder.getColumn().getHeaderCaption().equals(ID)) {
-                        ds = new ListDataSource<VPerson>(generateData((v1,v2) -> {return v1.getId() - v2.getId();}));
-                    } else if (sortOrder.getColumn().getHeaderCaption().equals(AGE)) {
-                        ds = new ListDataSource<VPerson>(generateData((v1,v2) -> {return v1.getAge() - v2.getAge();}));
-                    } else if (sortOrder.getColumn().getHeaderCaption().equals(NAME)) {
-                        ds = new ListDataSource<VPerson>(generateData((v1,v2) -> {return v1.getName().compareTo(v2.getName());}));
-                    } else if (sortOrder.getColumn().getHeaderCaption().equals(NICKNAME)) {
-                        ds = new ListDataSource<VPerson>(generateData((v1,v2) -> {return v1.getNickName().compareTo(v2.getNickName());}));
-                    } else if (sortOrder.getColumn().getHeaderCaption().equals(RETIRED)) {
-                        ds = new ListDataSource<VPerson>(generateData((v1,v2) -> {return Boolean.compare(v1.isRetired(),v2.isRetired());}));
-                    }
+                    SortOrder opposite = sortOrder.getOpposite();
+                    String headerCaption = sortOrder.getColumn().getHeaderCaption();
+                    List<VPerson> sortedData = SortableStaticDataSource.getSortedData(Cols.getFromString(headerCaption), sortOrder.getDirection());
+                    ds = new ListDataSource<VPerson>(sortedData);
+                    vGrid.setDataSource(ds);
                 }
-                vGrid.setDataSource(ds);
                 logger.info("Sort Event");
             }
         });
        // List<SortOrder> sortOrder = vGrid.getSortOrder();
 
 
-        vGrid.setDataSource(new ListDataSource<VPerson>(generateData((v1,v2) -> {return v1.getId() - v2.getId();})));
+        vGrid.setDataSource(new ListDataSource<VPerson>(SortableStaticDataSource.getSortedData(Cols.ID, SortDirection.ASCENDING)));
         vGrid.setVisible(true);
     }
 
-    private ArrayList<VPerson> generateData(Comparator<VPerson> c) {
-        // Some dummy data
-        ArrayList<VPerson> people = new ArrayList<VPerson>();
-        for (int i = 0; i < 2; i++) {
-            people.add(new VPerson(0+(i*10),"Kevin", 82));
-            people.add(new VPerson(1+(i*10),"John", 12));
-            people.add(new VPerson(2+(i*10),"Emma", 18));
-            people.add(new VPerson(3+(i*10),"Jeff", 44));
-            people.add(new VPerson(4+(i*10),"George", 78));
-            people.add(new VPerson(5+(i*10),"Abraham", 114));
-            people.add(new VPerson(6+(i*10),"Henrik", 32));
-            people.add(new VPerson(7+(i*10),"Paul", 56));
-            people.add(new VPerson(8+(i*10),"Biff", 34));
-            people.add(new VPerson(9+(i*10),"Leo", 88));
-        }
-        people.sort(c);
-        return people;
-    }
+
 
 
 	private void initTableColumns(DataGrid<PersonDto> dataGrid) {
