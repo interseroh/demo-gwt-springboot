@@ -16,34 +16,21 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.lofidewanto.demo.shared;
+package com.lofidewanto.demo.client.extra;
 
-public class PersonDto {
+import jsinterop.annotations.JsType;
 
-	private String name;
+@JsType
+public class MyJavaScriptHello {
 
-	private String nickname;
+	public String name;
 
-	private Boolean isInRetirement;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
+	public MyJavaScriptHello(String name) {
 		this.name = name;
 	}
 
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
-	public Boolean isInRetirement() {
-		return isInRetirement==null?false:isInRetirement;
+	public String sayHello() {
+		return "Hello " + this.name;
 	}
 
 }

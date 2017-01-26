@@ -28,6 +28,7 @@ import org.fusesource.restygwt.client.Resource;
 import org.fusesource.restygwt.client.RestServiceProxy;
 
 import com.lofidewanto.demo.client.domain.PersonClient;
+import com.lofidewanto.demo.client.domain.UserClient;
 
 @Singleton
 public class ServicePreparator {
@@ -38,6 +39,9 @@ public class ServicePreparator {
 	@Inject
 	private PersonClient personClient;
 
+	@Inject
+	UserClient userClient;
+
 	private void initServices() {
 		logger.info("Prepare for the resources for the services...");
 
@@ -47,11 +51,12 @@ public class ServicePreparator {
 	}
 
 	private void initDomainService() {
-		logger.info("Init  the domains...");
+		logger.info("Init the domains...");
 
 		Resource resource = new Resource("");
 
 		((RestServiceProxy) personClient).setResource(resource);
+		((RestServiceProxy) userClient).setResource(resource);
 	}
 
 	public void prepare() {

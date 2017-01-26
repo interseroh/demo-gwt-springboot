@@ -25,20 +25,16 @@ import java.util.logging.Logger;
 import javax.inject.Singleton;
 
 import org.gwtbootstrap3.client.ui.AnchorButton;
-import org.gwtbootstrap3.client.ui.AnchorListItem;
 import org.gwtbootstrap3.client.ui.Column;
 import org.gwtbootstrap3.client.ui.Image;
-import org.gwtbootstrap3.client.ui.NavbarLink;
 import org.gwtbootstrap3.client.ui.Popover;
 import org.gwtbootstrap3.client.ui.constants.IconSize;
 import org.gwtbootstrap3.client.ui.constants.IconType;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
@@ -71,16 +67,15 @@ public class MainPanelView extends Composite {
 
 	final Map<WidgetName, Widget> widgets = new HashMap<>();
 
+	@SuppressWarnings("unused")
 	private final LoadingMessagePopupPanel loadingMessagePopupPanel;
 
+	@SuppressWarnings("unused")
 	private final ErrorFormatter errorFormatter;
 
 	@UiField
 	Column contentColumn;
 
-/*	@UiField
-	NavbarLink userNavbarLink; */
-	
 	@UiField
 	AnchorButton webAppsButton;
 
@@ -104,7 +99,7 @@ public class MainPanelView extends Composite {
 		this.errorFormatter = errorFormatter;
 		this.loadingMessagePopupPanel = loadingMessagePopupPanel;
 
-		//webAppsButton.getElement().setClassName("glyphicon");
+		// webAppsButton.getElement().setClassName("glyphicon");
 		webAppsButton.setIcon(IconType.TH);
 		webAppsButton.setIconSize(IconSize.LARGE);
 		
@@ -249,7 +244,7 @@ public class MainPanelView extends Composite {
 		PersonPanelView personPanelView = (PersonPanelView) this.widgets
 				.get(WidgetName.PERSONLIST);
 
-		logger.info("Method updatePersonPanelView finished...");
+		logger.info("Method updatePersonPanelView finished: " + personPanelView.getTitle());
 	}
 
 	@EventHandler
