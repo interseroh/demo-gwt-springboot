@@ -225,9 +225,9 @@ public class PersonPanelView extends Composite implements Startable {
         vGrid.appendHeaderRow();
         vGrid.addFooterRowAt(0);
 
-        vGrid.addColumn(ColumnFactory.createIntColumn(Cols.ID.toString(), 80, VPerson::getId));
+        vGrid.addColumn(ColumnFactory.createNumberColumn(Cols.ID.toString(), 80, "000", VPerson::getId));
         vGrid.addColumn(ColumnFactory.createStringColumn(Cols.NAME.toString(), 250, VPerson::getName));
-        vGrid.addColumn(ColumnFactory.createIntColumn(AGE.toString(), 80, VPerson::getAge));
+        vGrid.addColumn(ColumnFactory.createNumberColumn(AGE.toString(), 80, "#", VPerson::getAge));
         vGrid.addColumn(ColumnFactory.createBooleanColumn(Cols.RETIRED.toString(), 100, VPerson::isRetired));
         vGrid.addColumn(ColumnFactory.createStringColumn(Cols.NICKNAME.toString(), 200, VPerson::getNickName));
 
@@ -265,6 +265,55 @@ public class PersonPanelView extends Composite implements Startable {
         vGrid.setVisible(true);
     }
 
+
+/*
+
+	private void setColumnFiltering(boolean filtered) {
+		if (filtered && filteringHeader == null) {
+			filteringHeader = sample.appendHeaderRow();
+
+			// Add new TextFields to each column which filters the data from
+			// that column
+			String columnId = ExampleUtil.BUDGET_ITEM_NAME_PROPERTY_ID
+					.toString();
+			TextField filter = getColumnFilter(columnId);
+			filteringHeader.getCell(columnId).setComponent(filter);
+			filteringHeader.getCell(columnId).setStyleName("filter-header");
+		} else if (!filtered && filteringHeader != null) {
+			sample.removeHeaderRow(filteringHeader);
+			filteringHeader = null;
+		}
+	}
+
+	private TextField getColumnFilter(final Object columnId) {
+			SimpleStringFilter filter = null;
+		TextField filter = new TextField();
+		filter.setWidth("100%");
+		filter.addStyleName(ValoTheme.TEXTFIELD_TINY);
+		filter.setInputPrompt("Filter");
+		filter.addTextChangeListener(new TextChangeListener() {
+
+
+			@Override
+			public void textChange(TextChangeEvent event) {
+				Filterable f = (Filterable) sample.getContainerDataSource();
+
+				// Remove old filter
+				if (filter != null) {
+					f.removeContainerFilter(filter);
+				}
+
+				// Set new filter for the "Name" column
+				filter = new SimpleStringFilter(columnId, event.getText(),
+						true, true);
+				f.addContainerFilter(filter);
+
+				sample.cancelEditor();
+			}
+		});
+		return filter;
+	}
+*/
 
 
 

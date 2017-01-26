@@ -27,12 +27,13 @@ public class ColumnFactory{
         return col;
     }
 
-    public static Grid.Column<Integer, VPerson> createIntColumn(String caption, int maxsize, Function<VPerson, Integer> f) {
+    public static Grid.Column<Number, VPerson> createNumberColumn(String caption, int maxsize, String numFormat, Function<VPerson, Integer> f) {
+        String format = numFormat != null && !numFormat.isEmpty() ? numFormat : "#";
         final NumberRenderer numberRenderer =
-                new NumberRenderer(NumberFormat.getFormat("#0"));
-        Grid.Column<Integer, VPerson> col = new Grid.Column<Integer, VPerson>(caption, numberRenderer) {
+                new NumberRenderer(NumberFormat.getFormat(format));
+        Grid.Column<Number, VPerson> col = new Grid.Column<Number, VPerson>(caption, numberRenderer) {
             @Override
-            public Integer getValue(VPerson row) {
+            public Number getValue(VPerson row) {
                 return f.apply(row);
             }
         };
