@@ -203,3 +203,7 @@ h1 {
 	width: 84px;
 	text-overflow: ellipsis;
 }
+
+.align-right {
+	text-align: right;
+}

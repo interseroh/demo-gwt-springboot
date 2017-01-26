@@ -18,13 +18,14 @@
  */
 package com.lofidewanto.demo.client.ui.person;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import com.vaadin.client.widget.grid.CellReference;
+import com.vaadin.client.widget.grid.CellStyleGenerator;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 import org.gwtbootstrap3.client.ui.Button;
@@ -77,9 +78,10 @@ import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
 import org.gwtbootstrap3.extras.datetimepicker.client.ui.DateTimePicker;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
+
+import static com.lofidewanto.demo.client.ui.person.PersonPanelView.Cols.AGE;
 
 
 @Singleton
@@ -92,10 +94,18 @@ public class PersonPanelView extends Composite implements Startable {
         AGE("Age"),
         RETIRED("Retired");
 
+        //EnumSet not supported by GWT js runtime.
+        private static Set<Cols> numeric =
+				new HashSet<Cols>(Arrays.asList(new Cols[] {ID, AGE}));
+
         private String name;
         private Cols(String name) {
             this.name = name;
         }
+
+        public static boolean isNumericColumn(Cols col) {
+			return col != null && numeric.contains(col);
+		}
 
         public boolean equalsIgnoreCase(String s) {
             return s != null && this.name.toUpperCase().equals(s.toUpperCase());
@@ -212,14 +222,15 @@ public class PersonPanelView extends Composite implements Startable {
         vGrid.setColumnReorderingAllowed(true);
         //vGrid.setFooterVisible(true);
         //vGrid.setHeaderVisible(true);
+        vGrid.appendHeaderRow();
+        vGrid.addFooterRowAt(0);
 
         vGrid.addColumn(ColumnFactory.createIntColumn(Cols.ID.toString(), 80, VPerson::getId));
         vGrid.addColumn(ColumnFactory.createStringColumn(Cols.NAME.toString(), 250, VPerson::getName));
-        vGrid.addColumn(ColumnFactory.createIntColumn(Cols.AGE.toString(), 80, VPerson::getAge));
+        vGrid.addColumn(ColumnFactory.createIntColumn(AGE.toString(), 80, VPerson::getAge));
         vGrid.addColumn(ColumnFactory.createBooleanColumn(Cols.RETIRED.toString(), 100, VPerson::isRetired));
         vGrid.addColumn(ColumnFactory.createStringColumn(Cols.NICKNAME.toString(), 200, VPerson::getNickName));
 
-        vGrid.appendHeaderRow();
         vGrid.addSortHandler(new SortHandler<VPerson>() {
             @Override
             public void sort(SortEvent<VPerson> sortEvent) {
@@ -229,15 +240,26 @@ public class PersonPanelView extends Composite implements Startable {
                     SortOrder sortOrder = order.get(0);
                     SortOrder opposite = sortOrder.getOpposite();
                     String headerCaption = sortOrder.getColumn().getHeaderCaption();
-                    List<VPerson> sortedData = SortableStaticDataSource.getSortedData(Cols.getFromString(headerCaption), sortOrder.getDirection());
+                    List<VPerson> sortedData =
+							SortableStaticDataSource.getSortedData(Cols.getFromString(headerCaption), sortOrder.getDirection());
                     ds = new ListDataSource<VPerson>(sortedData);
                     vGrid.setDataSource(ds);
                 }
-                logger.info("Sort Event");
+                logger.info("Vaadin Grid Sort Event");
             }
         });
-       // List<SortOrder> sortOrder = vGrid.getSortOrder();
 
+        //Set text-align right for numeric colums via CellReference to column.
+		vGrid.setCellStyleGenerator(new CellStyleGenerator() {
+			@Override
+			public String getStyle(CellReference cellReference) {
+				Cols col = Cols.getFromString(cellReference.getColumn().getHeaderCaption());
+				if (Cols.isNumericColumn(col)) {
+					return "align-right";
+				}
+				return null;
+			}
+		});
 
         vGrid.setDataSource(new ListDataSource<VPerson>(SortableStaticDataSource.getSortedData(Cols.ID, SortDirection.ASCENDING)));
         vGrid.setVisible(true);

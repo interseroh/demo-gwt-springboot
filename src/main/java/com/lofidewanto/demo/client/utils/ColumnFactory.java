@@ -3,6 +3,8 @@ package com.lofidewanto.demo.client.utils;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.lofidewanto.demo.client.ui.person.VPerson;
 import com.vaadin.client.renderers.NumberRenderer;
+import com.vaadin.client.widget.grid.CellReference;
+import com.vaadin.client.widget.grid.CellStyleGenerator;
 import com.vaadin.client.widgets.Grid;
 
 import java.util.function.Function;
@@ -26,7 +28,8 @@ public class ColumnFactory{
     }
 
     public static Grid.Column<Integer, VPerson> createIntColumn(String caption, int maxsize, Function<VPerson, Integer> f) {
-        final NumberRenderer numberRenderer = new NumberRenderer(NumberFormat.getFormat("#*0"));
+        final NumberRenderer numberRenderer =
+                new NumberRenderer(NumberFormat.getFormat("#0"));
         Grid.Column<Integer, VPerson> col = new Grid.Column<Integer, VPerson>(caption, numberRenderer) {
             @Override
             public Integer getValue(VPerson row) {
@@ -53,4 +56,6 @@ public class ColumnFactory{
         col.setSortable(true);
         return col;
     }
+
+
 }
