@@ -149,8 +149,8 @@ public class PersonPanelView extends Composite implements Startable {
 	@Inject
 	private PersonUtil personUtil;
 
-	@UiField
-	Button refreshButton;
+	//@UiField
+	//Button refreshButton;
 
 	@UiField
 	Button filterButton;
@@ -183,8 +183,8 @@ public class PersonPanelView extends Composite implements Startable {
 	@UiField
     Grid<VPerson> vGrid;
 
-	@UiField
-	Pagination dataGridPagination1;
+	//@UiField
+	//Pagination dataGridPagination1;
 
 //	@UiField
 //	Pagination dataGridPagination2;
@@ -205,6 +205,10 @@ public class PersonPanelView extends Composite implements Startable {
 			}
 		});
 
+		listTab.addClickHandler(clickEvent -> showTabClickAlert(clickEvent.getSource()));
+		searchTab.addClickHandler(clickEvent -> showTabClickAlert(clickEvent.getSource()));
+
+
 		initTableColumns(dataGrid1);
 		initListDataProvider(dataGrid1);
 		//initTableColumns(dataGrid2);
@@ -213,6 +217,13 @@ public class PersonPanelView extends Composite implements Startable {
 		getPersons();
 
 		logger.info("PersonPanelView created...");
+	}
+
+	private void showTabClickAlert(Object o) {
+		//Bootbox.alert("TabChanged "  + o.toString());
+		logger.info("TabChanged "  + o.toString());
+		//initVGridDatasource();
+
 	}
 
     private void initVGrid(Grid<VPerson> vGrid) {
@@ -360,9 +371,9 @@ public class PersonPanelView extends Composite implements Startable {
 			public void onSuccess(Method method, List<PersonDto> persons) {
 				logger.info("The result is ok");
 				//Bootbox.alert("The result is ok");
-				searchTab.setActive(false);
-				listTab.setActive(true);
-
+				//searchTab.setActive(false);
+				//listTab.setActive(true);
+				searchTab.showTab();
 				refreshGrid(persons, dataProviderList);
 			}
 		};

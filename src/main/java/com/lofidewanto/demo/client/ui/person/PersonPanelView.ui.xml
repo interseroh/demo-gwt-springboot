@@ -93,36 +93,22 @@
 					</b:PanelHeader>
 					<b:PanelBody>
 						<b:NavTabs>
-							<b:TabListItem active="true" dataTarget="#listTab"
-								ui:field="listTab" text="{i18n.first_tab}" />
-							<b:TabListItem dataTarget="#searchTab" ui:field="searchTab"
-								text="{i18n.search_tab}" visible="true" />
+							<b:TabListItem active="true" dataTarget="#mylistTab" ui:field="listTab" text="{i18n.first_tab}" />
+							<b:TabListItem dataTarget="#mysearchTab" ui:field="searchTab" text="{i18n.search_tab}"  />
 						</b:NavTabs>
-
 						<b:TabContent>
-							<b:TabPane ui:field="listTabPane" fade="true" in="true"
-								active="true" b:id="listTab">
-								<b:PanelBody ui:field="panelBody1">
-                                    <v:Grid width="75%" height="300px" visible="true" ui:field="vGrid"
-                                            addStyleNames="{style.table-word-wrap}"></v:Grid>
-									<b:Pagination ui:field="dataGridPagination1" />
-								</b:PanelBody>
-								<b:ButtonToolBar addStyleNames="pull-right">
-									<b:Button type="SUCCESS" text="{i18n.button_update}"
-										ui:field="refreshButton"></b:Button>
-								</b:ButtonToolBar>
+							<b:TabPane active="true" ui:field="listTabPane"  b:id="mylistTab" >
+								<v:Grid width="75%" height="300px" visible="true" ui:field="vGrid"
+										addStyleNames="{style.table-word-wrap}"></v:Grid>
+
 							</b:TabPane>
 
-							<b:TabPane ui:field="searchTabPane" fade="true" b:id="searchTab">
-								<b:PanelBody ui:field="panelBody2">
-                                    <b.gwt:DataGrid  bordered="true" condensed="true"
-                                                     width="100%" height="450px" striped="true" hover="true"
-                                                     ui:field="dataGrid1" addStyleNames="{style.table-word-wrap}" />
+							<b:TabPane ui:field="searchTabPane" b:id="mysearchTab">
+								<b.gwt:DataGrid  bordered="true" condensed="true"
+												 width="100%" height="450px" striped="true" hover="true"
+												 ui:field="dataGrid1" addStyleNames="{style.table-word-wrap}" />
 									<!-- b:Pagination ui:field="dataGridPagination2" -->
-								</b:PanelBody>
-								<b:ButtonToolBar addStyleNames="pull-right">
-									<b:Button type="SUCCESS" text="{i18n.button_search}" ui:field="searchButton"></b:Button>
-								</b:ButtonToolBar>
+
 							</b:TabPane>
 						</b:TabContent>
 					</b:PanelBody>
