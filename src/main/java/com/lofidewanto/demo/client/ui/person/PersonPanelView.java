@@ -223,6 +223,13 @@ public class PersonPanelView extends Composite implements Startable {
 		//Bootbox.alert("TabChanged "  + o.toString());
 		logger.info("TabChanged "  + o.toString());
 		//initVGridDatasource();
+		if (o.toString().contains("Search")) {
+			searchTab.showTab();
+			logger.info("showing search tab");
+		} else {
+			listTab.showTab();
+			logger.info("showing list tab");
+		}
 
 	}
 
@@ -277,6 +284,8 @@ public class PersonPanelView extends Composite implements Startable {
     }
 
 	private void initDatasource() {
+		/* === */
+		//searchTab.showTab();
 		vGrid.setDataSource(new ListDataSource<VPerson>(SortableStaticDataSource.getSortedData(Cols.ID, SortDirection.ASCENDING)));
 	}
 
@@ -349,8 +358,8 @@ public class PersonPanelView extends Composite implements Startable {
 			@Override
 			public void onSuccess(Method method, List<PersonDto> persons) {
 				Bootbox.alert("Method call back is OK .:" + persons.get(0));
-				listTab.setActive(false);
-				searchTab.setActive(true);
+				//listTab.setActive(false);
+				//searchTab.setActive(true);
 				refreshGrid(persons, dataProviderFilter);
 			}
 		};
@@ -373,6 +382,7 @@ public class PersonPanelView extends Composite implements Startable {
 				//Bootbox.alert("The result is ok");
 				//searchTab.setActive(false);
 				//listTab.setActive(true);
+				/* ===== */
 				searchTab.showTab();
 				refreshGrid(persons, dataProviderList);
 			}

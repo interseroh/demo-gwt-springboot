@@ -20,7 +20,6 @@ package com.lofidewanto.demo.client;
 
 import java.util.logging.Logger;
 
-import com.lofidewanto.demo.client.ui.person.VGrid;
 import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
 import org.gwtbootstrap3.extras.bootbox.client.options.BootboxLocale;
 
@@ -130,7 +129,6 @@ public class DemoGwtWebApp implements EntryPoint {
 	private void createViews() {
 		// Views
 		logger.info("Create Views begins...");
-		//RootPanel.get().add(new VGrid());
 		MainPanelView mainPanelView = injector.getMainPanelView();
 		mainPanelView.setContentAreaVisible(false);
 
