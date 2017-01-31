@@ -59,6 +59,7 @@ import com.lofidewanto.demo.client.common.Startable;
 import com.lofidewanto.demo.client.domain.PersonClient;
 import com.lofidewanto.demo.client.extra.PersonUtil;
 import com.lofidewanto.demo.client.ui.event.FilterEvent;
+import com.lofidewanto.demo.client.ui.event.SearchEvent;
 import com.lofidewanto.demo.shared.PersonDto;
 
 @Singleton
@@ -138,7 +139,7 @@ public class PersonPanelView extends Composite implements Startable {
 			public void onClick(ClickEvent clickEvent) {
 				logger.info("Click Detected by Simple Click Event");
 				logger.info("Button Filter is clicked!!!" + clickEvent.getNativeEvent().getString());
-				eventBus.fireEvent(new FilterEvent());
+				eventBus.fireEvent(new SearchEvent());
 				filterPerson();
 			}
 		});

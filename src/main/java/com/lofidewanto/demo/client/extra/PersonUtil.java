@@ -30,6 +30,7 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
 import com.lofidewanto.demo.client.ui.event.FilterEvent;
+import com.lofidewanto.demo.client.ui.event.SearchEvent;
 
 @Singleton
 public class PersonUtil {
@@ -51,6 +52,12 @@ public class PersonUtil {
 	public void onEvent(FilterEvent event) {
 		logger.info("Get Event:" + event);
 		Bootbox.alert("FilterEvent is received in PersonUtil...");
+	}
+
+	@EventHandler
+	public void onEvent(SearchEvent event) {
+		logger.info("Get Event:" + event);
+		Bootbox.alert("SearchEvent is received in PersonUtil...");
 	}
 
 	public String sayHello() {

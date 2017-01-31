@@ -371,6 +371,8 @@
 							<webappDirectory>${project.build.directory}/classes/public</webappDirectory>
 							<deploy>${project.build.directory}/gwt-deploy</deploy>
 							<compileReport>true</compileReport>
+							<style>DETAILED</style>
+							<generateJsInteropExports>true</generateJsInteropExports>
 						</configuration>
 					</plugin>
 				</plugins>
