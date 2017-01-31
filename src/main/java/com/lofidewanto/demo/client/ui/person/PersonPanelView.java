@@ -152,7 +152,7 @@ public class PersonPanelView extends Composite implements Startable {
 		getPersons();
 		
 		// Event handling with Lambda
-		searchButton.addClickHandler(clickEvent -> searchButtonClick("Click Detected by Lambda Listener"));
+		searchButton.addClickHandler(clickHandler -> searchButtonClick("Click Detected by Lambda Listener"));
 	}
 
 	private void searchButtonClick(String message) {
