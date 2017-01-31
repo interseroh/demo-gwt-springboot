@@ -45,7 +45,9 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.Column;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
@@ -89,6 +91,9 @@ public class PersonPanelView extends Composite implements Startable {
 	Button refreshButton;
 
 	@UiField
+	Button searchButton;
+
+	@UiField
 	Button filterButton;
 
 	@UiField
@@ -126,9 +131,12 @@ public class PersonPanelView extends Composite implements Startable {
 		eventBinder.bindEventHandlers(this, eventBus);
 
 		this.personClient = personClient;
+
+		// Standard event handling
 		filterButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent clickEvent) {
+				logger.info("Click Detected by Simple Click Event");
 				logger.info("Button Filter is clicked!!!" + clickEvent.getNativeEvent().getString());
 				eventBus.fireEvent(new FilterEvent());
 				filterPerson();
@@ -140,7 +148,37 @@ public class PersonPanelView extends Composite implements Startable {
 		initTableColumns(dataGrid2);
 		initListDataProvider(dataGrid1);
 		initFilterDataProvider(dataGrid2);
+		
 		getPersons();
+		
+		// Event handling with Lambda
+		searchButton.addClickHandler(e -> searchButtonClick("Click Detected by Lambda Listener"));
+	}
+
+	private void searchButtonClick(String message) {
+		logger.info(message);
+		searchButton.state().loading();
+
+		new Timer() {
+			@Override
+			public void run() {
+				searchButton.state().reset();
+			}
+		}.schedule(5000);
+	}
+
+	@UiHandler("refreshButton")
+	public void onButtonClick(final ClickEvent event) {
+		// Event handling in GWT UiBinder
+		logger.info("Click Detected by GWT UiBinder");
+		refreshButton.state().loading();
+
+		new Timer() {
+			@Override
+			public void run() {
+				refreshButton.state().reset();
+			}
+		}.schedule(2000);
 	}
 
 	private void initTableColumns(DataGrid<PersonDto> dataGrid) {
