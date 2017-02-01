@@ -211,6 +211,7 @@
 					<webappDirectory>${project.build.directory}/classes/public</webappDirectory>
 					<deploy>${project.build.directory}/gwt-deploy</deploy>
 					<i18nMessagesBundle>com.lofidewanto.demo.client.Messages</i18nMessagesBundle>
+					<generateJsInteropExports>true</generateJsInteropExports>
 				</configuration>
 			</plugin>
 			<plugin>
