@@ -33,7 +33,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.2.RELEASE</version>
+        <version>1.4.4.RELEASE</version>
         <relativePath/>
     </parent>
 
@@ -47,10 +47,8 @@
         <gwt.resty.version>2.2.0</gwt.resty.version>
         <gwt.mockito.version>1.1.6</gwt.mockito.version>
         <kissmda.maven.plugin.version>2.0.0</kissmda.maven.plugin.version>
-        <kissmda.cartridges.simple.java.version>2.0.2
-        </kissmda.cartridges.simple.java.version>
-        <kissmda.extensions.importpacker.version>1.0.0
-        </kissmda.extensions.importpacker.version>
+        <kissmda.cartridges.simple.java.version>2.0.2</kissmda.cartridges.simple.java.version>
+        <kissmda.extensions.importpacker.version>1.0.0</kissmda.extensions.importpacker.version>
     </properties>
 
     <dependencies>
