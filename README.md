@@ -220,6 +220,79 @@ There are two GWT configuration files: [_DemoGwtDevelopment.gwt.xml_](https://gi
 
 ## Unit and Integration Testing
 
+## Debugging with IntelliJ IDEA
+
+For debugging gwt with IntelliJ IDEA proceed the following stets. 
+
+### Prequesites
+
+- JetBrains IntelliJ 2016 Ultimate (Community doesn't support it)
+- Chrome browser
+- [JetBrains IDE Support Chrome Browser Plugin](https://chrome.google.com/webstore/detail/jetbrains-ide-support/hmhgeddbohgjknpmjagkdomcpobmllji)
+- Enabled GWT Plugin in IntelliJ
+
+### Overview
+The following diagram shows the different parts of the setup:
+
+![GWT Client Logging](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-debugging-setup-diagram.png)
+
+### Step by step
+
+#### Open Project in IntelliJ
+
+![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-import-project.png)
+
+After this the project is loaded and the `DemoGwtSpringbootApplication` will be added to the `RunConfigurations` automatically.
+
+![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-import-project.png)
+
+#### Configure Web Facet
+
+Open in the `FileMenu` the `Project Structure`
+
+![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-open-project-structure.png)
+
+Und add under `Facets` a `Web Facet`
+
+![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-add-web-facet.png)
+
+Add the facet into the `demo-gwt-springboot` module:
+
+![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-choose-modul.png)
+
+The path must be set to `src/main/resources/public` and the context must be `/demogwt`.
+
+**Important**
+
+Do not add the web.xml to git. Just ignore it.
+
+![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-add-file-to-git.png)
+
+#### Do not generate Artifacts
+
+![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-add-file-to-git.png) 
+
+
+#### Running the debugger with the IDE Support Plugin 
+
+You should see the alert that the »JetBrains IDE Support« is running in debug mode. 
+
+If you have any trouble connecting the browser with the idea, please check the ports of the browser plugin and Intellij. 
+
+Right click on the Life Edit extension and choose Options:
+
+![GWT Client Logging](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-debugging-session-is-running.png)
+
+The default port is `63342`.
+
+![GWT Client Logging](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-ide-support-options.png)
+
+And check if the port in the Intellij IDEA debugger is configured on the same port.
+
+![GWT Client Logging](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-ide-support-preferences-configure-port.png)
+
+
+
 ### Server: Spring Test
 
 Examples of unit test with POJO and Mockito:
