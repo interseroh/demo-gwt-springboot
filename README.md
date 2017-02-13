@@ -218,7 +218,6 @@ There are two GWT configuration files: [_DemoGwtDevelopment.gwt.xml_](https://gi
 - _DemoGwtDevelopment.gwt.xml_: this config will be used to make the GWT compiling process faster. This only compiles for one web browser and use INFO as logging output.
 - _DemoGwt.gwt.xml_: this config will be used for production transpilling. This is optimized for many many production purposes.
 
-## Unit and Integration Testing
 
 ## Debugging with IntelliJ IDEA
 
@@ -252,13 +251,13 @@ Open in the `FileMenu` the `Project Structure`
 
 ![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-open-project-structure.png)
 
-Und add under `Facets` a `Web Facet`
+Add add under `Facets` a `Web Facet` to the project
 
 ![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-add-web-facet.png)
 
-Add the facet into the `demo-gwt-springboot` module:
+Add the facet to the `demo-gwt-springboot` module:
 
-![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-choose-modul.png)
+![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-choose-module.png)
 
 The path must be set to `src/main/resources/public` and the context must be `/demogwt`.
 
@@ -266,11 +265,34 @@ The path must be set to `src/main/resources/public` and the context must be `/de
 
 Do not add the web.xml to git. Just ignore it.
 
-![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-add-file-to-git.png)
+![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-do-not-add-web.xml.png)
 
-#### Do not generate Artifacts
+##### Do not generate Artifacts
 
-![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-add-file-to-git.png) 
+![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-configure-web-facet-add-contextpath.png) 
+
+Close the `Project Structure` with `Ok` and reopen it. Now the `Web Facet` kann be selected in the GWT Module.
+
+![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-configure-web-facet-2.png) 
+
+After this you should select only the GWT Module `DemoGwtDevelopment`
+
+![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-configure-web-facet.png) 
+
+#### GWT Configuration
+Add a new Run Configuration
+
+![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-open-run-configuration.png) 
+
+And a GWT Configuration:
+
+![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-add-gwt-run-configuration.png) 
+
+After this you start the "Spring Boot Project" first and after this the "GWT-Project" in Debug mode.
+
+#### Codeserver
+
+Now you have to repeat the steps to configure the code server (see above).
 
 
 #### Running the debugger with the IDE Support Plugin 
@@ -291,7 +313,7 @@ And check if the port in the Intellij IDEA debugger is configured on the same po
 
 ![GWT Client Logging](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-ide-support-preferences-configure-port.png)
 
-
+## Unit and Integration Testing
 
 ### Server: Spring Test
 
