@@ -18,11 +18,6 @@
  */
 package com.lofidewanto.demo.client;
 
-import java.util.logging.Logger;
-
-import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
-import org.gwtbootstrap3.extras.bootbox.client.options.BootboxLocale;
-
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
@@ -38,6 +33,10 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.lofidewanto.demo.client.common.ServicePreparator;
 import com.lofidewanto.demo.client.common.WidgetName;
 import com.lofidewanto.demo.client.ui.main.MainPanelView;
+import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
+import org.gwtbootstrap3.extras.bootbox.client.options.BootboxLocale;
+
+import java.util.logging.Logger;
 
 public class DemoGwtWebApp implements EntryPoint {
 

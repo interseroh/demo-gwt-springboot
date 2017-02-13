@@ -18,30 +18,11 @@
  */
 package com.lofidewanto.demo.client.ui.person;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
-import org.fusesource.restygwt.client.Method;
-import org.fusesource.restygwt.client.MethodCallback;
-import org.gwtbootstrap3.client.ui.Button;
-import org.gwtbootstrap3.client.ui.Label;
-import org.gwtbootstrap3.client.ui.Pagination;
-import org.gwtbootstrap3.client.ui.SuggestBox;
-import org.gwtbootstrap3.client.ui.TabListItem;
-import org.gwtbootstrap3.client.ui.gwt.DataGrid;
-import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
-import org.gwtbootstrap3.extras.datetimepicker.client.ui.DateTimePicker;
-
 import com.google.gwt.cell.client.CheckboxCell;
 import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -59,250 +40,287 @@ import com.lofidewanto.demo.client.common.Startable;
 import com.lofidewanto.demo.client.domain.PersonClient;
 import com.lofidewanto.demo.client.extra.PersonUtil;
 import com.lofidewanto.demo.client.ui.event.FilterEvent;
-import com.lofidewanto.demo.client.ui.event.SearchEvent;
 import com.lofidewanto.demo.shared.PersonDto;
+import org.fusesource.restygwt.client.Method;
+import org.fusesource.restygwt.client.MethodCallback;
+import org.gwtbootstrap3.client.ui.Button;
+import org.gwtbootstrap3.client.ui.Label;
+import org.gwtbootstrap3.client.ui.Pagination;
+import org.gwtbootstrap3.client.ui.SuggestBox;
+import org.gwtbootstrap3.client.ui.TabListItem;
+import org.gwtbootstrap3.client.ui.gwt.DataGrid;
+import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
+import org.gwtbootstrap3.extras.datetimepicker.client.ui.DateTimePicker;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
 @Singleton
 public class PersonPanelView extends Composite implements Startable {
 
-	private static Logger logger = Logger.getLogger(PersonPanelView.class.getName());
+    private static Logger logger = Logger
+            .getLogger(PersonPanelView.class.getName());
 
-	interface PersonPanelViewUiBinder extends UiBinder<Widget, PersonPanelView> {
-	}
+    interface PersonPanelViewUiBinder
+            extends UiBinder<Widget, PersonPanelView> {
+    }
 
-	private static PersonPanelViewUiBinder uiBinder = GWT.create(PersonPanelViewUiBinder.class);
+    private static PersonPanelViewUiBinder uiBinder = GWT
+            .create(PersonPanelViewUiBinder.class);
 
-	interface PersonPanelEventBinder extends EventBinder<PersonPanelView> {
-	}
+    interface PersonPanelEventBinder extends EventBinder<PersonPanelView> {
+    }
 
-	private final PersonPanelEventBinder eventBinder = GWT.create(PersonPanelEventBinder.class);
+    private final PersonPanelEventBinder eventBinder = GWT
+            .create(PersonPanelEventBinder.class);
 
-	private final EventBus eventBus;
+    private final EventBus eventBus;
 
-	private final PersonClient personClient;
+    private final PersonClient personClient;
 
-	private ListDataProvider<PersonDto> dataProviderList;
+    private ListDataProvider<PersonDto> dataProviderList;
 
-	private ListDataProvider<PersonDto> dataProviderFilter;
+    private ListDataProvider<PersonDto> dataProviderFilter;
 
-	@Inject
-	private PersonUtil personUtil;
+    @Inject
+    private PersonUtil personUtil;
 
-	@UiField
-	Button refreshButton;
+    @UiField
+    Button refreshButton;
 
-	@UiField
-	Button searchButton;
+    @UiField
+    Button searchButton;
 
-	@UiField
-	Button filterButton;
+    @UiField
+    Button filterButton;
 
-	@UiField
-	SuggestBox nameSuggestBox;
+    @UiField
+    SuggestBox nameSuggestBox;
 
-	@UiField
-	DateTimePicker fromDateTimePicker;
+    @UiField
+    DateTimePicker fromDateTimePicker;
 
-	@UiField
-	DateTimePicker untilDateTimePicker;
+    @UiField
+    DateTimePicker untilDateTimePicker;
 
-	@UiField
-	TabListItem listTab;
+    @UiField
+    TabListItem listTab;
 
-	@UiField
-	TabListItem searchTab;
+    @UiField
+    TabListItem searchTab;
 
-	@UiField
-	DataGrid<PersonDto> dataGrid1;
+    @UiField
+    DataGrid<PersonDto> dataGrid1;
 
-	@UiField
-	DataGrid<PersonDto> dataGrid2;
+    @UiField
+    DataGrid<PersonDto> dataGrid2;
 
-	@UiField
-	Pagination dataGridPagination1;
+    @UiField
+    Pagination dataGridPagination1;
 
-	@UiField
-	Pagination dataGridPagination2;
+    @UiField
+    Pagination dataGridPagination2;
 
-	@Inject
-	public PersonPanelView(EventBus eventbus, ErrorFormatter errorFormatter,
-			LoadingMessagePopupPanel loadingMessagePopupPanel, PersonClient personClient) {
-		initWidget(uiBinder.createAndBindUi(this));
-		this.eventBus = eventbus;
-		eventBinder.bindEventHandlers(this, eventBus);
+    @Inject
+    public PersonPanelView(EventBus eventbus, ErrorFormatter errorFormatter,
+            LoadingMessagePopupPanel loadingMessagePopupPanel,
+            PersonClient personClient) {
+        initWidget(uiBinder.createAndBindUi(this));
+        this.eventBus = eventbus;
+        eventBinder.bindEventHandlers(this, eventBus);
 
-		this.personClient = personClient;
+        this.personClient = personClient;
 
-		// Standard event handling
-		filterButton.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent clickEvent) {
-				logger.info("Click Detected by Simple Click Event");
-				logger.info("Button Filter is clicked!!!" + clickEvent.getNativeEvent().getString());
-				eventBus.fireEvent(new SearchEvent());
-				filterPerson();
-			}
-		});
-		logger.info("PersonPanelView created...");
+        // Standard event handling
+//        filterButton.addClickHandler(new ClickHandler() {
+//            @Override
+//            public void onClick(ClickEvent clickEvent) {
+//                logger.info("Click Detected by Simple Click Event");
+//                logger.info("Button Filter is clicked!!!" + clickEvent
+//                        .getNativeEvent().getString());
+//                eventBus.fireEvent(new SearchEvent());
+//                filterPerson();
+//            }
+//        });
+        filterButton.addClickHandler(clickEvent -> {
+            Bootbox.alert(
+                    "Button Filter is clicked!!!" + clickEvent.getNativeEvent()
+                            .getString());
+            filterPerson();
+        });
+        logger.info("PersonPanelView created...");
 
-		initTableColumns(dataGrid1);
-		initTableColumns(dataGrid2);
-		initListDataProvider(dataGrid1);
-		initFilterDataProvider(dataGrid2);
-		
-		getPersons();
-		
-		// Event handling with Lambda
-		searchButton.addClickHandler(clickHandler -> searchButtonClick("Click Detected by Lambda Listener"));
-	}
+        initTableColumns(dataGrid1);
+        initTableColumns(dataGrid2);
+        initListDataProvider(dataGrid1);
+        initFilterDataProvider(dataGrid2);
 
-	private void searchButtonClick(String message) {
-		logger.info(message);
-		searchButton.state().loading();
+        getPersons();
 
-		new Timer() {
-			@Override
-			public void run() {
-				searchButton.state().reset();
-			}
-		}.schedule(5000);
-	}
+        // Event handling with Lambda
+        searchButton.addClickHandler(clickHandler -> searchButtonClick(
+                "Click Detected by Lambda Listener"));
+    }
 
-	@UiHandler("refreshButton")
-	public void onButtonClick(final ClickEvent event) {
-		// Event handling in GWT UiBinder
-		logger.info("Click Detected by GWT UiBinder");
-		refreshButton.state().loading();
+    private void searchButtonClick(String message) {
+        logger.info(message);
+        searchButton.state().loading();
 
-		new Timer() {
-			@Override
-			public void run() {
-				refreshButton.state().reset();
-			}
-		}.schedule(2000);
-	}
+        new Timer() {
+            @Override
+            public void run() {
+                searchButton.state().reset();
+            }
+        }.schedule(5000);
+    }
 
-	private void initTableColumns(DataGrid<PersonDto> dataGrid) {
-		dataGrid.setWidth("100%");
-		dataGrid.setHeight("300px");
-		dataGrid.setAutoHeaderRefreshDisabled(true);
-		// Nick name.
-		Column<PersonDto, String> nicknameColumn = new Column<PersonDto, String>(new TextCell()) {
-			@Override
-			public String getValue(PersonDto object) {
-				return object.getNickname();
-			}
-		};
-		dataGrid.addColumn(nicknameColumn, "Nickname");
-		dataGrid.setColumnWidth(nicknameColumn, 40, Style.Unit.PCT);
+    @UiHandler("refreshButton")
+    public void onButtonClick(final ClickEvent event) {
+        // Event handling in GWT UiBinder
+        logger.info("Click Detected by GWT UiBinder");
+        refreshButton.state().loading();
 
-		// Nick name.
-		Column<PersonDto, String> nameColumn = new Column<PersonDto, String>(new TextCell()) {
-			@Override
-			public String getValue(PersonDto object) {
-				return object.getName();
-			}
-		};
-		dataGrid.addColumn(nameColumn, "Name");
-		dataGrid.setColumnWidth(nameColumn, 40, Style.Unit.PCT);
+        new Timer() {
+            @Override
+            public void run() {
+                refreshButton.state().reset();
+            }
+        }.schedule(2000);
+    }
 
-		// Retired
-		Column<PersonDto, Boolean> isRetiredColumn = new Column<PersonDto, Boolean>(new CheckboxCell(true, false)) {
-			@Override
-			public Boolean getValue(PersonDto object) {
-				if (object.isInRetirement() == null) {
-					return false;
-				} else {
-					return object.isInRetirement();
-				}
-			};
-		};
-		dataGrid.addColumn(isRetiredColumn, "Retired");
-		dataGrid.setColumnWidth(isRetiredColumn, 20, Style.Unit.PCT);
+    private void initTableColumns(DataGrid<PersonDto> dataGrid) {
+        dataGrid.setWidth("100%");
+        dataGrid.setHeight("300px");
+        dataGrid.setAutoHeaderRefreshDisabled(true);
+        // Nick name.
+        Column<PersonDto, String> nicknameColumn = new Column<PersonDto, String>(
+                new TextCell()) {
+            @Override
+            public String getValue(PersonDto object) {
+                return object.getNickname();
+            }
+        };
+        dataGrid.addColumn(nicknameColumn, "Nickname");
+        dataGrid.setColumnWidth(nicknameColumn, 40, Style.Unit.PCT);
 
-	}
+        // Nick name.
+        Column<PersonDto, String> nameColumn = new Column<PersonDto, String>(
+                new TextCell()) {
+            @Override
+            public String getValue(PersonDto object) {
+                return object.getName();
+            }
+        };
+        dataGrid.addColumn(nameColumn, "Name");
+        dataGrid.setColumnWidth(nameColumn, 40, Style.Unit.PCT);
 
-	private void initListDataProvider(DataGrid<PersonDto> dataGrid) {
-		dataProviderList = new ListDataProvider<>(new ArrayList<PersonDto>(0));
-		dataProviderList.addDataDisplay(dataGrid);
+        // Retired
+        Column<PersonDto, Boolean> isRetiredColumn = new Column<PersonDto, Boolean>(
+                new CheckboxCell(true, false)) {
+            @Override
+            public Boolean getValue(PersonDto object) {
+                if (object.isInRetirement() == null) {
+                    return false;
+                } else {
+                    return object.isInRetirement();
+                }
+            }
 
-		// Set the message to display when the table is empty.
-		dataGrid.setEmptyTableWidget(new Label("No Data"));
+            ;
+        };
+        dataGrid.addColumn(isRetiredColumn, "Retired");
+        dataGrid.setColumnWidth(isRetiredColumn, 20, Style.Unit.PCT);
 
-	}
+    }
 
-	private void initFilterDataProvider(DataGrid<PersonDto> dataGrid) {
-		dataProviderFilter = new ListDataProvider<>(new ArrayList<PersonDto>(0));
-		dataProviderFilter.addDataDisplay(dataGrid);
+    private void initListDataProvider(DataGrid<PersonDto> dataGrid) {
+        dataProviderList = new ListDataProvider<>(new ArrayList<PersonDto>(0));
+        dataProviderList.addDataDisplay(dataGrid);
 
-		// Set the message to display when the table is empty.
-		dataGrid.setEmptyTableWidget(new Label("No Data"));
+        // Set the message to display when the table is empty.
+        dataGrid.setEmptyTableWidget(new Label("No Data"));
 
-	}
+    }
 
-	private void filterPerson() {
-		MethodCallback<List<PersonDto>> filterCallBack = new MethodCallback<List<PersonDto>>() {
-			@Override
-			public void onFailure(Method method, Throwable throwable) {
-				Bootbox.alert("Method call back has ERROR:" + throwable.getLocalizedMessage());
-				throwable.printStackTrace();
-			}
+    private void initFilterDataProvider(DataGrid<PersonDto> dataGrid) {
+        dataProviderFilter = new ListDataProvider<>(
+                new ArrayList<PersonDto>(0));
+        dataProviderFilter.addDataDisplay(dataGrid);
 
-			@Override
-			public void onSuccess(Method method, List<PersonDto> persons) {
-				Bootbox.alert("Method call back is OK .:" + persons.get(0));
-				listTab.setActive(false);
-				searchTab.setActive(true);
-				refreshGrid(persons, dataProviderFilter);
-			}
-		};
+        // Set the message to display when the table is empty.
+        dataGrid.setEmptyTableWidget(new Label("No Data"));
 
-		personClient.filterPerson(nameSuggestBox.getValue(), fromDateTimePicker.getValue(),
-				untilDateTimePicker.getValue(), filterCallBack);
-	}
+    }
 
-	private void getPersons() {
-		MethodCallback<List<PersonDto>> callback = new MethodCallback<List<PersonDto>>() {
-			@Override
-			public void onFailure(Method method, Throwable exception) {
-				logger.info("Error: " + exception);
-				Bootbox.alert("Error: " + exception);
-			}
+    private void filterPerson() {
+        MethodCallback<List<PersonDto>> filterCallBack = new MethodCallback<List<PersonDto>>() {
+            @Override
+            public void onFailure(Method method, Throwable throwable) {
+                Bootbox.alert("Method call back has ERROR:" + throwable
+                        .getLocalizedMessage());
+                throwable.printStackTrace();
+            }
 
-			@Override
-			public void onSuccess(Method method, List<PersonDto> persons) {
-				logger.info("The result is ok");
-				Bootbox.alert("The result is ok");
-				searchTab.setActive(false);
-				listTab.setActive(true);
+            @Override
+            public void onSuccess(Method method, List<PersonDto> persons) {
+                Bootbox.alert("Method call back is OK .:" + persons.get(0));
+                listTab.setActive(false);
+                searchTab.setActive(true);
+                refreshGrid(persons, dataProviderFilter);
+            }
+        };
 
-				refreshGrid(persons, dataProviderList);
-			}
-		};
+        personClient.filterPerson(nameSuggestBox.getValue(),
+                fromDateTimePicker.getValue(), untilDateTimePicker.getValue(),
+                filterCallBack);
+    }
 
-		logger.info("Get persons begins...");
+    private void getPersons() {
+        MethodCallback<List<PersonDto>> callback = new MethodCallback<List<PersonDto>>() {
+            @Override
+            public void onFailure(Method method, Throwable exception) {
+                logger.info("Error: " + exception);
+                Bootbox.alert("Error: " + exception);
+            }
 
-		personClient.getPersons(0, 100, callback);
+            @Override
+            public void onSuccess(Method method, List<PersonDto> persons) {
+                logger.info("The result is ok");
+                Bootbox.alert("The result is ok");
+                searchTab.setActive(false);
+                listTab.setActive(true);
 
-		logger.info("Get persons ends...");
-	}
+                refreshGrid(persons, dataProviderList);
+            }
+        };
 
-	private void refreshGrid(List<PersonDto> personDtos, ListDataProvider<PersonDto> dataProvider) {
-		for (PersonDto p : personDtos) {
-			logger.info(p.getNickname() + " " + p.isInRetirement());
-		}
+        logger.info("Get persons begins...");
 
-		dataProvider.setList(personDtos);
-	}
+        personClient.getPersons(0, 100, callback);
 
-	@Override
-	public void start() {
-		personUtil.sayHello();
-	}
+        logger.info("Get persons ends...");
+    }
 
-	@EventHandler
-	public void onEvent(FilterEvent event) {
-		logger.info("Get Event:" + event);
-		Bootbox.alert("FilterEvent is received in PersonPanelView...");
-	}
+    private void refreshGrid(List<PersonDto> personDtos,
+            ListDataProvider<PersonDto> dataProvider) {
+        for (PersonDto p : personDtos) {
+            logger.info(p.getNickname() + " " + p.isInRetirement());
+        }
+
+        dataProvider.setList(personDtos);
+    }
+
+    @Override
+    public void start() {
+        personUtil.sayHello();
+    }
+
+    @EventHandler
+    public void onEvent(FilterEvent event) {
+        logger.info("Get Event:" + event);
+        Bootbox.alert("FilterEvent is received in PersonPanelView...");
+    }
 }
