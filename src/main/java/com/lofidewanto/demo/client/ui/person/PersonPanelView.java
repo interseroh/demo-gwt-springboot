@@ -23,7 +23,6 @@ import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -41,7 +40,6 @@ import com.lofidewanto.demo.client.common.Startable;
 import com.lofidewanto.demo.client.domain.PersonClient;
 import com.lofidewanto.demo.client.extra.PersonUtil;
 import com.lofidewanto.demo.client.ui.event.FilterEvent;
-import com.lofidewanto.demo.client.ui.event.SearchEvent;
 import com.lofidewanto.demo.shared.PersonDto;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
@@ -137,16 +135,16 @@ public class PersonPanelView extends Composite implements Startable {
         this.personClient = personClient;
 
         // Standard event handling
-        filterButton.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent clickEvent) {
-                logger.info("Click Detected by Simple Click Event");
-                logger.info("Button Filter is clicked!!!" + clickEvent
-                        .getNativeEvent().getString());
-                eventBus.fireEvent(new SearchEvent());
-                filterPerson();
-            }
-        });
+//        filterButton.addClickHandler(new ClickHandler() {
+//            @Override
+//            public void onClick(ClickEvent clickEvent) {
+//                logger.info("Click Detected by Simple Click Event");
+//                logger.info("Button Filter is clicked!!!" + clickEvent
+//                        .getNativeEvent().getString());
+//                eventBus.fireEvent(new SearchEvent());
+//                filterPerson();
+//            }
+//        });
         filterButton.addClickHandler(clickEvent -> {
             Bootbox.alert(
                     "Button Filter is clicked!!!" + clickEvent.getNativeEvent()
