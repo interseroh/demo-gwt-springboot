@@ -23,9 +23,11 @@ import java.util.logging.Logger;
 import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
 import org.gwtbootstrap3.extras.bootbox.client.options.BootboxLocale;
 
+import com.google.gwt.core.client.Callback;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
+import com.google.gwt.core.client.ScriptInjector;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.MetaElement;
@@ -56,29 +58,43 @@ public class DemoGwtWebApp implements EntryPoint {
 
 	@Override
 	public void onModuleLoad() {
-		addMetaElements();
 
-		// Disable Back Button
-		setupHistory();
+		ScriptInjector.fromUrl("https://code.jquery.com/ui/1.11.4/jquery-ui.js")
+				.setCallback(new Callback<Void, Exception>() {
+					@Override
+					public void onFailure(Exception reason) {
+						logger.info("Script load failed Info: " + reason);
+					}
 
-		logger.info("Test");
+					@Override
+					public void onSuccess(Void result) {
+						logger.info("JQuery for Select loaded successful!");
 
-		setupBootbox();
+						addMetaElements();
 
-		initServices();
+						// Disable Back Button
+						setupHistory();
 
-		GWT.runAsync(new RunAsyncCallback() {
-			@Override
-			public void onFailure(Throwable reason) {
-			}
+						logger.info("Test");
 
-			@Override
-			public void onSuccess() {
-				createViews();
-				removeLoadingImage();
-				// alert("LOFI");
-			}
-		});
+						setupBootbox();
+
+						initServices();
+
+						GWT.runAsync(new RunAsyncCallback() {
+							@Override
+							public void onFailure(Throwable reason) {
+							}
+
+							@Override
+							public void onSuccess() {
+								createViews();
+								removeLoadingImage();
+								// alert("LOFI");
+							}
+						});
+					}
+				}).setRemoveTag(true).setWindow(ScriptInjector.TOP_WINDOW).inject();
 	}
 
 	// @formatter:off
