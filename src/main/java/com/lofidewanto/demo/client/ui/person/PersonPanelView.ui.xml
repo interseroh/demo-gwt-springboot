@@ -58,10 +58,16 @@
 						<b:Heading size="H4" text="Filter" />
 					</b:PanelHeader>
 					<b:PanelBody>				
-							<b:Container fluid="true">
+						<b:Container fluid="true">
 							<b:Form type="HORIZONTAL">
 								<b:FieldSet>
 									<b:FormGroup>
+										<b:FormLabel for="basic3" addStyleNames="col-lg-1" text="Multiple select boxes" />
+										<select:Select b:id="basic3">
+			                                <select:Option text="Mustard"/>
+			                                <select:Option text="Ketchup"/>
+			                                <select:Option text="Relish"/>
+			                            </select:Select>
 										<b:FormLabel for="nameSuggestBox" addStyleNames="col-lg-1" text="{i18n.name_suggest}" />
 										<b:SuggestBox b:id="nameSuggestBox" ui:field="nameSuggestBox" width="20%" addStyleNames="col-lg-2"/>
 										<b:FormLabel for="fromDateTimePicker" addStyleNames="col-lg-1" text="{i18n.date_from}"></b:FormLabel>
@@ -84,7 +90,7 @@
 									</b:FormGroup>
 								</b:FieldSet>
 							</b:Form>
-							</b:Container>
+						</b:Container>
 					</b:PanelBody>
 				</b:Panel>
 				<b:Panel addStyleNames="{style.panel-main}">
