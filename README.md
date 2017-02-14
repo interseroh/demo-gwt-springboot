@@ -109,6 +109,7 @@ or the newer version of JRebel
 
 ```java
 -agentpath:C:\progjava\jrebel\lib\jrebel64.dll
+```
 
 ![Spring Boot with JRebel parameter](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/sts-boot-jrebel.png)
 
