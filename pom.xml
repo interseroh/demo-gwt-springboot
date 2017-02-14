@@ -147,7 +147,6 @@
 					<artifactId>gwt-user</artifactId>
 				</exclusion>
 			</exclusions>
-
 		</dependency>
 		<dependency>
 			<groupId>org.gwtbootstrap3</groupId>
@@ -176,7 +175,7 @@
 			<version>${gwt.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
+				
 		<!-- PostGreSQL for Heroku -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
