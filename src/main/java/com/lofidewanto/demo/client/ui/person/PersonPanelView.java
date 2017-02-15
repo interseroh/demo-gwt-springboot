@@ -133,6 +133,10 @@ public class PersonPanelView extends Composite implements Startable {
 
 		this.personClient = personClient;
 
+		init();
+	}
+
+	private void init() {
 		// Standard event handling
 		filterButton.addClickHandler(new ClickHandler() {
 			@Override
@@ -149,9 +153,9 @@ public class PersonPanelView extends Composite implements Startable {
 		initTableColumns(dataGrid2);
 		initListDataProvider(dataGrid1);
 		initFilterDataProvider(dataGrid2);
-		
+
 		getPersons();
-		
+
 		// Event handling with Lambda
 		searchButton.addClickHandler(clickHandler -> searchButtonClick("Click Detected by Lambda Listener"));
 	}

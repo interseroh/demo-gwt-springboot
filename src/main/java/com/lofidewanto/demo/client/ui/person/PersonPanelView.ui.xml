@@ -7,47 +7,49 @@
 
 	<ui:style>
 		.margin-right {
-			margin-right: 10px;
+		margin-right: 10px;
 		}
-	
+
 		.panel-left-top {
-			margin-top: 20px;
-			margin-left: 10px;
-			margin-right: 10px;
+		margin-top: 20px;
+		margin-left: 10px;
+		margin-right: 10px;
 		}
-	
+
 		.panel-left-bottom {
-			margin-top: 10px;
-			margin-left: 10px;
-			margin-right: 10px;
+		margin-top: 10px;
+		margin-left: 10px;
+		margin-right:
+		10px;
 		}
-	
+
 		.panel-main {
-			margin-top: 20px;
-			margin-left: 10px;
-			margin-right: 10px;
+		margin-top: 20px;
+		margin-left: 10px;
+		margin-right:
+		10px;
 		}
-	
+
 		.button-toolbar {
-			margin-right: 10px;
+		margin-right: 10px;
 		}
-	
+
 		.margin-fix {
-			margin-bottom: 0 !important;
-			border-bottom-width: 0px;
-			border-style:
-			none;
+		margin-bottom: 0 !important;
+		border-bottom-width: 0px;
+		border-style:
+		none;
 		}
-	
+
 		.amount-update-time-info {
-			margin-left: 15px;
+		margin-left: 15px;
 		}
-	
+
 		.table-word-wrap {
-			word-wrap: break-word;
+		word-wrap: break-word;
 		}
 	</ui:style>
-	
+
 	<ui:with field='i18n' type='com.lofidewanto.demo.client.Messages' />
 
 	<b:Row>
@@ -57,36 +59,44 @@
 					<b:PanelHeader>
 						<b:Heading size="H4" text="Filter" />
 					</b:PanelHeader>
-					<b:PanelBody>				
+					<b:PanelBody>
 						<b:Container fluid="true">
 							<b:Form type="HORIZONTAL">
 								<b:FieldSet>
 									<b:FormGroup>
-										<b:FormLabel for="basic3" addStyleNames="col-lg-1" text="Multiple select boxes" />
-										<select:Select b:id="basic3">
-			                                <select:Option text="Mustard"/>
-			                                <select:Option text="Ketchup"/>
-			                                <select:Option text="Relish"/>
-			                            </select:Select>
-										<b:FormLabel for="nameSuggestBox" addStyleNames="col-lg-1" text="{i18n.name_suggest}" />
-										<b:SuggestBox b:id="nameSuggestBox" ui:field="nameSuggestBox" width="20%" addStyleNames="col-lg-2"/>
-										<b:FormLabel for="fromDateTimePicker" addStyleNames="col-lg-1" text="{i18n.date_from}"></b:FormLabel>
-										<g:FlowPanel addStyleNames="col-lg-1" width="10%">
-											<b2:DateTimePicker b:id="fromDateTimePicker" placeholder="mm-dd-yyyy"
-												ui:field="fromDateTimePicker" autoClose="true" minView="MONTH"
-												highlightToday="true" showTodayButton="true" format="mm-dd-yyyy"
-												language="EN" />
+										<b:FormLabel for="basic3" addStyleNames="col-lg-1"
+											text="Food" />
+										<g:FlowPanel addStyleNames="col-lg-1" width="20%">
+											<select:MultipleSelect b:id="basic3">
+												<select:Option text="Mustard" />
+												<select:Option text="Ketchup" />
+												<select:Option text="Relish" />
+											</select:MultipleSelect>
 										</g:FlowPanel>
-										<b:FormLabel for="untilDateTimePicker" addStyleNames="col-lg-1" text="{i18n.date_until}"></b:FormLabel>
+										<b:FormLabel for="nameSuggestBox" addStyleNames="col-lg-1"
+											text="{i18n.name_suggest}" />
+										<b:SuggestBox b:id="nameSuggestBox" ui:field="nameSuggestBox"
+											width="20%" addStyleNames="col-lg-2" />
+										<b:FormLabel for="fromDateTimePicker"
+											addStyleNames="col-lg-1" text="{i18n.date_from}" />
 										<g:FlowPanel addStyleNames="col-lg-1" width="10%">
-											<b2:DateTimePicker b:id="untilDateTimePicker" placeholder="mm-dd-yyyy"
-												ui:field="untilDateTimePicker" autoClose="true" minView="MONTH"
-												highlightToday="true" showTodayButton="true" format="mm-dd-yyyy"
-												language="EN" />
+											<b2:DateTimePicker b:id="fromDateTimePicker"
+												placeholder="mm-dd-yyyy" ui:field="fromDateTimePicker"
+												autoClose="true" minView="MONTH" highlightToday="true"
+												showTodayButton="true" format="mm-dd-yyyy" language="EN" />
+										</g:FlowPanel>
+										<b:FormLabel for="untilDateTimePicker"
+											addStyleNames="col-lg-1" text="{i18n.date_until}" />
+										<g:FlowPanel addStyleNames="col-lg-1" width="10%">
+											<b2:DateTimePicker b:id="untilDateTimePicker"
+												placeholder="mm-dd-yyyy" ui:field="untilDateTimePicker"
+												autoClose="true" minView="MONTH" highlightToday="true"
+												showTodayButton="true" format="mm-dd-yyyy" language="EN" />
 										</g:FlowPanel>
 										<b:ButtonToolBar addStyleNames="pull-right">
-									<b:Button type="PRIMARY" text="{i18n.button_filter}" ui:field="filterButton"></b:Button>
-								</b:ButtonToolBar>
+											<b:Button type="PRIMARY" text="{i18n.button_filter}"
+												ui:field="filterButton"></b:Button>
+										</b:ButtonToolBar>
 									</b:FormGroup>
 								</b:FieldSet>
 							</b:Form>
@@ -109,7 +119,7 @@
 							<b:TabPane ui:field="listTabPane" fade="true" in="true"
 								active="true" b:id="listTab">
 								<b:PanelBody ui:field="panelBody1">
-									<b.gwt:DataGrid  bordered="true" condensed="true"
+									<b.gwt:DataGrid bordered="true" condensed="true"
 										width="100%" height="450px" striped="true" hover="true"
 										ui:field="dataGrid1" addStyleNames="{style.table-word-wrap}" />
 									<b:Pagination ui:field="dataGridPagination1" />
@@ -128,7 +138,8 @@
 									<b:Pagination ui:field="dataGridPagination2" />
 								</b:PanelBody>
 								<b:ButtonToolBar addStyleNames="pull-right">
-									<b:Button type="SUCCESS" text="{i18n.button_search}" ui:field="searchButton"></b:Button>
+									<b:Button type="SUCCESS" text="{i18n.button_search}"
+										ui:field="searchButton"></b:Button>
 								</b:ButtonToolBar>
 							</b:TabPane>
 						</b:TabContent>

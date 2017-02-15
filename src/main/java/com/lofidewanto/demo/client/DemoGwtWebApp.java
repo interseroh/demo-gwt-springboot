@@ -46,6 +46,8 @@ public class DemoGwtWebApp implements EntryPoint {
 	private static Logger logger = Logger
 			.getLogger(DemoGwtWebApp.class.getName());
 
+	private static final String JQUERY_UI_URL = "https://code.jquery.com/ui/1.11.4/jquery-ui.js";
+
 	private static final String HOST_LOADING_IMAGE = "loadingImage";
 
 	private static final String HISTORY_MAIN = "main";
@@ -58,43 +60,49 @@ public class DemoGwtWebApp implements EntryPoint {
 
 	@Override
 	public void onModuleLoad() {
+		// Workaround: https://goo.gl/1OrFqj
+		ScriptInjector.fromUrl(JQUERY_UI_URL).setCallback(new Callback<Void, Exception>() {
+			@Override
+			public void onFailure(Exception reason) {
+				logger.info("Script load failed Info: " + reason);
+			}
 
-		ScriptInjector.fromUrl("https://code.jquery.com/ui/1.11.4/jquery-ui.js")
-				.setCallback(new Callback<Void, Exception>() {
-					@Override
-					public void onFailure(Exception reason) {
-						logger.info("Script load failed Info: " + reason);
-					}
+			@Override
+			public void onSuccess(Void result) {
+				logger.info("JQuery for Select loaded successful!");
 
-					@Override
-					public void onSuccess(Void result) {
-						logger.info("JQuery for Select loaded successful!");
+				init();
+			}
 
-						addMetaElements();
+		}).setRemoveTag(true).setWindow(ScriptInjector.TOP_WINDOW).inject();
+	}
 
-						// Disable Back Button
-						setupHistory();
+	private void init() {
+		addMetaElements();
 
-						logger.info("Test");
+		// Disable Back Button
+		setupHistory();
 
-						setupBootbox();
+		logger.info("Test");
 
-						initServices();
+		setupBootbox();
 
-						GWT.runAsync(new RunAsyncCallback() {
-							@Override
-							public void onFailure(Throwable reason) {
-							}
+		initServices();
 
-							@Override
-							public void onSuccess() {
-								createViews();
-								removeLoadingImage();
-								// alert("LOFI");
-							}
-						});
-					}
-				}).setRemoveTag(true).setWindow(ScriptInjector.TOP_WINDOW).inject();
+		GWT.runAsync(new RunAsyncCallback() {
+			@Override
+			public void onFailure(Throwable reason) {
+				logger.info("Error on Async!");
+			}
+
+			@Override
+			public void onSuccess() {
+				createViews();
+				removeLoadingImage();
+				// Example calling JavaScript with JSNI - old style
+				// alert("LOFI");
+			}
+		});
 	}
 
 	// @formatter:off
