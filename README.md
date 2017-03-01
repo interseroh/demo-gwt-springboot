@@ -288,12 +288,9 @@ And a GWT Configuration:
 
 ![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-add-gwt-run-configuration.png) 
 
+Important : set URL to http://localhost:9014/demogwt/demogwt.html
+
 After this you start the "Spring Boot Project" first and after this the "GWT-Project" in Debug mode.
-
-#### Codeserver
-
-Now you have to repeat the steps to configure the code server (see above).
-
 
 #### Running the debugger with the IDE Support Plugin 
 
