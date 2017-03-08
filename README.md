@@ -22,7 +22,7 @@
 - [Debugging](#debugging)
 	- [Server: Debugging Spring Boot](#server-debugging-spring-boot)
 	- [Client: Debugging with GWT SuperDev Mode](#client-gwt-debugging-with-gwt-superdev-mode)
-	- [Client: Debugging with Eclipse](#client-gwt-debugging-with-eclipse)
+	- [Client: Debugging with Eclipse SDBG](#client-gwt-debugging-with-eclipse-sdbg)
 	- [Client: Debugging with IntelliJ IDEA](#client-gwt-debugging-with-intellij-idea)
 - [Unit and Integration Testing](#unit-and-integration-testing)
     - [Server: Spring Test](#server-spring-test)
