@@ -206,9 +206,7 @@ The GWT logging is activated (see [configuration file](https://github.com/lofide
 
 Debugging the Spring Boot part can be achieved easily by starting the Spring Boot with Debug mode.
 
-### Client: Debugging with GWT SuperDev Mode
-
-Debugging the GWT part should be done by using [SDBG](https://sdbg.github.io/). For this purpose you need to use Google Chrome as your browser.
+### Client GWT: Debugging with GWT SuperDev Mode
 
 You need to update following file: [configuration file for development](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwtDevelopment.gwt.xml)
 
@@ -217,6 +215,11 @@ You need to update following file: [configuration file for development](https://
 	<!-- If you want to use SDBG for debugging you need to use Chrome == safari -->
 	<set-property name="user.agent" value="safari" />  
 ```
+For all purposes of debugging you need to use Google Chrome as your browser.
+
+### Client GWT: Debugging with Eclipse SDBG GWT SuperDev Mode
+
+Debugging the GWT part with Eclipse should be done by using [SDBG](https://sdbg.github.io/). 
 
 **Tips and Tricks for Optimizing Transpiler Speed**
 
@@ -225,7 +228,7 @@ There are two GWT configuration files: [_DemoGwtDevelopment.gwt.xml_](https://gi
 - _DemoGwt.gwt.xml_: this config will be used for production transpilling. This is optimized for many many production purposes.
 
 
-### Debugging with IntelliJ IDEA
+### Client GWT: Debugging with IntelliJ IDEA
 
 For debugging gwt with IntelliJ IDEA proceed the following stets. 
 
