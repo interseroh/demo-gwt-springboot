@@ -21,8 +21,9 @@
 	- [Client: Logging at the Browser Console](#client-logging-at-the-browser-console)
 - [Debugging](#debugging)
 	- [Server: Debugging Spring Boot](#server-debugging-spring-boot)
-	- [Client: Debugging with GWT SuperDev Mode](#client-debugging-with-gwt-superdev-mode)
-	- [Debugging with IntelliJ IDEA](#debugging-with-intellij-idea)
+	- [Client: Debugging with GWT SuperDev Mode](#client-gwt-debugging-with-gwt-superdev-mode)
+	- [Client: Debugging with Eclipse](#client-gwt-debugging-with-eclipse)
+	- [Client: Debugging with IntelliJ IDEA](#client-gwt-debugging-with-intellij-idea)
 - [Unit and Integration Testing](#unit-and-integration-testing)
     - [Server: Spring Test](#server-spring-test)
     - [Client: GWT Mockito](#client-gwt-mockito)
@@ -217,7 +218,7 @@ You need to update following file: [configuration file for development](https://
 ```
 For all purposes of debugging you need to use Google Chrome as your browser.
 
-### Client GWT: Debugging with Eclipse SDBG GWT SuperDev Mode
+### Client GWT: Debugging with Eclipse SDBG
 
 Debugging the GWT part with Eclipse should be done by using [SDBG](https://sdbg.github.io/). 
 
