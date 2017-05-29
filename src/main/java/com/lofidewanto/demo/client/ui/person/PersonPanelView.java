@@ -61,6 +61,8 @@ import com.lofidewanto.demo.client.extra.PersonUtil;
 import com.lofidewanto.demo.client.ui.event.FilterEvent;
 import com.lofidewanto.demo.client.ui.event.SearchEvent;
 import com.lofidewanto.demo.shared.PersonDto;
+import org.gwtbootstrap3.extras.select.client.ui.MultipleSelect;
+import org.gwtbootstrap3.extras.select.client.ui.Option;
 
 @Singleton
 public class PersonPanelView extends Composite implements Startable {
@@ -124,6 +126,9 @@ public class PersonPanelView extends Composite implements Startable {
 	@UiField
 	Pagination dataGridPagination2;
 
+	@UiField
+	MultipleSelect foodMultipleSelect;
+
 	@Inject
 	public PersonPanelView(EventBus eventbus, ErrorFormatter errorFormatter,
 			LoadingMessagePopupPanel loadingMessagePopupPanel, PersonClient personClient) {
@@ -176,14 +181,31 @@ public class PersonPanelView extends Composite implements Startable {
 	public void onButtonClick(final ClickEvent event) {
 		// Event handling in GWT UiBinder
 		logger.info("Click Detected by GWT UiBinder");
-		refreshButton.state().loading();
 
+		refreshButton.setEnabled(false);
+
+		List<Option> items = foodMultipleSelect.getSelectedItems();
+
+		if (items.size() != 0 && items.get(0).getValue().equalsIgnoreCase("Mustard")) {
+			logger.info("We have mustard...");
+			filterButton.setText("Mustard");
+		}
+
+		boolean result = runTimer();
+		filterButton.setEnabled(result);
+	}
+
+	boolean runTimer() {
 		new Timer() {
 			@Override
 			public void run() {
-				refreshButton.state().reset();
+				refreshButton.setEnabled(true);
+				logger.info("Enable the button again...");
+				filterButton.setText("Filter");
 			}
-		}.schedule(2000);
+		}.schedule(5000);
+
+		return true;
 	}
 
 	private void initTableColumns(DataGrid<PersonDto> dataGrid) {
@@ -219,7 +241,7 @@ public class PersonPanelView extends Composite implements Startable {
 				} else {
 					return object.isInRetirement();
 				}
-			};
+			}
 		};
 		dataGrid.addColumn(isRetiredColumn, "Retired");
 		dataGrid.setColumnWidth(isRetiredColumn, 20, Style.Unit.PCT);

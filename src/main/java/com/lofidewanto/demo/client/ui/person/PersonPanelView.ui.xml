@@ -67,7 +67,7 @@
 										<b:FormLabel for="basic3" addStyleNames="col-lg-1"
 											text="Food" />
 										<g:FlowPanel addStyleNames="col-lg-1" width="20%">
-											<select:MultipleSelect b:id="basic3">
+											<select:MultipleSelect b:id="basic3" ui:field="foodMultipleSelect">
 												<select:Option text="Mustard" />
 												<select:Option text="Ketchup" />
 												<select:Option text="Relish" />
