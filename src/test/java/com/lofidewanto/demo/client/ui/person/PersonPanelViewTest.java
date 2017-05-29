@@ -72,6 +72,7 @@ public class PersonPanelViewTest {
 		view = new PersonPanelView(eventBus, errorFormatter,
 				loadingMessagePopupPanel, personClient);
 
+		// Create a spy on the view to mock view.runtimer()
 		view = spy(view);
 	}
 	@Test
