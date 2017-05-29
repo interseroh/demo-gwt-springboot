@@ -191,22 +191,26 @@ public class PersonPanelView extends Composite implements Startable {
 			filterButton.setText("Mustard");
 		}
 
-		boolean result = runTimer();
+		boolean result = runTimerRefreshButton();
 		filterButton.setEnabled(result);
 	}
 
-	boolean runTimer() {
+	boolean runTimerRefreshButton() {
 		// This is a GWT timer implementation so you won't see this running in Java!
 		new Timer() {
 			@Override
 			public void run() {
-				refreshButton.setEnabled(true);
-				logger.info("Enable the button again...");
-				filterButton.setText("Filter");
+				runTimerRefreshButtonExecutor();
 			}
 		}.schedule(5000);
 
 		return true;
+	}
+
+	void runTimerRefreshButtonExecutor() {
+		refreshButton.setEnabled(true);
+		logger.info("Enable the button again...");
+		filterButton.setText("Filter");
 	}
 
 	private void initTableColumns(DataGrid<PersonDto> dataGrid) {

@@ -24,7 +24,7 @@ import com.google.gwtmockito.GwtMockitoTestRunner;
 import com.lofidewanto.demo.client.common.ErrorFormatter;
 import com.lofidewanto.demo.client.common.LoadingMessagePopupPanel;
 import com.lofidewanto.demo.client.domain.PersonClient;
-import com.lofidewanto.demo.client.ui.main.MainPanelView;
+import org.gwtbootstrap3.client.ui.Button;
 import org.gwtbootstrap3.extras.select.client.ui.MultipleSelect;
 import org.gwtbootstrap3.extras.select.client.ui.Option;
 import org.junit.Before;
@@ -35,7 +35,6 @@ import org.mockito.Mock;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 
@@ -62,9 +61,6 @@ public class PersonPanelViewTest {
 	private PersonClient personClient;
 
 	@Mock
-	private MultipleSelect foodMultipleSelect;
-
-	@Mock
 	private Option mustardOption;
 
 	@Before
@@ -82,7 +78,7 @@ public class PersonPanelViewTest {
 		List<Option> mockItems = new ArrayList<Option>();
 		doReturn(mockItems).when(view.foodMultipleSelect).getSelectedItems();
 		// Partial mocking with spy
-		doReturn(true).when(view).runTimer();
+		doReturn(true).when(view).runTimerRefreshButton();
 
 		// CUT
 		view.onButtonClick(null);
@@ -92,6 +88,11 @@ public class PersonPanelViewTest {
 		verify(view.filterButton, times(1)).setEnabled(true);
 	}
 
+	/**
+	 * Partial Mocking using Spy in the method: runTimerRefreshButton.
+	 *
+	 * @throws Exception
+	 */
 	@Test
 	public void testOnButtonClickNoSelectedFoodRuntimerFalse() throws Exception {
 		// Prepare
@@ -99,7 +100,7 @@ public class PersonPanelViewTest {
 		List<Option> mockItems = new ArrayList<Option>();
 		doReturn(mockItems).when(view.foodMultipleSelect).getSelectedItems();
 		// Partial mocking with spy
-		doReturn(false).when(view).runTimer();
+		doReturn(false).when(view).runTimerRefreshButton();
 
 		// CUT
 		view.onButtonClick(null);
@@ -143,4 +144,58 @@ public class PersonPanelViewTest {
 		verify(view.filterButton, times(0)).setText(anyString());
 	}
 
+	/**
+	 * How to simulate GWT Timer class. Important: the GWT Timer class won't be
+	 * started as a timer since it just run the timer in JavaScript.
+	 *
+	 * @throws Exception
+	 */
+	@Test
+	public void testOnButtonClickNotMustardSelectedFoodWithRuntimerRefreshButton() throws Exception {
+		// Prepare
+		// Empty list no food selected
+		List<Option> mockItems = new ArrayList<Option>();
+		mockItems.add(mustardOption);
+
+		doReturn(mockItems).when(view.foodMultipleSelect).getSelectedItems();
+		doReturn("Ketchup").when(mustardOption).getValue();
+
+		// CUT
+		view.onButtonClick(null);
+		// We simulate that the timer has run
+		view.runTimerRefreshButtonExecutor();
+
+		// Asserts
+		verify(view.filterButton, times(1)).setText("Filter");
+		verify(view.filterButton, times(1)).setEnabled(true);
+		verify(view.refreshButton, times(1)).setEnabled(true);
+	}
+
+	/**
+	 * How to simulate GWT Timer class. Important: the GWT Timer class won't be
+	 * started as a timer since it just run the timer in JavaScript.
+	 *
+	 * @throws Exception
+	 */
+	@Test
+	public void testOnButtonClickMustardSelectedFoodWithRuntimerRefreshButton() throws Exception {
+		// Prepare
+		// Empty list no food selected
+		List<Option> mockItems = new ArrayList<Option>();
+		mockItems.add(mustardOption);
+
+		doReturn(mockItems).when(view.foodMultipleSelect).getSelectedItems();
+		doReturn("Mustard").when(mustardOption).getValue();
+
+		// CUT
+		view.onButtonClick(null);
+		// We simulate that the timer has run
+		view.runTimerRefreshButtonExecutor();
+
+		// Asserts
+		verify(view.filterButton, times(1)).setText("Mustard");
+		verify(view.filterButton, times(1)).setText("Filter");
+		verify(view.filterButton, times(1)).setEnabled(true);
+		verify(view.refreshButton, times(1)).setEnabled(true);
+	}
 }
