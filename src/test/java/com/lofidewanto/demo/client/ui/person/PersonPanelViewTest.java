@@ -40,12 +40,13 @@ import static org.mockito.Mockito.*;
 
 /**
  * Unit test with GwtMockito.
- * <p>
+ *
  * Created by dewanto on 29.05.2017.
  */
 @RunWith(GwtMockitoTestRunner.class)
 public class PersonPanelViewTest {
 
+	// CUT: Class Under Test
 	private PersonPanelView view;
 
 	@Mock
@@ -65,6 +66,7 @@ public class PersonPanelViewTest {
 
 	@Before
 	public void setUp() throws Exception {
+		// CUT create
 		view = new PersonPanelView(eventBus, errorFormatter,
 				loadingMessagePopupPanel, personClient);
 
