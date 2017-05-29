@@ -338,4 +338,5 @@ Examples of integration test with Spring and in memory database:
 
 We use GWT Mockito for writing the GWT user interface unit test. Following is an example of GWT Mockito unit test:
 - [MainPanelViewTest.java](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/test/java/com/lofidewanto/demo/client/ui/main/MainPanelViewTest.java)
+- [PersonPanelViewTest.java](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/test/java/com/lofidewanto/demo/client/ui/person/PersonPanelViewTest.java)
 
