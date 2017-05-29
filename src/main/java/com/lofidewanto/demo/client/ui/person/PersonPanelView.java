@@ -245,7 +245,6 @@ public class PersonPanelView extends Composite implements Startable {
 		};
 		dataGrid.addColumn(isRetiredColumn, "Retired");
 		dataGrid.setColumnWidth(isRetiredColumn, 20, Style.Unit.PCT);
-
 	}
 
 	private void initListDataProvider(DataGrid<PersonDto> dataGrid) {

@@ -80,6 +80,7 @@ public class PersonPanelViewTest {
 		// Empty list no food selected
 		List<Option> mockItems = new ArrayList<Option>();
 		doReturn(mockItems).when(view.foodMultipleSelect).getSelectedItems();
+		// Partial mocking with spy
 		doReturn(true).when(view).runTimer();
 
 		// CUT
@@ -96,6 +97,7 @@ public class PersonPanelViewTest {
 		// Empty list no food selected
 		List<Option> mockItems = new ArrayList<Option>();
 		doReturn(mockItems).when(view.foodMultipleSelect).getSelectedItems();
+		// Partial mocking with spy
 		doReturn(false).when(view).runTimer();
 
 		// CUT
