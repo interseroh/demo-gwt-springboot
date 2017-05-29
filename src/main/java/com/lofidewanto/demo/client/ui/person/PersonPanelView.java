@@ -196,6 +196,7 @@ public class PersonPanelView extends Composite implements Startable {
 	}
 
 	boolean runTimer() {
+		// This is a GWT timer implementation so you won't see this running in Java!
 		new Timer() {
 			@Override
 			public void run() {
