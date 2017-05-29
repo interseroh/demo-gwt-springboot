@@ -73,6 +73,12 @@ public class PersonPanelViewTest {
 		// Create a spy on the view to mock view.runtimer()
 		view = spy(view);
 	}
+
+	/**
+	 * Partial Mocking using Spy in the method: runTimerRefreshButton.
+	 *
+	 * @throws Exception
+	 */
 	@Test
 	public void testOnButtonClickNoSelectedFoodRuntimerTrue() throws Exception {
 		// Prepare
@@ -85,9 +91,9 @@ public class PersonPanelViewTest {
 		// CUT
 		view.onButtonClick(null);
 
-		// Asserts
+		// Asserts for filterButton
+		verify(view.filterButton, times(1)).setEnabled(false);
 		verify(view.filterButton, times(0)).setText(anyString());
-		verify(view.filterButton, times(1)).setEnabled(true);
 	}
 
 	/**
@@ -107,9 +113,9 @@ public class PersonPanelViewTest {
 		// CUT
 		view.onButtonClick(null);
 
-		// Asserts
+		// Asserts for filterButton
+		verify(view.filterButton, times(2)).setEnabled(false);
 		verify(view.filterButton, times(0)).setText(anyString());
-		verify(view.filterButton, times(1)).setEnabled(false);
 	}
 
 	@Test
@@ -168,8 +174,8 @@ public class PersonPanelViewTest {
 		view.runTimerRefreshButtonExecutor();
 
 		// Asserts
+		verify(view.filterButton, times(1)).setEnabled(false);
 		verify(view.filterButton, times(1)).setText("Filter");
-		verify(view.filterButton, times(1)).setEnabled(true);
 		verify(view.refreshButton, times(1)).setEnabled(true);
 	}
 
@@ -195,9 +201,11 @@ public class PersonPanelViewTest {
 		view.runTimerRefreshButtonExecutor();
 
 		// Asserts
+		verify(view.filterButton, times(1)).setEnabled(false);
+		verify(view.refreshButton, times(1)).setEnabled(false);
 		verify(view.filterButton, times(1)).setText("Mustard");
 		verify(view.filterButton, times(1)).setText("Filter");
-		verify(view.filterButton, times(1)).setEnabled(true);
 		verify(view.refreshButton, times(1)).setEnabled(true);
+		verify(view.filterButton, times(1)).setEnabled(true);
 	}
 }

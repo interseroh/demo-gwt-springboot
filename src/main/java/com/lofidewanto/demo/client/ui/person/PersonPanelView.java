@@ -182,7 +182,9 @@ public class PersonPanelView extends Composite implements Startable {
 		// Event handling in GWT UiBinder
 		logger.info("Click Detected by GWT UiBinder");
 
+		// Both buttons disable
 		refreshButton.setEnabled(false);
+		filterButton.setEnabled(false);
 
 		List<Option> items = foodMultipleSelect.getSelectedItems();
 
@@ -192,7 +194,12 @@ public class PersonPanelView extends Composite implements Startable {
 		}
 
 		boolean result = runTimerRefreshButton();
-		filterButton.setEnabled(result);
+
+		if (result == false) {
+			filterButton.setEnabled(false);
+		}
+
+		logger.info("Result runTimerRefreshButton: " + result);
 	}
 
 	boolean runTimerRefreshButton() {
@@ -209,6 +216,7 @@ public class PersonPanelView extends Composite implements Startable {
 
 	void runTimerRefreshButtonExecutor() {
 		refreshButton.setEnabled(true);
+		filterButton.setEnabled(true);
 		logger.info("Enable the button again...");
 		filterButton.setText("Filter");
 	}
