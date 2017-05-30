@@ -18,29 +18,30 @@
  */
 package com.lofidewanto.demo.client.ui.person;
 
-import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.uibinder.client.UiField;
-import com.google.gwtmockito.GwtMockitoTestRunner;
-import com.lofidewanto.demo.client.common.ErrorFormatter;
-import com.lofidewanto.demo.client.common.LoadingMessagePopupPanel;
-import com.lofidewanto.demo.client.domain.PersonClient;
-import org.gwtbootstrap3.client.ui.Button;
-import org.gwtbootstrap3.extras.select.client.ui.MultipleSelect;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.gwtbootstrap3.extras.select.client.ui.Option;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.google.gwt.event.shared.EventBus;
+import com.google.gwtmockito.GwtMockitoTestRunner;
+import com.lofidewanto.demo.client.common.ErrorFormatter;
+import com.lofidewanto.demo.client.common.LoadingMessagePopupPanel;
+import com.lofidewanto.demo.client.domain.PersonClient;
 
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 /**
  * Unit test with GwtMockito.
- *
+ * <p>
  * Created by dewanto on 29.05.2017.
  */
 @RunWith(GwtMockitoTestRunner.class)
@@ -102,7 +103,8 @@ public class PersonPanelViewTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void testOnButtonClickNoSelectedFoodRuntimerFalse() throws Exception {
+	public void testOnButtonClickNoSelectedFoodRuntimerFalse()
+			throws Exception {
 		// Prepare
 		// Empty list no food selected
 		List<Option> mockItems = new ArrayList<Option>();
@@ -159,7 +161,8 @@ public class PersonPanelViewTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void testOnButtonClickNotMustardSelectedFoodWithRuntimerRefreshButton() throws Exception {
+	public void testOnButtonClickNotMustardSelectedFoodWithRuntimerRefreshButton()
+			throws Exception {
 		// Prepare
 		// Empty list no food selected
 		List<Option> mockItems = new ArrayList<Option>();
@@ -186,7 +189,8 @@ public class PersonPanelViewTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void testOnButtonClickMustardSelectedFoodWithRuntimerRefreshButton() throws Exception {
+	public void testOnButtonClickMustardSelectedFoodWithRuntimerRefreshButton()
+			throws Exception {
 		// Prepare
 		// Empty list no food selected
 		List<Option> mockItems = new ArrayList<Option>();
