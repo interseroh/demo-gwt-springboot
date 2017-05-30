@@ -18,3 +18,4 @@ hs_err_pid*
 demo-gwt-springboot.iml
 
 /replay_*.log
+**/rebel.xml

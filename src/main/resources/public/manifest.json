@@ -1,0 +1,19 @@
+{
+	"name": "Demo Spring Boot GWT",
+	"short_name": "Demo Webapp",
+	"icons": [{
+		"src": "images/favicon.png",
+		"sizes": "144x144",
+		"type": "image/png"
+	},
+		{
+			"src": "images/entsorger-logo.png",
+			"sizes": "348x348",
+			"type": "image/png"
+		}
+	],
+	"start_url": "/demogwt.html",
+	"display": "standalone",
+	"background_color": "#000000",
+	"theme_color": "#000000"
+}
