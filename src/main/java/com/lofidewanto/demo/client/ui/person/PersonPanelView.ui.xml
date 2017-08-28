@@ -7,46 +7,47 @@
 
 	<ui:style>
 		.margin-right {
-		margin-right: 10px;
+			margin-right: 10px;
 		}
 
 		.panel-left-top {
-		margin-top: 20px;
-		margin-left: 10px;
-		margin-right: 10px;
+			margin-top: 20px;
+			margin-left: 10px;
+			margin-right: 10px;
 		}
 
 		.panel-left-bottom {
-		margin-top: 10px;
-		margin-left: 10px;
-		margin-right:
-		10px;
+			margin-top: 10px;
+			margin-left: 10px;
+			margin-right: 10px;
 		}
 
 		.panel-main {
-		margin-top: 20px;
-		margin-left: 10px;
-		margin-right:
-		10px;
+			margin-top: 20px;
+			margin-left: 10px;
+			margin-right: 10px;
 		}
 
 		.button-toolbar {
-		margin-right: 10px;
+			margin-right: 10px;
 		}
 
 		.margin-fix {
-		margin-bottom: 0 !important;
-		border-bottom-width: 0px;
-		border-style:
-		none;
+			margin-bottom: 0 !important;
+			border-bottom-width: 0px;
+			border-style: none;
 		}
 
 		.amount-update-time-info {
-		margin-left: 15px;
+			margin-left: 15px;
 		}
 
 		.table-word-wrap {
-		word-wrap: break-word;
+			word-wrap: break-word;
+		}
+
+		.form-horizontal .control-label {
+			width: 100px !important;
 		}
 	</ui:style>
 
@@ -55,6 +56,7 @@
 	<b:Row>
 		<b:Column size="MD_12">
 			<b:Row>
+				<!-- Filter Panel -->
 				<b:Panel addStyleNames="{style.panel-main}">
 					<b:PanelHeader>
 						<b:Heading size="H4" text="Filter" />
@@ -103,6 +105,8 @@
 						</b:Container>
 					</b:PanelBody>
 				</b:Panel>
+
+				<!-- Content Panel -->
 				<b:Panel addStyleNames="{style.panel-main}">
 					<b:PanelHeader>
 						<b:Heading size="H3" text="{i18n.content_heading}" />

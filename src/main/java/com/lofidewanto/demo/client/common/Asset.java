@@ -26,7 +26,7 @@ public interface Asset extends ClientBundle {
 	@Source("ajax-loader.gif")
 	ImageResource loadingIcon();
 
-	@Source("logo.png")
+	@Source("logo-transparent.png")
 	ImageResource logo();
 
 }
