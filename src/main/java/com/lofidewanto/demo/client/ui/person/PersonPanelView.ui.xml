@@ -68,7 +68,7 @@
 									<b:FormGroup>
 										<b:FormLabel for="basic3" addStyleNames="col-lg-1"
 											text="Food" />
-										<g:FlowPanel addStyleNames="col-lg-1" width="20%">
+										<g:FlowPanel addStyleNames="col-lg-1" width="200px">
 											<select:MultipleSelect b:id="basic3" ui:field="foodMultipleSelect">
 												<select:Option text="Mustard" />
 												<select:Option text="Ketchup" />
@@ -76,12 +76,12 @@
 											</select:MultipleSelect>
 										</g:FlowPanel>
 										<b:FormLabel for="nameSuggestBox" addStyleNames="col-lg-1"
-											text="{i18n.name_suggest}" />
+											width="200px" text="{i18n.name_suggest}" />
 										<b:SuggestBox b:id="nameSuggestBox" ui:field="nameSuggestBox"
-											width="20%" addStyleNames="col-lg-2" />
+											width="200px" addStyleNames="col-lg-1" />
 										<b:FormLabel for="fromDateTimePicker"
 											addStyleNames="col-lg-1" text="{i18n.date_from}" />
-										<g:FlowPanel addStyleNames="col-lg-1" width="10%">
+										<g:FlowPanel addStyleNames="col-lg-1" width="200px">
 											<b2:DateTimePicker b:id="fromDateTimePicker"
 												placeholder="mm-dd-yyyy" ui:field="fromDateTimePicker"
 												autoClose="true" minView="MONTH" highlightToday="true"
@@ -89,7 +89,7 @@
 										</g:FlowPanel>
 										<b:FormLabel for="untilDateTimePicker"
 											addStyleNames="col-lg-1" text="{i18n.date_until}" />
-										<g:FlowPanel addStyleNames="col-lg-1" width="10%">
+										<g:FlowPanel addStyleNames="col-lg-1" width="200px">
 											<b2:DateTimePicker b:id="untilDateTimePicker"
 												placeholder="mm-dd-yyyy" ui:field="untilDateTimePicker"
 												autoClose="true" minView="MONTH" highlightToday="true"
