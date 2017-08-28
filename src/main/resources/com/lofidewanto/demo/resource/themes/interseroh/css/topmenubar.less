@@ -1,0 +1,196 @@
+body {
+  min-width: 320px;
+  margin-top: 75px;
+}
+
+#tmb_top_menu_bar {
+
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  letter-spacing: 0.1px;
+
+  #tmb_portal_links {
+    position: relative;
+  }
+  p, .paragraph, li, a {
+    font-size: 13px;
+    font-family: inherit;
+  }
+  #icons_right,
+  .navbar-brand,
+  .navbar > .navbar-collapse:not(.in) > #tmb_portal_links {
+    top: 29px !important;
+  }
+
+  .navbar {
+    background-color: #f8f8f8;
+    min-height: 64px;
+    border: none;
+  }
+
+  .navbar-brand {
+    padding: 0 21px;
+    position: relative;
+    height: auto;
+    font-family: inherit;
+    font-size: 12px;
+    color: inherit;
+    white-space: nowrap;
+    font-weight: 700;
+  }
+
+  .navbar-nav > li > a {
+    font-family: inherit;
+    line-height: 23px;
+    padding: 0 15px;
+    font-size: inherit;
+  }
+
+  .fa {
+    font-size: 18px;
+    color: inherit;
+    &:focus,
+    &:hover {
+      color: inherit !important;
+    }
+  }
+
+  .headertabs {
+    float: right;
+    margin-right: 15px;
+    margin-left: 13px;
+    .dropdown-toggle {
+      padding: 0;
+      line-height: 1em;
+    }
+  }
+  .TMB_application,
+  .INTERSEROH_application {
+    &__logocontainer {
+      float: left;
+      background-color: transparent;
+      padding: 6px;
+      margin: 12px 4px;
+      margin-left: 19px;
+      border-radius: 5px;
+
+      img {
+        height: 45px;
+        @media (max-width: 640px) {
+          height: 40px;
+        }
+      }
+
+      &__button {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+
+      }
+    }
+  }
+  /*theme*/
+  .navbar-default {
+    .navbar-nav {
+      padding: 0;
+
+      > li > a {
+        color: inherit !important;
+        font-size: inherit !important;
+        &:hover,
+        &:focus {
+          color: inherit;
+        }
+      }
+    }
+  }
+  .navbar-toggle {
+    border: none;
+    margin: 2px 15px;
+    padding: 0;
+    background-color: transparent !important;
+    &:focus,
+    &:hover {
+      background-color: transparent !important;
+    }
+  }
+  .navbar-collapse,
+  .navbar-form {
+    border-color: transparent;
+  }
+
+  #icons_right {
+    position: absolute;
+    right: 10px;
+    top: 22px;
+    .TMB_application,
+    .INTERSEROH_application {
+      &__button {
+        border: none;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        margin-bottom: 0;
+        margin-top: 0;
+        position: relative;
+        bottom: 1px;
+      }
+    }
+  }
+
+  @media (max-width: 400px) {
+    .navbar-brand {
+      display: none;
+    }
+  }
+
+  #tmb_profile,
+  #tmb_messaging {
+    position: relative;
+    a {
+      display: block;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: -5px;
+      left: -5px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    #tmb_portal_links {
+      position: static;
+    }
+    .navbar-nav > li > a {
+      padding: 10px 15px;
+    }
+
+    .TMB_application,
+    .INTERSEROH_application {
+      &__logocontainer {
+        margin-left: 8px;
+      }
+    }
+  }
+
+  &.TMB_application { /*own space, always on the top to overwrite applauncher popup*/
+    font-size: 13px;
+    line-height: 1.846;
+    color: #777;
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /*theme*/
+    .navbar {
+      &.darkblue {
+        background-color: #223d62;
+        color: #fff;
+        .TMB_application__logocontainer {
+          background-color: #fff;
+        }
+      }
+      &.white {
+        background-color: #fff;
+        color: #777;
+      }
+    }
+  }
+}

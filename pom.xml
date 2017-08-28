@@ -280,6 +280,32 @@
 					<!--<targetEncoding>UTF-8</targetEncoding> up coming configuration of kissmda -->
 				</configuration>
 			</plugin>
+
+			<!-- Compile LESS to CSS -->
+			<plugin>
+				<groupId>org.lesscss</groupId>
+				<artifactId>lesscss-maven-plugin</artifactId>
+				<version>1.7.0.1.1</version>
+				<executions>
+					<execution>
+						<id>interserohless</id>
+						<configuration>
+							<sourceDirectory>${project.basedir}/src/main/resources/com/lofidewanto/demo/resource/themes/interseroh/css/</sourceDirectory>
+							<outputDirectory>${project.build.directory}/classes/com/lofidewanto/demo/resource/themes/interseroh/css/</outputDirectory>
+							<compress>true</compress>
+							<includes>
+								<include>individual.less</include>
+								<include>interseroh-bootstrap.less</include>
+								<include>topmenubar.less</include>
+								<include>variable.less</include>
+							</includes>
+						</configuration>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 
 		<pluginManagement>

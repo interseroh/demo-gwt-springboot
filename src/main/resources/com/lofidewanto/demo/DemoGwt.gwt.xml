@@ -54,13 +54,16 @@
 		<include name="**/*.jpg" />
 	</public>
 
-	<!-- Themes -->
+	<!-- Themes Standard Bootswatch -->
 	<!-- <stylesheet src='bootswatch/paper/css/bootstrap.min.css' /> -->
-	<stylesheet src='interseroh/css/interseroh-bootstrap.css' />
-	
 	<!-- Fix themes Paper Bootswatch with GwtBootstrap3 -->
-	<!-- <stylesheet src='bootswatch/paper/css/bootstrap.fix.css' /> -->  
-	
+	<!-- <stylesheet src='bootswatch/paper/css/bootstrap.fix.css' /> -->
+
+	<!-- Interseroh Themes -->
+	<stylesheet src='interseroh/bootstrap/css/bootstrap.min.css' />
+	<stylesheet src='interseroh/css/interseroh-bootstrap.css' />
+	<stylesheet src='interseroh/css/individual.css' />
+
 	<!-- Logging -->
 	<inherits name="com.google.gwt.logging.Logging" />
 	<set-property name="gwt.logging.logLevel" value="INFO" />

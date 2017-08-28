@@ -1,0 +1,121 @@
+@import "variables.less";
+
+.sticky-content {
+  position: fixed;
+  z-index: 9;
+  right: 0;
+  bottom: 120px;
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      list-style-type: none;
+    }
+  }
+
+  &__element {
+    box-shadow: -5px 5px 25px rgba(0, 0, 0, .1);
+    &:first-child {
+      margin-bottom: 3px;
+    }
+    > a {
+      transition: background 150ms ease;
+      background: @interseroh-yellow;
+      color: @interseroh-dark-blue;
+      display: block;
+      text-decoration: none;
+      position: relative;
+      text-align: center;
+      z-index: 8;
+      padding: 15px 15px 13px;
+      &:hover {
+        background: @interseroh-azur-hover-blue;
+        color: @interseroh-white;
+      }
+      i {
+        font-size: 2em;
+        font-weight: bold;
+        display: block;
+      }
+    }
+    &.is-active {
+      .sticky-content__flyout {
+        opacity: 1;
+        visibility: visible;
+      }
+      > a:after {
+        position: absolute;
+        right: 100%;
+        top: 50%;
+        margin-top: -13px;
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 13px 15px 13px 0;
+        border-color: transparent @interseroh-azur-hover-blue transparent transparent;
+      }
+    }
+
+  }
+  &__flyout {
+    transition: opacity .2s ease, visibility .2s ease;
+    font-size: 15px;
+    opacity: 0;
+    visibility: hidden;
+    box-shadow: 0 0 55px -15px rgba(0, 0, 0, .5);
+    overflow: auto;
+    padding: 30px;
+    background: @interseroh-white;
+    width: 500px;
+    z-index: 7;
+    right: 100%;
+    bottom: 0;
+    display: none;
+  }
+}
+
+textarea {
+  min-height: 300px;
+}
+
+.btn {
+  text-transform: uppercase;
+  transition: all 0.2s ease-out;
+  &.interseroh-style {
+    padding: 20px 30px;
+  }
+  &:hover {
+    border-color: transparent;
+  }
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.jumbotron p {
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 200;
+}
+
+.jumbotron h1, .jumbotron .h1 {
+  font-size: 63px;
+}
+
+.btn-lg, .btn-group-lg > .btn {
+  font-size: 18px;
+}
+
+.btn-success {
+  &:hover,
+  &.focus,
+  &:active,
+  &:active:hover,
+  &.active {
+    color: @interseroh-white;
+    background-color: @interseroh-dark-green;
+    border-color: transparent;
+  }
+}
