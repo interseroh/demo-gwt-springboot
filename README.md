@@ -119,10 +119,12 @@ or the newer version of JRebel
 ```java
         <!-- Use this Spring Tool for restarting the app automatically -->
         <!-- Only use this if you don't use JRebel! -->
+        <!--
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
+        -->
 ```
 
 - To be able to generate the *rebel.xml* you need to compile the project with Maven profile *development*.
@@ -136,11 +138,11 @@ You have to deactivate JRebel if you want to use this tool. This Spring Boot Dev
 
 ```java
         <!-- Use this Spring Tool for restarting the app automatically -->
-		<!-- Only use this if you don't use JRebel! -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-		</dependency>
+        <!-- Only use this if you don't use JRebel! -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
 ```
 
 ### Client: Start GWT SuperDev Mode transpiler
