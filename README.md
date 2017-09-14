@@ -213,8 +213,8 @@ You need to update following file: [configuration file for development](https://
 
 ```java
     <!-- Compiler agent - we only need to compile for one web browser in development -->
-	<!-- If you want to use SDBG for debugging you need to use Chrome == safari -->
-	<set-property name="user.agent" value="safari" />  
+    <!-- If you want to use SDBG for debugging you need to use Chrome == safari -->
+    <set-property name="user.agent" value="safari" />  
 ```
 For all purposes of debugging you need to use Google Chrome as your browser.
 
