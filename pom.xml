@@ -403,7 +403,7 @@
 							<style>DETAILED</style>
 							<generateJsInteropExports>true</generateJsInteropExports>
                             <launcherDir>${project.build.directory}/classes/public</launcherDir>
-                            <codeServerPort>4456</codeServerPort>
+                            <codeServerPort>9876</codeServerPort>
                             <incremental>true</incremental>
 						</configuration>
 					</plugin>

@@ -156,7 +156,7 @@ Follow following steps:
 Starting GWT SuperDev Mode Compiler from command line or within the development environment with Maven:
 
 ```java
-mvn -P development process-classes gwt:run-codeserver
+mvn -P development gwt:run-codeserver
 ```
 
 At the end you can see following message:
@@ -281,7 +281,7 @@ Do not add the web.xml to git. Just ignore it.
 
 ![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-configure-web-facet-add-contextpath.png) 
 
-Close the `Project Structure` with `Ok` and reopen it. Now the `Web Facet` kann be selected in the GWT Module.
+Close the `Project Structure` with `Ok` and reopen it. Now the `Web Facet` can be selected in the GWT Module.
 
 ![Open Project in IntelliJ](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/idea-configure-web-facet-2.png) 
 
