@@ -33,22 +33,22 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.4.3.RELEASE</version>
+		<version>1.5.7.RELEASE</version>
 		<relativePath />
 	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-		<gwt.version>2.8.0</gwt.version>
+		<gwt.version>2.8.1</gwt.version>
 		<google.gin.version>2.1.2</google.gin.version>
 		<gwt.bootstrap.version>0.9.3</gwt.bootstrap.version>
 		<gwt.eventbinder.version>1.1.0</gwt.eventbinder.version>
-		<gwt.resty.version>2.2.0</gwt.resty.version>
+		<gwt.resty.version>2.2.1</gwt.resty.version>
 		<gwt.mockito.version>1.1.6</gwt.mockito.version>
-		<kissmda.maven.plugin.version>2.0.0</kissmda.maven.plugin.version>
-		<kissmda.cartridges.simple.java.version>2.0.2</kissmda.cartridges.simple.java.version>
-		<kissmda.extensions.importpacker.version>1.0.0</kissmda.extensions.importpacker.version>
+		<kissmda.maven.plugin.version>2.1.1</kissmda.maven.plugin.version>
+		<kissmda.cartridges.simple.java.version>2.1.1</kissmda.cartridges.simple.java.version>
+		<kissmda.extensions.importpacker.version>2.1.1</kissmda.extensions.importpacker.version>
 	</properties>
 
 	<dependencies>
@@ -205,12 +205,15 @@
 					<sourceLevel>1.8</sourceLevel>
 					<module>com.lofidewanto.demo.DemoGwt</module>
 					<extraJvmArgs>-Xmx1024M -Xss1024k</extraJvmArgs>
-					<runTarget>belegpruefung.html</runTarget>
+					<runTarget>demogwt.html</runTarget>
 					<persistentunitcachedir>${project.build.directory}</persistentunitcachedir>
 					<webappDirectory>${project.build.directory}/classes/public</webappDirectory>
 					<deploy>${project.build.directory}/gwt-deploy</deploy>
 					<i18nMessagesBundle>com.lofidewanto.demo.client.Messages</i18nMessagesBundle>
 					<generateJsInteropExports>true</generateJsInteropExports>
+					<launcherDir>${project.build.directory}/classes/public</launcherDir>
+                    <codeServerPort>4456</codeServerPort>
+                    <incremental>true</incremental>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -392,13 +395,16 @@
 							<sourceLevel>1.8</sourceLevel>
 							<module>com.lofidewanto.demo.DemoGwtDevelopment</module>
 							<extraJvmArgs>-Xmx1024M -Xss1024k</extraJvmArgs>
-							<runTarget>belegpruefung.html</runTarget>
+							<runTarget>demogwt.html</runTarget>
 							<persistentunitcachedir>${project.build.directory}</persistentunitcachedir>
 							<webappDirectory>${project.build.directory}/classes/public</webappDirectory>
 							<deploy>${project.build.directory}/gwt-deploy</deploy>
 							<compileReport>true</compileReport>
 							<style>DETAILED</style>
 							<generateJsInteropExports>true</generateJsInteropExports>
+                            <launcherDir>${project.build.directory}/classes/public</launcherDir>
+                            <codeServerPort>4456</codeServerPort>
+                            <incremental>true</incremental>
 						</configuration>
 					</plugin>
 				</plugins>

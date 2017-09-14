@@ -282,19 +282,20 @@ public class PersonPanelView extends Composite implements Startable {
 		MethodCallback<List<PersonDto>> filterCallBack = new MethodCallback<List<PersonDto>>() {
 			@Override
 			public void onFailure(Method method, Throwable throwable) {
-				Bootbox.alert("Method call back has ERROR:" + throwable.getLocalizedMessage());
+				Bootbox.alert("Method call back has ERROR: " + throwable.getLocalizedMessage());
 				throwable.printStackTrace();
 			}
 
 			@Override
 			public void onSuccess(Method method, List<PersonDto> persons) {
-				Bootbox.alert("Method call back is OK .:" + persons.get(0));
+				Bootbox.alert("Method call back is OK, first Person: " + persons.get(0).getName());
 				listTab.setActive(false);
 				searchTab.setActive(true);
 				refreshGrid(persons, dataProviderFilter);
 			}
 		};
 
+		logger.info("Calling filterPerson Service...");
 		personClient.filterPerson(nameSuggestBox.getValue(), fromDateTimePicker.getValue(),
 				untilDateTimePicker.getValue(), filterCallBack);
 	}

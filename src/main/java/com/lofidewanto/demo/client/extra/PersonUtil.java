@@ -50,13 +50,13 @@ public class PersonUtil {
 
 	@EventHandler
 	public void onEvent(FilterEvent event) {
-		logger.info("Get Event:" + event);
+		logger.info("Get Event: " + event);
 		Bootbox.alert("FilterEvent is received in PersonUtil...");
 	}
 
 	@EventHandler
 	public void onEvent(SearchEvent event) {
-		logger.info("Get Event:" + event);
+		logger.info("Get Event: " + event);
 		Bootbox.alert("SearchEvent is received in PersonUtil...");
 	}
 

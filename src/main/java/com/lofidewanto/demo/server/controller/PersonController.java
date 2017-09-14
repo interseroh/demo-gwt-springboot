@@ -26,6 +26,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,68 +46,90 @@ import com.lofidewanto.demo.shared.PersonDto;
 @CrossOrigin
 public class PersonController {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(PersonController.class);
+    private static final Logger logger = LoggerFactory
+            .getLogger(PersonController.class);
 
-	@Autowired
-	private PersonService personService;
+    @Autowired
+    private PersonService personService;
 
-	@Autowired
-	private PersonRepository personRepository;
+    @Autowired
+    private PersonRepository personRepository;
 
-	@RequestMapping(value = DemoGwtServiceEndpoint.PERSON_LIST, method = RequestMethod.GET)
-	public @ResponseBody List<PersonDto> getPersons(
-			@RequestParam("start") Integer start,
-			@RequestParam("length") Integer length) {
-		addTestDateToDb();
-		logger.info("Method getPersons begins...");
-		ArrayList<PersonDto> persons = new ArrayList<>();
-		Collection<Person> findAllPersons = personService.findAllPersons(start,
-				length);
-		for (Person person : findAllPersons) {
-			PersonDto personDto = buildPerson(person);
-			persons.add(personDto);
-		}
+    /**
+     * Using simple @{@link ResponseBody}.
+     *
+     * @param start
+     * @param length
+     * @return
+     */
+    @RequestMapping(value = DemoGwtServiceEndpoint.PERSON_LIST, method = RequestMethod.GET)
+    public @ResponseBody
+    List<PersonDto> getPersons(
+            @RequestParam("start") Integer start,
+            @RequestParam("length") Integer length) {
+        addTestDateToDb();
+        logger.info("Method getPersons begins...");
+        ArrayList<PersonDto> persons = new ArrayList<>();
+        Collection<Person> findAllPersons = personService.findAllPersons(start,
+                length);
+        for (Person person : findAllPersons) {
+            PersonDto personDto = buildPerson(person);
+            persons.add(personDto);
+        }
 
-		return persons;
-	}
+        return persons;
+    }
 
-	@RequestMapping(value = DemoGwtServiceEndpoint.PERSON_FILTER, method = RequestMethod.GET)
-	public @ResponseBody List<PersonDto> filterPersons(
-			@RequestParam("nameSuggestBox") String personName,
-			@RequestParam("fromDateTimePicker") Date fromDate,
-			@RequestParam("untilDateTimePicker") Date toDate) {
-		logger.info("Method filterPersons begins...");
-		List<PersonDto> persons = new ArrayList<>();
-		PersonDto dto= new PersonDto();
-		dto.setName("Mustermann_Filter");
-		dto.setNickname("muster");
-		persons.add(dto);
+    /**
+     * Using {@link ResponseEntity}.
+     *
+     * @param personName
+     * @param fromDate
+     * @param toDate
+     * @return
+     */
+    @RequestMapping(value = DemoGwtServiceEndpoint.PERSON_FILTER, method = RequestMethod.GET)
+    public ResponseEntity<List<PersonDto>> filterPersons(
+            @RequestParam("nameSuggestBox") String personName,
+            @RequestParam(value = "fromDateTimePicker", required = false) Date fromDate,
+            @RequestParam(value = "untilDateTimePicker", required = false) Date toDate) {
+        logger.info("Method filterPersons begins...");
 
-		dto= new PersonDto();
-		dto.setName("Bauer_Filter");
-		dto.setNickname("baur");
+        List<PersonDto> persons = new ArrayList<>();
+        PersonDto dto = new PersonDto();
 
-		persons.add(dto);
+        if (personName == null || personName.equals("")) {
+            personName = ".. Empty ..";
+        }
 
-		return persons;
-	}
+        dto.setName(personName);
+        dto.setNickname("muster");
+        persons.add(dto);
 
-	private PersonDto buildPerson(Person person) {
-		PersonDto personDto = new PersonDto();
-		personDto.setName(person.getName());
-		personDto.setNickname(person.getNickname());
-		return personDto;
-	}
+        dto = new PersonDto();
+        dto.setName("Bauer_Filter");
+        dto.setNickname("baur");
 
-	private void addTestDateToDb(){
-		PersonImpl dto= new PersonImpl("muster");
-		dto.setName("Mustermann");
-		personRepository.save(dto);
+        persons.add(dto);
 
-		dto= new PersonImpl("baur");
-		dto.setName("Bauer");
-		personRepository.save(dto);
-	}
+        return new ResponseEntity<List<PersonDto>>(persons, HttpStatus.OK);
+    }
+
+    private PersonDto buildPerson(Person person) {
+        PersonDto personDto = new PersonDto();
+        personDto.setName(person.getName());
+        personDto.setNickname(person.getNickname());
+        return personDto;
+    }
+
+    private void addTestDateToDb() {
+        PersonImpl dto = new PersonImpl("muster");
+        dto.setName("Mustermann");
+        personRepository.save(dto);
+
+        dto = new PersonImpl("baur");
+        dto.setName("Bauer");
+        personRepository.save(dto);
+    }
 
 }
