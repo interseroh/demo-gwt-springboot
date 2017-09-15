@@ -213,7 +213,6 @@
 					<generateJsInteropExports>true</generateJsInteropExports>
 					<launcherDir>${project.build.directory}/classes/public</launcherDir>
                     <codeServerPort>4456</codeServerPort>
-                    <incremental>true</incremental>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -280,7 +279,7 @@
 					</transformerNameWithOrders>
 					<modelFile>src/main/resources/model/emf/demo-gwt-springboot.uml</modelFile>
 					<loggingLevel>SEVERE</loggingLevel>
-					<!--<targetEncoding>UTF-8</targetEncoding> up coming configuration of kissmda -->
+					<targetEncoding>UTF-8</targetEncoding>
 				</configuration>
 			</plugin>
 
@@ -404,7 +403,6 @@
 							<generateJsInteropExports>true</generateJsInteropExports>
                             <launcherDir>${project.build.directory}/classes/public</launcherDir>
                             <codeServerPort>9876</codeServerPort>
-                            <incremental>true</incremental>
 						</configuration>
 					</plugin>
 				</plugins>
