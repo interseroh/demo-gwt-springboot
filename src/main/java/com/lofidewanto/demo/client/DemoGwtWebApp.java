@@ -103,7 +103,7 @@ public class DemoGwtWebApp implements EntryPoint {
 				removeLoadingImage();
 
                 // Example calling JavaScript with JSNI - old style
-                alert("Lofi Old Style...");
+                // alert("Lofi Old Style...");
 			}
 		});
 	}
