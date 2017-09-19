@@ -50,6 +50,8 @@ public class DemoGwtWebApp implements EntryPoint {
 
 	private static final String HOST_LOADING_IMAGE = "loadingImage";
 
+	private static final String HOST_MAIN_PANEL = "mainPanel";
+
 	private static final String HISTORY_MAIN = "main";
 
 	private static final String LOCALE = "de_DE";
@@ -124,10 +126,12 @@ public class DemoGwtWebApp implements EntryPoint {
 
 	private void removeLoadingImage() {
 		// Remove loadingImage from Host HTML page
-		RootPanel rootPanel = RootPanel.get(HOST_LOADING_IMAGE);
-		if (rootPanel != null) {
-			RootPanel.getBodyElement().removeChild(rootPanel.getElement());
-		}
+        Element body = Document.get().getBody();
+        Element loading = Document.get().getElementById(HOST_LOADING_IMAGE);
+
+        if(body.isOrHasChild(loading)){
+            loading.removeFromParent();
+        }
 	}
 
 	private void initServices() {
@@ -163,7 +167,7 @@ public class DemoGwtWebApp implements EntryPoint {
 		mainPanelView.setContentAreaVisible(true);
 		mainPanelView.updatePersonPanelView();
 
-		RootPanel.get("mainPanel").add(mainPanelView);
+		RootPanel.get(HOST_MAIN_PANEL).add(mainPanelView);
 
 		logger.info("Create Views ends...");
 	}
