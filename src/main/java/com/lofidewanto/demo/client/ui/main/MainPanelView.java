@@ -44,6 +44,7 @@ import com.lofidewanto.demo.client.common.ErrorFormatter;
 import com.lofidewanto.demo.client.common.LoadingMessagePopupPanel;
 import com.lofidewanto.demo.client.common.Startable;
 import com.lofidewanto.demo.client.common.WidgetName;
+import com.lofidewanto.demo.client.extra.Apple;
 import com.lofidewanto.demo.client.ui.event.ChangeViewEvent;
 import com.lofidewanto.demo.client.ui.person.PersonPanelView;
 
@@ -52,6 +53,8 @@ public class MainPanelView extends Composite {
 
 	private static Logger logger = Logger
 			.getLogger(MainPanelView.class.getName());
+
+	private final Apple apple;
 
 	interface MainPanelViewUiBinder extends UiBinder<Widget, MainPanelView> {
 	}
@@ -93,11 +96,12 @@ public class MainPanelView extends Composite {
 
 	@Inject
 	public MainPanelView(EventBus eventBus, ErrorFormatter errorFormatter,
-			LoadingMessagePopupPanel loadingMessagePopupPanel) {
+			LoadingMessagePopupPanel loadingMessagePopupPanel, Apple apple) {
 		initWidget(uiBinder.createAndBindUi(this));
 		eventBinder.bindEventHandlers(this, eventBus);
 		this.errorFormatter = errorFormatter;
 		this.loadingMessagePopupPanel = loadingMessagePopupPanel;
+		this.apple = apple;
 
 		// webAppsButton.getElement().setClassName("glyphicon");
 		webAppsButton.setIcon(IconType.TH);
@@ -108,7 +112,19 @@ public class MainPanelView extends Composite {
 		
 		wrenchButton.setIcon(IconType.WRENCH);
 		wrenchButton.setIconSize(IconSize.LARGE);
-		
+
+		createPopOver();
+
+		// callApple();
+
+		logger.info("MainPanelView created...");
+	}
+
+	private void callApple() {
+		logger.info("Apple Color: " + apple.getColor());
+	}
+
+	void createPopOver() {
 		webAppsPopOver.setContent("<div class='webapps-popover-outer-div' style='max-height: 414px; height: 496px;' aria-label='Interseroh-Apps' aria-hidden='false' role='region'>"
 				+ "<ul class='webapps-popover-unnumbered-list' aria-dropeffect='move'>"
 				+ "<li class='webapps-popover-list-item' aria-grapped='false'>"
@@ -197,8 +213,6 @@ public class MainPanelView extends Composite {
 				+ "</li>"
 				+ "</ul>"
 				+ "</div>");
-		
-		logger.info("MainPanelView created...");
 	}
 
 	public void addWidget(WidgetName name, Widget widget) {

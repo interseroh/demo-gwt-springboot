@@ -18,9 +18,12 @@
  */
 package com.lofidewanto.demo.client.extra;
 
+import com.google.gwt.user.client.Window;
+
+import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 
-@JsType
+@JsType(namespace = JsPackage.GLOBAL, name = "MyJavaScriptHello")
 public class MyJavaScriptHello {
 
 	public String name;
@@ -31,6 +34,10 @@ public class MyJavaScriptHello {
 
 	public String sayHello() {
 		return "Hello " + this.name;
+	}
+
+	public void click() {
+		Window.alert("Hello, I'm GWT JsInterop!\nThanks for clicking: " + name);
 	}
 
 }

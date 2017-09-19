@@ -35,6 +35,7 @@ import com.google.gwtmockito.GwtMockitoTestRunner;
 import com.lofidewanto.demo.client.common.ErrorFormatter;
 import com.lofidewanto.demo.client.common.LoadingMessagePopupPanel;
 import com.lofidewanto.demo.client.common.WidgetName;
+import com.lofidewanto.demo.client.extra.Apple;
 import com.lofidewanto.demo.client.ui.person.PersonPanelView;
 
 @RunWith(GwtMockitoTestRunner.class)
@@ -54,10 +55,13 @@ public class MainPanelViewTest {
 	@Mock
 	private PersonPanelView personPanelView;
 
+	@Mock
+	private Apple apple;
+
 	@Before
 	public void setUp() throws Exception {
 		view = new MainPanelView(eventBus, errorFormatter,
-				loadingMessagePopupPanel);
+				loadingMessagePopupPanel, apple);
 	}
 
 	@Test

@@ -100,13 +100,13 @@ public class DemoGwtWebApp implements EntryPoint {
 				createViews();
 				removeLoadingImage();
 				// Example calling JavaScript with JSNI - old style
-				// alert("LOFI");
+				alert("Lofi Old Style...");
 			}
 		});
 	}
 
 	// @formatter:off
-	public static native void alert(String msg) /*-{
+	public native void alert(String msg) /*-{
 	    $wnd.alert(msg);
 	}-*/;
 	// @formatter:on
@@ -163,7 +163,7 @@ public class DemoGwtWebApp implements EntryPoint {
 		mainPanelView.setContentAreaVisible(true);
 		mainPanelView.updatePersonPanelView();
 
-		RootPanel.get().add(mainPanelView);
+		RootPanel.get("mainPanel").add(mainPanelView);
 
 		logger.info("Create Views ends...");
 	}
