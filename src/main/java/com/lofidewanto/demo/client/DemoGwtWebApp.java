@@ -101,8 +101,9 @@ public class DemoGwtWebApp implements EntryPoint {
 			public void onSuccess() {
 				createViews();
 				removeLoadingImage();
-				// Example calling JavaScript with JSNI - old style
-				alert("Lofi Old Style...");
+
+                // Example calling JavaScript with JSNI - old style
+                alert("Lofi Old Style...");
 			}
 		});
 	}
@@ -110,6 +111,9 @@ public class DemoGwtWebApp implements EntryPoint {
 	// @formatter:off
 	public native void alert(String msg) /*-{
 	    $wnd.alert(msg);
+
+        var myJavaScriptHello = new MyJavaScriptHello("Lofi");
+        console.log(myJavaScriptHello.click());
 	}-*/;
 	// @formatter:on
 

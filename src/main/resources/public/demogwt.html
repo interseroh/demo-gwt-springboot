@@ -43,7 +43,14 @@
 <!-- you can leave the body empty if you want  -->
 <!-- to create a completely dynamic UI.        -->
 <!--                                           -->
-<body>
+<body onload="myFunction()">
+
+	<script type="text/javascript">
+        function myFunction() {
+            var myJavaScriptHello = new MyJavaScriptHello('Lofi');
+            console.log(myJavaScriptHello.click());
+        }
+	</script>
 
 	<!-- OPTIONAL: include this if you want history support -->
 	<iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1'
@@ -61,14 +68,6 @@
 
 	<div id="loadingImage" style="display: block; position: absolute; top: 50%; left: 50%; text-align: center; margin-left: -100px;">
 		<img src="images/ajax-loader.gif" />
-	</div>
-
-	<div>
-		<button onclick="MyJavaScriptHello.click();">Click me!</button>
-		<script type="text/javascript">
-            var myJavaScriptHello = new MyJavaScriptHello('Lofi');
-            myJavaScriptHello.click();
-		</script>
 	</div>
 
 </body>
