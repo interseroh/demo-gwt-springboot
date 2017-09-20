@@ -29,11 +29,13 @@
 	src="demogwt/demogwt.nocache.js" async=""></script>
 
 <script language="javascript" type="text/javascript">
-    function Apple (type) {
-        this.type = type;
-        this.color = "red";
-        this.info = "Apple red";
-    }
+    Apple = function() {
+        this.x = 40;
+        this.y = 2;
+    };
+    Apple.prototype.sum = function() {
+        return this.x + this.y;
+    };
 </script>
 
 </head>

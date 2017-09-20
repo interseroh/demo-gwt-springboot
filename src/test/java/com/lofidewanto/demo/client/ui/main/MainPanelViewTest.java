@@ -55,13 +55,10 @@ public class MainPanelViewTest {
 	@Mock
 	private PersonPanelView personPanelView;
 
-	@Mock
-	private Apple apple;
-
 	@Before
 	public void setUp() throws Exception {
 		view = new MainPanelView(eventBus, errorFormatter,
-				loadingMessagePopupPanel, apple);
+				loadingMessagePopupPanel);
 	}
 
 	@Test

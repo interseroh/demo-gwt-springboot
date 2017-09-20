@@ -54,8 +54,6 @@ public class MainPanelView extends Composite {
 	private static Logger logger = Logger
 			.getLogger(MainPanelView.class.getName());
 
-	private final Apple apple;
-
 	interface MainPanelViewUiBinder extends UiBinder<Widget, MainPanelView> {
 	}
 
@@ -96,12 +94,11 @@ public class MainPanelView extends Composite {
 
 	@Inject
 	public MainPanelView(EventBus eventBus, ErrorFormatter errorFormatter,
-			LoadingMessagePopupPanel loadingMessagePopupPanel, Apple apple) {
+			LoadingMessagePopupPanel loadingMessagePopupPanel) {
 		initWidget(uiBinder.createAndBindUi(this));
 		eventBinder.bindEventHandlers(this, eventBus);
 		this.errorFormatter = errorFormatter;
 		this.loadingMessagePopupPanel = loadingMessagePopupPanel;
-		this.apple = apple;
 
 		// webAppsButton.getElement().setClassName("glyphicon");
 		webAppsButton.setIcon(IconType.TH);
@@ -115,13 +112,7 @@ public class MainPanelView extends Composite {
 
 		createPopOver();
 
-		// callApple();
-
 		logger.info("MainPanelView created...");
-	}
-
-	private void callApple() {
-		logger.info("Apple Color: " + apple.getColor());
 	}
 
 	void createPopOver() {

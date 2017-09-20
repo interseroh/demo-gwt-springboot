@@ -25,6 +25,7 @@ import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import com.lofidewanto.demo.client.extra.Apple;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 import org.gwtbootstrap3.client.ui.Button;
@@ -88,6 +89,11 @@ public class PersonPanelView extends Composite implements Startable {
 	private ListDataProvider<PersonDto> dataProviderFilter;
 
 	@Inject
+	private Apple apple;
+
+	private int appleCount;
+
+	@Inject
 	private PersonUtil personUtil;
 
 	@UiField
@@ -149,6 +155,9 @@ public class PersonPanelView extends Composite implements Startable {
 				logger.info("Click Detected by Simple Click Event");
 				logger.info("Button Filter is clicked!!!" + clickEvent.getNativeEvent().getString());
 				eventBus.fireEvent(new SearchEvent());
+
+				callApple();
+
 				filterPerson();
 			}
 		});
@@ -163,6 +172,17 @@ public class PersonPanelView extends Composite implements Startable {
 
 		// Event handling with Lambda
 		searchButton.addClickHandler(clickHandler -> searchButtonClick("Click Detected by Lambda Listener"));
+	}
+
+	private void callApple() {
+		if (appleCount == 0) {
+			logger.info("Apple Sum the first: " + apple.sum());
+			appleCount++;
+		} else {
+			apple.x = 10;
+			apple.y = 10;
+			logger.info("Apple Sum the second and so on: " + apple.sum());
+		}
 	}
 
 	private void searchButtonClick(String message) {

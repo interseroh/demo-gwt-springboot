@@ -7,18 +7,12 @@ import jsinterop.annotations.JsProperty;
 import jsinterop.annotations.JsType;
 
 @Singleton
-@JsType(namespace = JsPackage.GLOBAL, isNative = true)
+@JsType(namespace = JsPackage.GLOBAL, name = "Apple", isNative = true)
 public class Apple {
 
-	public Apple() {
-	}
+	public int x;
 
-	public Apple(String type) {
-	}
+	public int y;
 
-	public native String getType();
-
-	public native String getColor();
-
-	public native String getInfo();
+	public native int sum();
 }

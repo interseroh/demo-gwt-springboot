@@ -21,6 +21,7 @@ package com.lofidewanto.demo.client.ui.person;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.lofidewanto.demo.client.extra.Apple;
 import org.gwtbootstrap3.extras.select.client.ui.Option;
 import org.junit.Before;
 import org.junit.Test;
