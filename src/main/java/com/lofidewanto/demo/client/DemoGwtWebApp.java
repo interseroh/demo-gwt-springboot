@@ -43,10 +43,12 @@ import com.lofidewanto.demo.client.ui.main.MainPanelView;
 
 public class DemoGwtWebApp implements EntryPoint {
 
-	private static Logger logger = Logger
+    private static Logger logger = Logger
 			.getLogger(DemoGwtWebApp.class.getName());
 
 	private static final String JQUERY_UI_URL = "https://code.jquery.com/ui/1.11.4/jquery-ui.js";
+
+    private static final String MYFUNCTION_URL = "myfunction.js";
 
 	private static final String HOST_LOADING_IMAGE = "loadingImage";
 
@@ -62,24 +64,44 @@ public class DemoGwtWebApp implements EntryPoint {
 
 	@Override
 	public void onModuleLoad() {
-		// Workaround: https://goo.gl/1OrFqj
-		ScriptInjector.fromUrl(JQUERY_UI_URL).setCallback(new Callback<Void, Exception>() {
-			@Override
-			public void onFailure(Exception reason) {
-				logger.info("Script load failed Info: " + reason);
-			}
+        injectJqueryScript();
+        injectMyFunctionScript();
+    }
 
-			@Override
-			public void onSuccess(Void result) {
-				logger.info("JQuery for Select loaded successful!");
+    private void injectMyFunctionScript() {
+        ScriptInjector.fromUrl(MYFUNCTION_URL).setCallback(new Callback<Void, Exception>() {
+            @Override
+            public void onFailure(Exception reason) {
+                logger.info("Script load failed Info: " + reason);
+            }
 
-				init();
-			}
+            @Override
+            public void onSuccess(Void result) {
+                logger.info("MyFunction loaded successful!");
+            }
 
-		}).setRemoveTag(true).setWindow(ScriptInjector.TOP_WINDOW).inject();
-	}
+        }).setRemoveTag(true).setWindow(ScriptInjector.TOP_WINDOW).inject();
+    }
 
-	private void init() {
+    private void injectJqueryScript() {
+        // Workaround: https://goo.gl/1OrFqj
+        ScriptInjector.fromUrl(JQUERY_UI_URL).setCallback(new Callback<Void, Exception>() {
+            @Override
+            public void onFailure(Exception reason) {
+                logger.info("Script load failed Info: " + reason);
+            }
+
+            @Override
+            public void onSuccess(Void result) {
+                logger.info("JQuery for Select loaded successful!");
+
+                init();
+            }
+
+        }).setRemoveTag(true).setWindow(ScriptInjector.TOP_WINDOW).inject();
+    }
+
+    private void init() {
 		addMetaElements();
 
 		// Disable Back Button
