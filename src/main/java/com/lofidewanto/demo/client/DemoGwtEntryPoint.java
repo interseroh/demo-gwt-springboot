@@ -16,21 +16,28 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.lofidewanto.demo.client.extra;
+package com.lofidewanto.demo.client;
 
-import javax.inject.Singleton;
+import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
+import com.lofidewanto.demo.client.DemoGwtWebAppGinjector;
+import com.lofidewanto.demo.client.common.Startable;
 
-import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsProperty;
-import jsinterop.annotations.JsType;
+import java.util.logging.Logger;
 
-@Singleton
-@JsType(namespace = JsPackage.GLOBAL, name = "Apple", isNative = true)
-public class Apple {
+public class DemoGwtEntryPoint implements EntryPoint {
 
-	public int x;
+    private static Logger logger = Logger
+            .getLogger(DemoGwtEntryPoint.class.getName());
 
-	public int y;
+    // Create Gin Injector
+    private final DemoGwtWebAppGinjector injector = GWT
+            .create(DemoGwtWebAppGinjector.class);
 
-	public native int sum();
+    @Override
+    public void onModuleLoad() {
+        // Create webapp
+        DemoGwtWebApp demoGwtWebApp = injector.getDemoGwtWebApp();
+    }
+
 }

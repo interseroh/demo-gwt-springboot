@@ -28,14 +28,10 @@ import com.lofidewanto.demo.client.ui.person.PersonPanelView;
 @GinModules(DemoGwtWebAppGinModule.class)
 public interface DemoGwtWebAppGinjector extends Ginjector {
 
-	ServicePreparator getServicePreparator();
+	DemoGwtWebApp getDemoGwtWebApp();
 
-	SimpleEventBus getEventBus();
+    MainPanelView getMainPanelView();
 
-	Messages getMessages();
-
-	MainPanelView getMainPanelView();
-
-	PersonPanelView getPersonPanelView();
+    PersonPanelView getPersonPanelView();
 
 }

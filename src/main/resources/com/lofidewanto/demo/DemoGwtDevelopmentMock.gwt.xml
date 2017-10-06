@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module rename-to='demogwt'>
+	<!-- Inherit the core Web Toolkit stuff. -->
+	<inherits name='com.lofidewanto.demo.DemoGwtDevelopment' />
+
+	<!-- Specify the app entry point class. -->
+	<entry-point class='com.lofidewanto.demo.client.DemoGwtMockWebApp' />
+</module>

@@ -20,6 +20,9 @@ package com.lofidewanto.demo.client;
 
 import java.util.logging.Logger;
 
+import com.google.inject.Injector;
+import com.lofidewanto.demo.client.common.Startable;
+import com.lofidewanto.demo.client.ui.person.PersonPanelView;
 import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
 import org.gwtbootstrap3.extras.bootbox.client.options.BootboxLocale;
 
@@ -41,7 +44,11 @@ import com.lofidewanto.demo.client.common.ServicePreparator;
 import com.lofidewanto.demo.client.common.WidgetName;
 import com.lofidewanto.demo.client.ui.main.MainPanelView;
 
-public class DemoGwtWebApp implements EntryPoint {
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton
+public class DemoGwtWebApp {
 
     private static Logger logger = Logger
 			.getLogger(DemoGwtWebApp.class.getName());
@@ -58,12 +65,17 @@ public class DemoGwtWebApp implements EntryPoint {
 
 	private static final String LOCALE = "de_DE";
 
-	// Create Gin Injector
-	private final DemoGwtWebAppGinjector injector = GWT
-			.create(DemoGwtWebAppGinjector.class);
+    private final DemoGwtWebAppGinjector injector;
 
-	@Override
-	public void onModuleLoad() {
+    private final ServicePreparator servicePreparator;
+
+    @Inject
+	public DemoGwtWebApp(ServicePreparator servicePreparator, DemoGwtWebAppGinjector injector) {
+	    this.servicePreparator = servicePreparator;
+	    this.injector = injector;
+
+        logger.info("DemoGwtWebApp create...");
+
         injectJqueryScript();
         injectMyFunctionScript();
     }
@@ -102,16 +114,15 @@ public class DemoGwtWebApp implements EntryPoint {
     }
 
     private void init() {
+        logger.info("Init...");
+
 		addMetaElements();
 
 		// Disable Back Button
 		setupHistory();
-
-		logger.info("Test");
-
 		setupBootbox();
 
-		initServices();
+        initServices();
 
 		GWT.runAsync(new RunAsyncCallback() {
 			@Override
@@ -161,7 +172,6 @@ public class DemoGwtWebApp implements EntryPoint {
 	}
 
 	private void initServices() {
-		ServicePreparator servicePreparator = injector.getServicePreparator();
 		servicePreparator.prepare();
 	}
 
@@ -187,8 +197,9 @@ public class DemoGwtWebApp implements EntryPoint {
 		MainPanelView mainPanelView = injector.getMainPanelView();
 		mainPanelView.setContentAreaVisible(false);
 
+		PersonPanelView personPanelView = injector.getPersonPanelView();
 		mainPanelView.addWidget(WidgetName.PERSONLIST,
-				injector.getPersonPanelView());
+				personPanelView);
 
 		mainPanelView.setContentAreaVisible(true);
 		mainPanelView.updatePersonPanelView();
@@ -205,4 +216,5 @@ public class DemoGwtWebApp implements EntryPoint {
 			Bootbox.setLocale(BootboxLocale.DE);
 		}
 	}
+
 }

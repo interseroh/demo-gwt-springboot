@@ -72,7 +72,7 @@
 		value="ENABLED" />
 		
 	<!-- Specify the app entry point class. -->
-	<entry-point class='com.lofidewanto.demo.client.DemoGwtWebApp' />
+	<entry-point class='com.lofidewanto.demo.client.DemoGwtEntryPoint' />
 
 	<!-- Specify the paths for translatable code -->
 	<source path='client' />

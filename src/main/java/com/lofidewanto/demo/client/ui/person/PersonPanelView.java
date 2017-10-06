@@ -147,6 +147,11 @@ public class PersonPanelView extends Composite implements Startable {
 		init();
 	}
 
+	@Override
+	public void start() {
+		personUtil.sayHello();
+	}
+
 	private void init() {
 		// Standard event handling
 		filterButton.addClickHandler(new ClickHandler() {
@@ -352,11 +357,6 @@ public class PersonPanelView extends Composite implements Startable {
 		}
 
 		dataProvider.setList(personDtos);
-	}
-
-	@Override
-	public void start() {
-		personUtil.sayHello();
 	}
 
 	@EventHandler
