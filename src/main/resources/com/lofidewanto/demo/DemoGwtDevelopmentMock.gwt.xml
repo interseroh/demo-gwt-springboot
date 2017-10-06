@@ -4,6 +4,8 @@
 	<!-- Inherit the core Web Toolkit stuff. -->
 	<inherits name='com.lofidewanto.demo.DemoGwtDevelopment' />
 
+	<source path='mock' />
+
 	<!-- Specify the app entry point class. -->
-	<entry-point class='com.lofidewanto.demo.client.DemoGwtMockWebApp' />
+	<entry-point class='com.lofidewanto.demo.mock.DemoGwtMockEntryPoint' />
 </module>

@@ -16,19 +16,19 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.lofidewanto.demo.client;
+package com.lofidewanto.demo.mock;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.lofidewanto.demo.client.DemoGwtWebApp;
 import com.lofidewanto.demo.client.DemoGwtWebAppGinjector;
-import com.lofidewanto.demo.client.common.Startable;
 
 import java.util.logging.Logger;
 
-public class DemoGwtEntryPoint implements EntryPoint {
+public class DemoGwtMockEntryPoint implements EntryPoint {
 
     private static Logger logger = Logger
-            .getLogger(DemoGwtEntryPoint.class.getName());
+            .getLogger(DemoGwtMockEntryPoint.class.getName());
 
     // Create Gin Injector
     private final DemoGwtWebAppGinjector injector = GWT
@@ -37,7 +37,7 @@ public class DemoGwtEntryPoint implements EntryPoint {
     @Override
     public void onModuleLoad() {
         // Create webapp
-        logger.info("DemoGwtEntryPoint obModuleLoad...");
+        logger.info("DemoGwtMockEntryPoint obModuleLoad...");
 
         DemoGwtWebApp demoGwtWebApp = injector.getDemoGwtWebApp();
     }

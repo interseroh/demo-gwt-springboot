@@ -408,6 +408,67 @@
 				</plugins>
 			</build>
 		</profile>
+
+        <profile>
+            <id>development-mock</id>
+            <build>
+                <plugins>
+                    <!-- JRebel plugin, you need to turn off Spring Tool! -->
+                    <plugin>
+                        <groupId>org.zeroturnaround</groupId>
+                        <artifactId>jrebel-maven-plugin</artifactId>
+                        <version>1.1.5</version>
+                        <configuration>
+                            <relativePath>.</relativePath>
+                            <classpath>
+                                <fallback>default</fallback>
+                                <resources>
+                                    <resource>
+                                    </resource>
+                                </resources>
+                            </classpath>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>generate-rebel-xml</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- GWT Maven Plugin -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>gwt-maven-plugin</artifactId>
+                        <version>${gwt.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>compile</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <sourceLevel>1.8</sourceLevel>
+                            <module>com.lofidewanto.demo.DemoGwtDevelopmentMock</module>
+                            <extraJvmArgs>-Xmx1024M -Xss1024k</extraJvmArgs>
+                            <runTarget>demogwt.html</runTarget>
+                            <persistentunitcachedir>${project.build.directory}</persistentunitcachedir>
+                            <webappDirectory>${project.build.directory}/classes/public</webappDirectory>
+                            <deploy>${project.build.directory}/gwt-deploy</deploy>
+                            <compileReport>true</compileReport>
+                            <style>DETAILED</style>
+                            <generateJsInteropExports>true</generateJsInteropExports>
+                            <launcherDir>${project.build.directory}/classes/public</launcherDir>
+                            <codeServerPort>9876</codeServerPort>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 	</profiles>
 
 </project>
