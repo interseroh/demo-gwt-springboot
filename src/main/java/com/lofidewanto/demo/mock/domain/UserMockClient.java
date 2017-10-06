@@ -30,7 +30,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Singleton
-public class UserClient {
+public class UserMockClient {
 
 	public void getLoginUser(MethodCallback<Object> callback) {
 

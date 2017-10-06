@@ -30,7 +30,7 @@ import java.util.Date;
 import java.util.List;
 
 @Singleton
-public class PersonClient {
+public class PersonMockClient {
 
 	public void getPersons(Integer start,
                     Integer length,
