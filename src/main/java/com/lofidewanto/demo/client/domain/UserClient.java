@@ -22,6 +22,6 @@ import org.fusesource.restygwt.client.MethodCallback;
 
 public interface UserClient {
 
-	void getLoginUser(MethodCallback<Object> callback);
+    void getLoginUser(MethodCallback<Object> callback);
 
 }
