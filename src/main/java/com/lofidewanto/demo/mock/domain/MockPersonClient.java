@@ -20,10 +20,10 @@ package com.lofidewanto.demo.mock.domain;
 
 import com.lofidewanto.demo.client.domain.PersonClient;
 import com.lofidewanto.demo.shared.PersonDto;
-import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 
 import javax.inject.Singleton;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
@@ -38,24 +38,28 @@ public class MockPersonClient implements PersonClient {
 	public void getPersons(Integer start, Integer length, MethodCallback<List<PersonDto>> callback) {
         logger.info("Mock getPersons...");
 
-        callback = new MethodCallback<List<PersonDto>>() {
-            @Override
-            public void onFailure(Method method, Throwable throwable) {
-            }
+        List<PersonDto> personDtos = getPersonDtos();
 
-            @Override
-            public void onSuccess(Method method, List<PersonDto> personDtos) {
-                PersonDto person = new PersonDto();
-                person.setName("Lofi");
-                person.setNickname("Jawa");
-
-                personDtos.add(person);
-            }
-        };
+        callback.onSuccess(null, personDtos);
     }
 
     @Override
 	public void filterPerson(String personName, Date fromDate, Date toDate, MethodCallback<List<PersonDto>> callback) {
         logger.info("Mock filterPerson...");
+
+        List<PersonDto> personDtos = getPersonDtos();
+
+        callback.onSuccess(null, personDtos);
+    }
+
+    private List<PersonDto> getPersonDtos() {
+        List<PersonDto> personDtos = new ArrayList<>();
+
+        PersonDto person = new PersonDto();
+        person.setName("Lofi");
+        person.setNickname("Jawa");
+
+        personDtos.add(person);
+        return personDtos;
     }
 }
