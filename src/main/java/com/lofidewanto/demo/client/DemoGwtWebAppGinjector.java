@@ -30,8 +30,6 @@ public interface DemoGwtWebAppGinjector extends Ginjector {
 
 	DemoGwtWebApp getDemoGwtWebApp();
 
-    MainPanelView getMainPanelView();
-
-    PersonPanelView getPersonPanelView();
+	ServicePreparator getServicePreparator();
 
 }

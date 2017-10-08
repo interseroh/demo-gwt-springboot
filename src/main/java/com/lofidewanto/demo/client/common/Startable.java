@@ -19,5 +19,9 @@
 package com.lofidewanto.demo.client.common;
 
 public interface Startable {
+
+    void init();
+
 	void start();
+
 }

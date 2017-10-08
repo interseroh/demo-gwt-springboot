@@ -18,15 +18,26 @@
  */
 package com.lofidewanto.demo.client.domain;
 
-import com.lofidewanto.demo.shared.PersonDto;
+import javax.inject.Singleton;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import org.fusesource.restygwt.client.MethodCallback;
+import org.fusesource.restygwt.client.RestService;
 
-import java.util.Date;
-import java.util.List;
+import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
 
-public interface PersonClient {
+@Singleton
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
+public interface RestUserClient extends UserClient, RestService {
 
-    void getPersons(Integer start, Integer length, MethodCallback<List<PersonDto>> callback);
+	@Override
+	@GET
+	@Path(DemoGwtServiceEndpoint.LOGIN_USER)
+	void getLoginUser(MethodCallback<Object> callback);
 
-    void filterPerson(String personName, Date fromDate, Date toDate, MethodCallback<List<PersonDto>> callback);
 }

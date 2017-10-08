@@ -16,24 +16,20 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.lofidewanto.demo.mock.domain;
+package com.lofidewanto.demo.mock;
 
-import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
-import org.fusesource.restygwt.client.MethodCallback;
-import org.fusesource.restygwt.client.RestService;
+import com.google.gwt.inject.client.GinModules;
+import com.google.gwt.inject.client.Ginjector;
+import com.lofidewanto.demo.client.DemoGwtWebApp;
+import com.lofidewanto.demo.client.common.ServicePreparator;
+import com.lofidewanto.demo.client.ui.main.MainPanelView;
+import com.lofidewanto.demo.client.ui.person.PersonPanelView;
 
-import javax.inject.Singleton;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+@GinModules(DemoGwtMockWebAppGinModule.class)
+public interface DemoGwtMockWebAppGinjector extends Ginjector {
 
-@Singleton
-public class UserMockClient {
+	DemoGwtWebApp getDemoGwtWebApp();
 
-	public void getLoginUser(MethodCallback<Object> callback) {
-
-	}
+    ServicePreparator getServicePreparator();
 
 }

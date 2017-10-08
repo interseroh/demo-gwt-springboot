@@ -16,35 +16,20 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.lofidewanto.demo.mock;
+package com.lofidewanto.demo.mock.common;
 
-import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.GWT;
-import com.lofidewanto.demo.client.DemoGwtWebApp;
-import com.lofidewanto.demo.client.DemoGwtWebAppGinjector;
 import com.lofidewanto.demo.client.common.ServicePreparator;
+import com.lofidewanto.demo.mock.DemoGwtMockEntryPoint;
 
 import java.util.logging.Logger;
 
-public class DemoGwtMockEntryPoint implements EntryPoint {
+public class MockServicePreparator implements ServicePreparator {
 
     private static Logger logger = Logger
-            .getLogger(DemoGwtMockEntryPoint.class.getName());
-
-    // Create Gin Injector
-    private final DemoGwtMockWebAppGinjector injector = GWT
-            .create(DemoGwtMockWebAppGinjector.class);
+            .getLogger(MockServicePreparator.class.getName());
 
     @Override
-    public void onModuleLoad() {
-        logger.info("DemoGwtMockEntryPoint obModuleLoad...");
-
-        // We need to prepare the services with RestyGwt before...
-        ServicePreparator servicePreparator = injector.getServicePreparator();
-        servicePreparator.prepare();
-
-        // Create webapp
-        DemoGwtWebApp demoGwtWebApp = injector.getDemoGwtWebApp();
+    public void prepare() {
+        logger.info("MockServicePreparator prepare...");
     }
-
 }

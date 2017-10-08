@@ -249,6 +249,9 @@ public class MainPanelView extends Composite {
 		PersonPanelView personPanelView = (PersonPanelView) this.widgets
 				.get(WidgetName.PERSONLIST);
 
+		// Init some data
+		personPanelView.init();
+
 		logger.info("Method updatePersonPanelView finished: " + personPanelView.getTitle());
 	}
 

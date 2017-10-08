@@ -143,8 +143,6 @@ public class PersonPanelView extends Composite implements Startable {
 		eventBinder.bindEventHandlers(this, eventBus);
 
 		this.personClient = personClient;
-
-		init();
 	}
 
 	@Override
@@ -152,7 +150,8 @@ public class PersonPanelView extends Composite implements Startable {
 		personUtil.sayHello();
 	}
 
-	private void init() {
+	@Override
+	public void init() {
 		// Standard event handling
 		filterButton.addClickHandler(new ClickHandler() {
 			@Override
@@ -321,6 +320,7 @@ public class PersonPanelView extends Composite implements Startable {
 		};
 
 		logger.info("Calling filterPerson Service...");
+
 		personClient.filterPerson(nameSuggestBox.getValue(), fromDateTimePicker.getValue(),
 				untilDateTimePicker.getValue(), filterCallBack);
 	}

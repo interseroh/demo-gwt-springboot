@@ -18,48 +18,7 @@
  */
 package com.lofidewanto.demo.client.common;
 
-import java.util.logging.Logger;
+public interface ServicePreparator {
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
-import org.fusesource.restygwt.client.Defaults;
-import org.fusesource.restygwt.client.Resource;
-import org.fusesource.restygwt.client.RestServiceProxy;
-
-import com.lofidewanto.demo.client.domain.PersonClient;
-import com.lofidewanto.demo.client.domain.UserClient;
-
-@Singleton
-public class ServicePreparator {
-
-	private static Logger logger = Logger
-			.getLogger(ServicePreparator.class.getName());
-
-	@Inject
-	private PersonClient personClient;
-
-	@Inject
-	UserClient userClient;
-
-	private void initServices() {
-		logger.info("Prepare for the resources for the services...");
-
-		Defaults.setDateFormat(null);
-
-		initDomainService();
-	}
-
-	private void initDomainService() {
-		logger.info("Init the domains...");
-
-		Resource resource = new Resource("");
-
-		((RestServiceProxy) personClient).setResource(resource);
-		((RestServiceProxy) userClient).setResource(resource);
-	}
-
-	public void prepare() {
-		initServices();
-	}
+    void prepare();
 }

@@ -20,6 +20,7 @@ package com.lofidewanto.demo.client;
 
 import java.util.logging.Logger;
 
+import com.google.gwt.user.client.ui.IsWidget;
 import com.google.inject.Injector;
 import com.lofidewanto.demo.client.common.Startable;
 import com.lofidewanto.demo.client.ui.person.PersonPanelView;
@@ -65,16 +66,19 @@ public class DemoGwtWebApp {
 
 	private static final String LOCALE = "de_DE";
 
-    private final DemoGwtWebAppGinjector injector;
-
     private final ServicePreparator servicePreparator;
 
-    @Inject
-	public DemoGwtWebApp(ServicePreparator servicePreparator, DemoGwtWebAppGinjector injector) {
-	    this.servicePreparator = servicePreparator;
-	    this.injector = injector;
+    private final MainPanelView mainPanelView;
 
+    private final PersonPanelView personPanelView;
+
+    @Inject
+	public DemoGwtWebApp(ServicePreparator servicePreparator, MainPanelView mainPanelView, PersonPanelView personPanelView) {
         logger.info("DemoGwtWebApp create...");
+
+        this.servicePreparator = servicePreparator;
+        this.mainPanelView = mainPanelView;
+        this.personPanelView = personPanelView;
 
         injectJqueryScript();
         injectMyFunctionScript();
@@ -194,10 +198,7 @@ public class DemoGwtWebApp {
 		// Views
 		logger.info("Create Views begins...");
 
-		MainPanelView mainPanelView = injector.getMainPanelView();
 		mainPanelView.setContentAreaVisible(false);
-
-		PersonPanelView personPanelView = injector.getPersonPanelView();
 		mainPanelView.addWidget(WidgetName.PERSONLIST,
 				personPanelView);
 

@@ -22,6 +22,12 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.inject.Singleton;
+import com.lofidewanto.demo.client.common.RestServicePreparator;
+import com.lofidewanto.demo.client.common.ServicePreparator;
+import com.lofidewanto.demo.client.domain.PersonClient;
+import com.lofidewanto.demo.client.domain.RestPersonClient;
+import com.lofidewanto.demo.client.domain.UserClient;
+import com.lofidewanto.demo.client.domain.RestUserClient;
 
 public class DemoGwtWebAppGinModule extends AbstractGinModule {
 
@@ -29,5 +35,12 @@ public class DemoGwtWebAppGinModule extends AbstractGinModule {
 	protected void configure() {
 		// Bind the SimpleEventBus as Singleton
 		bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
+
+		// Bind ServicePreparator
+        bind(ServicePreparator.class).to(RestServicePreparator.class).in(Singleton.class);
+
+		// Using the real RestyGwt
+		bind(PersonClient.class).to(RestPersonClient.class).in(Singleton.class);
+		bind(UserClient.class).to(RestUserClient.class).in(Singleton.class);
 	}
 }

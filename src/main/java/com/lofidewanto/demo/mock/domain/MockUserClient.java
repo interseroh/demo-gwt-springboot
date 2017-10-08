@@ -18,30 +18,24 @@
  */
 package com.lofidewanto.demo.mock.domain;
 
+import com.lofidewanto.demo.client.domain.UserClient;
 import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
-import com.lofidewanto.demo.shared.PersonDto;
 import org.fusesource.restygwt.client.MethodCallback;
 import org.fusesource.restygwt.client.RestService;
 
 import javax.inject.Singleton;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.Date;
-import java.util.List;
 
 @Singleton
-public class PersonMockClient {
+public class MockUserClient implements UserClient {
 
-	public void getPersons(Integer start,
-                    Integer length,
-                    MethodCallback<List<PersonDto>> callback) {
+    @Override
+	public void getLoginUser(MethodCallback<Object> callback) {
 
-    }
+	}
 
-	public void filterPerson(String personName,
-                      Date fromDate,
-                      Date toDate,
-                      MethodCallback<List<PersonDto>> callback) {
-
-    }
 }
