@@ -21,7 +21,6 @@ package com.lofidewanto.demo.mock;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.lofidewanto.demo.client.DemoGwtWebApp;
-import com.lofidewanto.demo.client.DemoGwtWebAppGinjector;
 import com.lofidewanto.demo.client.common.ServicePreparator;
 
 import java.util.logging.Logger;

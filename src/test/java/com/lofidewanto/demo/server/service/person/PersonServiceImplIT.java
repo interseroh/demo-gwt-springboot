@@ -18,11 +18,11 @@
  */
 package com.lofidewanto.demo.server.service.person;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import java.util.Collection;
-
+import com.lofidewanto.demo.server.domain.Address;
+import com.lofidewanto.demo.server.domain.AddressImpl;
+import com.lofidewanto.demo.server.domain.Person;
+import com.lofidewanto.demo.server.domain.PersonImpl;
+import com.lofidewanto.demo.server.exception.CreatePersonException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,11 +30,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.lofidewanto.demo.server.domain.Address;
-import com.lofidewanto.demo.server.domain.AddressImpl;
-import com.lofidewanto.demo.server.domain.Person;
-import com.lofidewanto.demo.server.domain.PersonImpl;
-import com.lofidewanto.demo.server.exception.CreatePersonException;
+import java.util.Collection;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest

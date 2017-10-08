@@ -18,17 +18,15 @@
  */
 package com.lofidewanto.demo.client.common;
 
-import java.util.logging.Logger;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
+import com.lofidewanto.demo.client.domain.PersonClient;
+import com.lofidewanto.demo.client.domain.UserClient;
 import org.fusesource.restygwt.client.Defaults;
 import org.fusesource.restygwt.client.Resource;
 import org.fusesource.restygwt.client.RestServiceProxy;
 
-import com.lofidewanto.demo.client.domain.PersonClient;
-import com.lofidewanto.demo.client.domain.UserClient;
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import java.util.logging.Logger;
 
 @Singleton
 public class RestServicePreparator implements ServicePreparator {

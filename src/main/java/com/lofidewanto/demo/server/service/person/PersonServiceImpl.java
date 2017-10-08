@@ -18,16 +18,6 @@
  */
 package com.lofidewanto.demo.server.service.person;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
 import com.lofidewanto.demo.server.domain.Address;
 import com.lofidewanto.demo.server.domain.AddressImpl;
 import com.lofidewanto.demo.server.domain.Person;
@@ -35,6 +25,15 @@ import com.lofidewanto.demo.server.domain.PersonImpl;
 import com.lofidewanto.demo.server.exception.CreatePersonException;
 import com.lofidewanto.demo.server.repository.AddressRepository;
 import com.lofidewanto.demo.server.repository.PersonRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Service
 public class PersonServiceImpl implements PersonService {

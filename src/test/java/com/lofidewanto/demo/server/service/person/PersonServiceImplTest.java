@@ -18,16 +18,6 @@
  */
 package com.lofidewanto.demo.server.service.person;
 
-import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.doReturn;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
-
 import com.lofidewanto.demo.server.domain.Address;
 import com.lofidewanto.demo.server.domain.AddressImpl;
 import com.lofidewanto.demo.server.domain.Person;
@@ -35,6 +25,15 @@ import com.lofidewanto.demo.server.domain.PersonImpl;
 import com.lofidewanto.demo.server.exception.CreatePersonException;
 import com.lofidewanto.demo.server.repository.AddressRepository;
 import com.lofidewanto.demo.server.repository.PersonRepository;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.doReturn;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PersonServiceImplTest {

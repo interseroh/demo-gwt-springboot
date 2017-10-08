@@ -18,13 +18,12 @@
  */
 package com.lofidewanto.demo.client.common;
 
-import java.util.logging.Logger;
-
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Window;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 
-import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.Window;
+import java.util.logging.Logger;
 
 public abstract class AbstractMethodCallback<T> implements MethodCallback<T> {
 

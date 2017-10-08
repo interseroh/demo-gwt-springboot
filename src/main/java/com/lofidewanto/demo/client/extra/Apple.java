@@ -18,11 +18,10 @@
  */
 package com.lofidewanto.demo.client.extra;
 
-import javax.inject.Singleton;
-
 import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsProperty;
 import jsinterop.annotations.JsType;
+
+import javax.inject.Singleton;
 
 @Singleton
 @JsType(namespace = JsPackage.GLOBAL, name = "Apple", isNative = true)

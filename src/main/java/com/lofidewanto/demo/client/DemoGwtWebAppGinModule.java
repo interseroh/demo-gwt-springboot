@@ -26,8 +26,8 @@ import com.lofidewanto.demo.client.common.RestServicePreparator;
 import com.lofidewanto.demo.client.common.ServicePreparator;
 import com.lofidewanto.demo.client.domain.PersonClient;
 import com.lofidewanto.demo.client.domain.RestPersonClient;
-import com.lofidewanto.demo.client.domain.UserClient;
 import com.lofidewanto.demo.client.domain.RestUserClient;
+import com.lofidewanto.demo.client.domain.UserClient;
 
 public class DemoGwtWebAppGinModule extends AbstractGinModule {
 

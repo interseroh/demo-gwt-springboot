@@ -18,13 +18,12 @@
  */
 package com.lofidewanto.demo.server;
 
+import com.google.gwt.logging.server.RemoteLoggingServiceImpl;
+import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
-
-import com.google.gwt.logging.server.RemoteLoggingServiceImpl;
-import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
 
 @SpringBootApplication
 public class DemoGwtSpringbootApplication {

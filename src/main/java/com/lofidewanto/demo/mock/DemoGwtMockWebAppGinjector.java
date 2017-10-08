@@ -22,8 +22,6 @@ import com.google.gwt.inject.client.GinModules;
 import com.google.gwt.inject.client.Ginjector;
 import com.lofidewanto.demo.client.DemoGwtWebApp;
 import com.lofidewanto.demo.client.common.ServicePreparator;
-import com.lofidewanto.demo.client.ui.main.MainPanelView;
-import com.lofidewanto.demo.client.ui.person.PersonPanelView;
 
 @GinModules(DemoGwtMockWebAppGinModule.class)
 public interface DemoGwtMockWebAppGinjector extends Ginjector {

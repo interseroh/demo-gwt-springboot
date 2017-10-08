@@ -19,7 +19,6 @@
 package com.lofidewanto.demo.mock.common;
 
 import com.lofidewanto.demo.client.common.ServicePreparator;
-import com.lofidewanto.demo.mock.DemoGwtMockEntryPoint;
 
 import java.util.logging.Logger;
 

@@ -18,15 +18,14 @@
  */
 package com.lofidewanto.demo.client.common;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
-import org.gwtbootstrap3.client.ui.Image;
-import org.gwtbootstrap3.client.ui.gwt.FlowPanel;
-
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.lofidewanto.demo.client.Messages;
+import org.gwtbootstrap3.client.ui.Image;
+import org.gwtbootstrap3.client.ui.gwt.FlowPanel;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 @Singleton
 public final class LoadingMessagePopupPanel extends PopupPanel {

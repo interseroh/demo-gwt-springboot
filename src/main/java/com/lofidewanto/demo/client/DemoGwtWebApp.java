@@ -18,17 +18,7 @@
  */
 package com.lofidewanto.demo.client;
 
-import java.util.logging.Logger;
-
-import com.google.gwt.user.client.ui.IsWidget;
-import com.google.inject.Injector;
-import com.lofidewanto.demo.client.common.Startable;
-import com.lofidewanto.demo.client.ui.person.PersonPanelView;
-import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
-import org.gwtbootstrap3.extras.bootbox.client.options.BootboxLocale;
-
 import com.google.gwt.core.client.Callback;
-import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.core.client.ScriptInjector;
@@ -44,9 +34,13 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.lofidewanto.demo.client.common.ServicePreparator;
 import com.lofidewanto.demo.client.common.WidgetName;
 import com.lofidewanto.demo.client.ui.main.MainPanelView;
+import com.lofidewanto.demo.client.ui.person.PersonPanelView;
+import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
+import org.gwtbootstrap3.extras.bootbox.client.options.BootboxLocale;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.util.logging.Logger;
 
 @Singleton
 public class DemoGwtWebApp {

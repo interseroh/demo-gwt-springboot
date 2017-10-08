@@ -18,9 +18,8 @@
  */
 package com.lofidewanto.demo.server.repository;
 
-import org.springframework.data.repository.PagingAndSortingRepository;
-
 import com.lofidewanto.demo.server.domain.AddressImpl;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface AddressRepository
 		extends PagingAndSortingRepository<AddressImpl, Long> {

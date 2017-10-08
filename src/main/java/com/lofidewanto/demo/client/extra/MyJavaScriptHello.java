@@ -19,7 +19,6 @@
 package com.lofidewanto.demo.client.extra;
 
 import com.google.gwt.user.client.Window;
-
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 

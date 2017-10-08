@@ -18,15 +18,14 @@
  */
 package com.lofidewanto.demo.server.controller;
 
+import com.lofidewanto.demo.server.service.user.UserService;
+import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
+import com.lofidewanto.demo.shared.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.lofidewanto.demo.server.service.user.UserService;
-import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
-import com.lofidewanto.demo.shared.UserDto;
 
 @Controller
 public class UserController {

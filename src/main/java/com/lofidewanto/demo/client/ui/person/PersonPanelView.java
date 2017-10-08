@@ -18,25 +18,6 @@
  */
 package com.lofidewanto.demo.client.ui.person;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
-import com.lofidewanto.demo.client.extra.Apple;
-import org.fusesource.restygwt.client.Method;
-import org.fusesource.restygwt.client.MethodCallback;
-import org.gwtbootstrap3.client.ui.Button;
-import org.gwtbootstrap3.client.ui.Label;
-import org.gwtbootstrap3.client.ui.Pagination;
-import org.gwtbootstrap3.client.ui.SuggestBox;
-import org.gwtbootstrap3.client.ui.TabListItem;
-import org.gwtbootstrap3.client.ui.gwt.DataGrid;
-import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
-import org.gwtbootstrap3.extras.datetimepicker.client.ui.DateTimePicker;
-
 import com.google.gwt.cell.client.CheckboxCell;
 import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
@@ -58,12 +39,25 @@ import com.lofidewanto.demo.client.common.ErrorFormatter;
 import com.lofidewanto.demo.client.common.LoadingMessagePopupPanel;
 import com.lofidewanto.demo.client.common.Startable;
 import com.lofidewanto.demo.client.domain.PersonClient;
+import com.lofidewanto.demo.client.extra.Apple;
 import com.lofidewanto.demo.client.extra.PersonUtil;
 import com.lofidewanto.demo.client.ui.event.FilterEvent;
 import com.lofidewanto.demo.client.ui.event.SearchEvent;
 import com.lofidewanto.demo.shared.PersonDto;
+import org.fusesource.restygwt.client.Method;
+import org.fusesource.restygwt.client.MethodCallback;
+import org.gwtbootstrap3.client.ui.*;
+import org.gwtbootstrap3.client.ui.gwt.DataGrid;
+import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
+import org.gwtbootstrap3.extras.datetimepicker.client.ui.DateTimePicker;
 import org.gwtbootstrap3.extras.select.client.ui.MultipleSelect;
 import org.gwtbootstrap3.extras.select.client.ui.Option;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
 @Singleton
 public class PersonPanelView extends Composite implements Startable {

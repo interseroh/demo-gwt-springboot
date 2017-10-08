@@ -18,20 +18,14 @@
  */
 package com.lofidewanto.demo.client.domain;
 
-import javax.inject.Singleton;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
-
+import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
 import com.lofidewanto.demo.shared.PersonDto;
 import org.fusesource.restygwt.client.MethodCallback;
 import org.fusesource.restygwt.client.RestService;
 
-import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
-
+import javax.inject.Singleton;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.util.Date;
 import java.util.List;
 

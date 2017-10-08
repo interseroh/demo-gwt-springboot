@@ -18,12 +18,9 @@
  */
 package com.lofidewanto.demo.client;
 
-import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.inject.client.GinModules;
 import com.google.gwt.inject.client.Ginjector;
 import com.lofidewanto.demo.client.common.ServicePreparator;
-import com.lofidewanto.demo.client.ui.main.MainPanelView;
-import com.lofidewanto.demo.client.ui.person.PersonPanelView;
 
 @GinModules(DemoGwtWebAppGinModule.class)
 public interface DemoGwtWebAppGinjector extends Ginjector {

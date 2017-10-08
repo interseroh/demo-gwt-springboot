@@ -20,9 +20,7 @@ package com.lofidewanto.demo.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.lofidewanto.demo.client.DemoGwtWebAppGinjector;
 import com.lofidewanto.demo.client.common.ServicePreparator;
-import com.lofidewanto.demo.client.common.Startable;
 
 import java.util.logging.Logger;
 
