@@ -18,24 +18,33 @@
  */
 package com.lofidewanto.demo.server.controller;
 
-import com.lofidewanto.demo.server.domain.Person;
-import com.lofidewanto.demo.server.domain.PersonImpl;
-import com.lofidewanto.demo.server.repository.PersonRepository;
-import com.lofidewanto.demo.server.service.person.PersonService;
-import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
-import com.lofidewanto.demo.shared.PersonDto;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import com.lofidewanto.demo.server.domain.Address;
+import com.lofidewanto.demo.server.domain.AddressImpl;
+import com.lofidewanto.demo.server.domain.Person;
+import com.lofidewanto.demo.server.domain.PersonImpl;
+import com.lofidewanto.demo.server.exception.CreatePersonException;
+import com.lofidewanto.demo.server.repository.PersonRepository;
+import com.lofidewanto.demo.server.service.person.PersonService;
+import com.lofidewanto.demo.shared.AddressDto;
+import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
+import com.lofidewanto.demo.shared.PersonDto;
 
 @Controller
 @CrossOrigin
@@ -110,6 +119,26 @@ public class PersonController {
         return new ResponseEntity<List<PersonDto>>(persons, HttpStatus.OK);
     }
 
+    public PersonDto createAddressFromPerson(PersonDto personDto, AddressDto addressDto) {
+        // Mapping to entity
+        Person person = new PersonImpl("muster");
+        person.setName("Mustermann");
+
+        Address address = new AddressImpl();
+
+        Person createdPerson = null;
+        try {
+            createdPerson = personService.createAddressFromPerson(address, person);
+        } catch (CreatePersonException e) {
+            logger.error("Error: ", e);
+        }
+
+        // Mapping to DTO
+        PersonDto createdPersonDto = buildPerson(createdPerson);
+
+        return createdPersonDto;
+    }
+
     private PersonDto buildPerson(Person person) {
         PersonDto personDto = new PersonDto();
         personDto.setName(person.getName());
@@ -118,13 +147,13 @@ public class PersonController {
     }
 
     private void addTestDateToDb() {
-        PersonImpl dto = new PersonImpl("muster");
-        dto.setName("Mustermann");
-        personRepository.save(dto);
+        PersonImpl personImpl = new PersonImpl("muster");
+        personImpl.setName("Mustermann");
+        personRepository.save(personImpl);
 
-        dto = new PersonImpl("baur");
-        dto.setName("Bauer");
-        personRepository.save(dto);
+        personImpl = new PersonImpl("baur");
+        personImpl.setName("Bauer");
+        personRepository.save(personImpl);
     }
 
 }

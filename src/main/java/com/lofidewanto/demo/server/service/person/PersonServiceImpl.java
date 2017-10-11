@@ -51,20 +51,20 @@ public class PersonServiceImpl implements PersonService {
 	public Person createAddressFromPerson(Address address, Person person)
 			throws CreatePersonException {
 		// Create a Person and add an Address to it
-		AddressImpl addressImplSaved = addressRepository
+		Address addressSaved = addressRepository
 				.save((AddressImpl) address);
 		
 		logger.info(
-				"Following address created: " + addressImplSaved.getStreet());
+				"Following address created: " + addressSaved.getStreet());
 		
 		person.addAddress(address);
 		
 		try {
-			PersonImpl personImplSaved = personRepository.save((PersonImpl) person);
+			Person personSaved = personRepository.save((PersonImpl) person);
 
-			logger.info("Following person created: " + personImplSaved.getName());
+			logger.info("Following person created: " + personSaved.getName());
 
-			return personImplSaved;
+			return personSaved;
 		} catch (Exception e) {
 			logger.error(
 					"Error saving the person and address - exception: " + e);
