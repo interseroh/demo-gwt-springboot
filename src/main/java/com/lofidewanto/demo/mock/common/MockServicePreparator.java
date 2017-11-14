@@ -18,9 +18,9 @@
  */
 package com.lofidewanto.demo.mock.common;
 
-import com.lofidewanto.demo.client.common.ServicePreparator;
-
 import java.util.logging.Logger;
+
+import com.lofidewanto.demo.client.common.ServicePreparator;
 
 public class MockServicePreparator implements ServicePreparator {
 
@@ -28,7 +28,7 @@ public class MockServicePreparator implements ServicePreparator {
             .getLogger(MockServicePreparator.class.getName());
 
     @Override
-    public void prepare() {
-        logger.info("MockServicePreparator prepare...");
+	public void prepare(String baseUrl) {
+		logger.info("MockServicePreparator prepare...");
     }
 }

@@ -40,7 +40,7 @@ public class DemoGwtMockEntryPoint implements EntryPoint {
 
         // We need to prepare the services with RestyGwt before...
         ServicePreparator servicePreparator = injector.getServicePreparator();
-        servicePreparator.prepare();
+		servicePreparator.prepare("");
 
         // Create webapp
         DemoGwtWebApp demoGwtWebApp = injector.getDemoGwtWebApp();

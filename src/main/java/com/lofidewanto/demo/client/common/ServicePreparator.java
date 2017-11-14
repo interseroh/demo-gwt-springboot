@@ -20,5 +20,5 @@ package com.lofidewanto.demo.client.common;
 
 public interface ServicePreparator {
 
-    void prepare();
+	void prepare(String baseUrl);
 }

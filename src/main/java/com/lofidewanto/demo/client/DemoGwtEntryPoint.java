@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.lofidewanto.demo.client.common.ServicePreparator;
+import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
 
 public class DemoGwtEntryPoint implements EntryPoint {
 
@@ -39,7 +40,7 @@ public class DemoGwtEntryPoint implements EntryPoint {
 
         // We need to prepare the services with RestyGwt before...
         ServicePreparator servicePreparator = injector.getServicePreparator();
-        servicePreparator.prepare();
+        servicePreparator.prepare(DemoGwtServiceEndpoint.GWT_CONTEXT);
 
         // Create webapp
         DemoGwtWebApp demoGwtWebApp = injector.getDemoGwtWebApp();

@@ -18,16 +18,22 @@
  */
 package com.lofidewanto.demo.client.domain;
 
-import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
-import com.lofidewanto.demo.shared.PersonDto;
+import java.util.Date;
+import java.util.List;
+
+import javax.inject.Singleton;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+
 import org.fusesource.restygwt.client.MethodCallback;
 import org.fusesource.restygwt.client.RestService;
 
-import javax.inject.Singleton;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import java.util.Date;
-import java.util.List;
+import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
+import com.lofidewanto.demo.shared.PersonDto;
 
 @Singleton
 @Produces(MediaType.APPLICATION_JSON)
@@ -36,14 +42,14 @@ public interface RestPersonClient extends PersonClient, RestService {
 
 	@Override
 	@GET
-	@Path(DemoGwtServiceEndpoint.CONTEXT + DemoGwtServiceEndpoint.PERSON_LIST)
+	@Path(DemoGwtServiceEndpoint.PERSON_LIST)
 	void getPersons(@QueryParam("start") Integer start,
 			@QueryParam("length") Integer length,
 			MethodCallback<List<PersonDto>> callback);
 
     @Override
 	@GET
-	@Path(DemoGwtServiceEndpoint.CONTEXT + DemoGwtServiceEndpoint.PERSON_FILTER)
+	@Path(DemoGwtServiceEndpoint.PERSON_FILTER)
 	void filterPerson(@QueryParam("nameSuggestBox") String personName,
 					  @QueryParam("fromDateTimePicker") Date fromDate,
 					  @QueryParam("untilDateTimePicker") Date toDate,

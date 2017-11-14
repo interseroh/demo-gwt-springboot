@@ -39,7 +39,6 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.i18n.client.LocaleInfo;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.lofidewanto.demo.client.common.ServicePreparator;
 import com.lofidewanto.demo.client.common.WidgetName;
 import com.lofidewanto.demo.client.ui.main.MainPanelView;
 import com.lofidewanto.demo.client.ui.person.PersonPanelView;
@@ -62,19 +61,17 @@ public class DemoGwtWebApp {
 
 	private static final String LOCALE = "de_DE";
 
-    private final ServicePreparator servicePreparator;
-
     private final MainPanelView mainPanelView;
 
     private final PersonPanelView personPanelView;
 
     @Inject
-	public DemoGwtWebApp(ServicePreparator servicePreparator, MainPanelView mainPanelView, PersonPanelView personPanelView) {
+	public DemoGwtWebApp(MainPanelView mainPanelView,
+			PersonPanelView personPanelView) {
 		logger.info("DemoGwtWebApp create...");
 
-        this.servicePreparator = servicePreparator;
         this.mainPanelView = mainPanelView;
-        this.personPanelView = personPanelView;
+		this.personPanelView = personPanelView;
 
         injectJqueryScript();
         injectMyFunctionScript();

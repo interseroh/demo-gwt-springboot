@@ -18,15 +18,17 @@
  */
 package com.lofidewanto.demo.client.common;
 
-import com.lofidewanto.demo.client.domain.PersonClient;
-import com.lofidewanto.demo.client.domain.UserClient;
+import java.util.logging.Logger;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.fusesource.restygwt.client.Defaults;
 import org.fusesource.restygwt.client.Resource;
 import org.fusesource.restygwt.client.RestServiceProxy;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-import java.util.logging.Logger;
+import com.lofidewanto.demo.client.domain.PersonClient;
+import com.lofidewanto.demo.client.domain.UserClient;
 
 @Singleton
 public class RestServicePreparator implements ServicePreparator {
@@ -44,18 +46,18 @@ public class RestServicePreparator implements ServicePreparator {
     }
 
     @Override
-    public void prepare() {
-        logger.info("Prepare for the resources for the services...");
+	public void prepare(String baseUrl) {
+		logger.info("Prepare for the resources for the services...");
 
-        initServices();
-    }
+		initServices(baseUrl);
+	}
 
-	private void initServices() {
+	private void initServices(String baseUrl) {
 		Defaults.setDateFormat(null);
 
 		logger.info("Init the domains...");
 
-		Resource resource = new Resource("");
+		Resource resource = new Resource(baseUrl);
 
 		((RestServiceProxy) personClient).setResource(resource);
 		((RestServiceProxy) userClient).setResource(resource);
