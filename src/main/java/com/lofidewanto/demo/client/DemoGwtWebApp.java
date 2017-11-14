@@ -18,6 +18,14 @@
  */
 package com.lofidewanto.demo.client;
 
+import java.util.logging.Logger;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
+import org.gwtbootstrap3.extras.bootbox.client.options.BootboxLocale;
+
 import com.google.gwt.core.client.Callback;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
@@ -35,12 +43,6 @@ import com.lofidewanto.demo.client.common.ServicePreparator;
 import com.lofidewanto.demo.client.common.WidgetName;
 import com.lofidewanto.demo.client.ui.main.MainPanelView;
 import com.lofidewanto.demo.client.ui.person.PersonPanelView;
-import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
-import org.gwtbootstrap3.extras.bootbox.client.options.BootboxLocale;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
-import java.util.logging.Logger;
 
 @Singleton
 public class DemoGwtWebApp {
@@ -68,7 +70,7 @@ public class DemoGwtWebApp {
 
     @Inject
 	public DemoGwtWebApp(ServicePreparator servicePreparator, MainPanelView mainPanelView, PersonPanelView personPanelView) {
-        logger.info("DemoGwtWebApp create...");
+		logger.info("DemoGwtWebApp create...");
 
         this.servicePreparator = servicePreparator;
         this.mainPanelView = mainPanelView;
@@ -120,8 +122,6 @@ public class DemoGwtWebApp {
 		setupHistory();
 		setupBootbox();
 
-        initServices();
-
 		GWT.runAsync(new RunAsyncCallback() {
 			@Override
 			public void onFailure(Throwable reason) {
@@ -167,10 +167,6 @@ public class DemoGwtWebApp {
         if(body.isOrHasChild(loading)){
             loading.removeFromParent();
         }
-	}
-
-	private void initServices() {
-		servicePreparator.prepare();
 	}
 
 	private void setupHistory() {
