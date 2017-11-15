@@ -18,7 +18,6 @@
  */
 package com.lofidewanto.demo.server;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -30,9 +29,6 @@ import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
 @SpringBootApplication
 public class DemoGwtSpringbootApplication {
 
-	@Value("${server.context-path}")
-	private String serverContextPath;
-
 	public static void main(String[] args) {
 		SpringApplication.run(DemoGwtSpringbootApplication.class, args);
 	}
@@ -40,7 +36,7 @@ public class DemoGwtSpringbootApplication {
 	@Bean
 	public ServletRegistrationBean servletRegistrationBean() {
 		return new ServletRegistrationBean(new RemoteLoggingServiceImpl(),
-				serverContextPath + DemoGwtServiceEndpoint.GWT_REMOTE_LOGGING
+				DemoGwtServiceEndpoint.GWT_REMOTE_LOGGING
 						+ "/*");
 	}
 }

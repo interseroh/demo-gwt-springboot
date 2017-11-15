@@ -20,9 +20,11 @@ package com.lofidewanto.demo.shared;
 
 public interface DemoGwtServiceEndpoint {
 
-	String GWT_REMOTE_LOGGING = "/remote_logging";
+	String GWT_MODULE_NAME = "/demogwt";
 
-	String GWT_CONTEXT = "/demogwt";
+	String GWT_REMOTE_LOGGING = GWT_MODULE_NAME + "/remote_logging";
+
+	String SERVER_CONTEXT_PATH = "/demogwt";
 
 	String PERSON_LIST = "/v1/persons";
 
