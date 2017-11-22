@@ -67,13 +67,20 @@ There are two services: *UserService* and *PersonService* and two Entities: *Per
 ### Architecture
 
 Following diagram shows the architecture of the **Microservice Demo**.
-The naming of the packages *client*, *server*, *shared* and *resource* (not shown in diagram) is based on this architecture.
+The naming of the packages *client*, *mock*, *server*, *shared* and *resource* (not shown in diagram) is based on this architecture.
 
 ![Architecture](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/demo-gwt-springboot-architecture.jpg)
 
 #### Client
 
 All the GWT (UI and REST client) classes should be located in this package. GWT transpiles all the Java sources into JavaScript sources.
+
+#### Mock
+
+The package consists of the mock implementation of the REST services at the client side (GWT). Instead of calling the real REST services 
+it will create the mock data. For this purpose you can use the *development-mock* profile of Maven. It will compile the mock package 
+and uses the mock implementation to handle the services. If you want to call the real REST services you can use *development* profile 
+and GWT transpiler will remove the mock part.
 
 #### Shared
 
