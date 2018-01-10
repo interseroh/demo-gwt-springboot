@@ -18,25 +18,30 @@
  */
 package com.lofidewanto.demo.client.common;
 
-import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.Window;
+import java.util.logging.Logger;
+
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 
-import java.util.logging.Logger;
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Window;
 
 public abstract class AbstractMethodCallback<T> implements MethodCallback<T> {
 
 	private static final Logger logger = Logger
 			.getLogger(AbstractMethodCallback.class.getName());
 
-	private static final int Z_INDEX = 101;
-
 	public static final String AUTH_ERROR_URL = "login?autherror";
 
-	private final ErrorFormatter errorFormatter;
+	public static final String ERROR_TEXT_RESPONSE_WAS_NOT_A_VALID_JSON = "Response was NOT a valid JSON";
 
-	private final LoadingMessagePopupPanel loadingMessagePopupPanel;
+	public static final String ERROR_TEXT_LOGIN_FORM = "loginForm";
+
+	private static final int Z_INDEX = 101;
+
+	private ErrorFormatter errorFormatter;
+
+	private LoadingMessagePopupPanel loadingMessagePopupPanel;
 
 	private boolean isHidingMessagePopupPanel = true;
 
@@ -44,6 +49,23 @@ public abstract class AbstractMethodCallback<T> implements MethodCallback<T> {
 
 	protected abstract void callService(MethodCallback<T> methodCallback);
 
+	/**
+	 * We need this empty constructor to be able to unit test.
+	 * If we are using this not in test we have to call:
+	 * - setErrorFormatter
+	 * - setLoadingMessagePopupPanel
+	 * - setZindex
+	 * manually.
+	 */
+	public AbstractMethodCallback() {
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param errorFormatter
+	 * @param loadingMessagePopupPanel
+	 */
 	public AbstractMethodCallback(ErrorFormatter errorFormatter,
 			LoadingMessagePopupPanel loadingMessagePopupPanel) {
 		super();
@@ -53,13 +75,13 @@ public abstract class AbstractMethodCallback<T> implements MethodCallback<T> {
 		setZindex(loadingMessagePopupPanel);
 	}
 
-	private void setZindex(LoadingMessagePopupPanel loadingMessagePopupPanel) {
-		// This brings the popup panel to front
-		// http://stackoverflow.com/questions/10068633/popuppanel-show-up-beneath-the-widget
-		DOM.setIntStyleAttribute(loadingMessagePopupPanel.getElement(),
-				"zIndex", Z_INDEX);
-	}
-
+	/**
+	 * Constructor.
+	 *
+	 * @param errorFormatter
+	 * @param loadingMessagePopupPanel
+	 * @param isHidingMessagePopupPanel
+	 */
 	public AbstractMethodCallback(ErrorFormatter errorFormatter,
 			LoadingMessagePopupPanel loadingMessagePopupPanel,
 			boolean isHidingMessagePopupPanel) {
@@ -67,6 +89,15 @@ public abstract class AbstractMethodCallback<T> implements MethodCallback<T> {
 		this.isHidingMessagePopupPanel = isHidingMessagePopupPanel;
 	}
 
+	/**
+	 * Constructor.
+	 *
+	 * @param errorFormatter
+	 * @param loadingMessagePopupPanel
+	 * @param isHidingMessagePopupPanel
+	 * @param popupPosLeft
+	 * @param popupPosTop
+	 */
 	public AbstractMethodCallback(ErrorFormatter errorFormatter,
 			LoadingMessagePopupPanel loadingMessagePopupPanel,
 			boolean isHidingMessagePopupPanel, int popupPosLeft,
@@ -76,6 +107,22 @@ public abstract class AbstractMethodCallback<T> implements MethodCallback<T> {
 
 		loadingMessagePopupPanel.setPopupPosition(popupPosLeft, popupPosTop);
 		this.isPopupCentered = false;
+	}
+
+	public void setErrorFormatter(ErrorFormatter errorFormatter) {
+		this.errorFormatter = errorFormatter;
+	}
+
+	public void setLoadingMessagePopupPanel(
+			LoadingMessagePopupPanel loadingMessagePopupPanel) {
+		this.loadingMessagePopupPanel = loadingMessagePopupPanel;
+	}
+
+	public void setZindex(LoadingMessagePopupPanel loadingMessagePopupPanel) {
+		// This brings the popup panel to front
+		// http://stackoverflow.com/questions/10068633/popuppanel-show-up-beneath-the-widget
+		DOM.setIntStyleAttribute(loadingMessagePopupPanel.getElement(),
+				"zIndex", Z_INDEX);
 	}
 
 	@Override
@@ -111,9 +158,18 @@ public abstract class AbstractMethodCallback<T> implements MethodCallback<T> {
 			@Override
 			public void onFailure(Method method, Throwable exception) {
 				boolean isTimeoutError = checkTimeoutError(exception);
+
 				if (!isTimeoutError) {
+					String exceptionText = exception.getMessage();
+					if (exceptionText.contains(
+							ERROR_TEXT_RESPONSE_WAS_NOT_A_VALID_JSON)) {
+						logger.info(
+								"Response was NOT a valid JSON. Please check your date format and enum for RestyGWT.");
+					}
+
 					AbstractMethodCallback.this.onFailure(method, exception);
 				}
+
 				hideLoadingMessage(true);
 			}
 
@@ -130,8 +186,7 @@ public abstract class AbstractMethodCallback<T> implements MethodCallback<T> {
 		String exceptionText = exception.getMessage();
 		logger.info("Check login error: " + exceptionText);
 
-		if (exceptionText.contains("loginForm")
-				|| exceptionText.contains("Response was NOT a valid JSON")) {
+		if (exceptionText.contains(ERROR_TEXT_LOGIN_FORM)) {
 			// Yes, the result is a login form, so the timeout
 			logger.info("Session timeout, neu einloggen.");
 			redirectToLogin();
