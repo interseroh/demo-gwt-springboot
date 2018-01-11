@@ -18,8 +18,12 @@
  */
 package com.lofidewanto.demo.client.common;
 
+import java.util.logging.Logger;
+
+import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Answers;
@@ -30,6 +34,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyBoolean;
+import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
@@ -38,6 +43,9 @@ import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AbstractMethodCallbackTest {
+
+	private static final Logger logger = Logger
+			.getLogger(AbstractMethodCallbackTest.class.getName());
 
 	@Spy
 	private AbstractMethodCallback abstractMethodCallback;
@@ -73,19 +81,27 @@ public class AbstractMethodCallbackTest {
 		doNothing().when(abstractMethodCallback).showLoadingMessage();
 
 		abstractMethodCallback.execute();
+
+		verify(abstractMethodCallback, times(1)).executeCallService(any());
 	}
 
+	@Ignore
 	@Test
 	public void executeCallService() {
-		Exception exception = new Exception(
-				AbstractMethodCallback.ERROR_TEXT_RESPONSE_WAS_NOT_A_VALID_JSON);
-
 		doAnswer(invocationOnMock -> {
-			((MethodCallback) invocationOnMock.getArguments()[1])
-					.onFailure(null, exception);
+			logger.info(invocationOnMock.getMock().toString());
+
+			((MethodCallback) invocationOnMock.getArguments()[0]).
+					onSuccess(any(Method.class), anyObject());
+
 			return null;
 		}).when(abstractMethodCallback)
 				.executeCallService(any(MethodCallback.class));
+
+		abstractMethodCallback.executeCallService(any(MethodCallback.class));
+
+		verify(abstractMethodCallback, times(1)).
+				onSuccess(any(Method.class), anyObject());
 	}
 
 	@Test
