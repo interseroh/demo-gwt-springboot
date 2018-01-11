@@ -133,14 +133,14 @@ public abstract class AbstractMethodCallback<T> implements MethodCallback<T> {
 				className + "." + methodName + ": onFailure: ");
 	}
 
-	private void hideLoadingMessage(boolean isHiding) {
+	void hideLoadingMessage(boolean isHiding) {
 		if (isHiding) {
 			loadingMessagePopupPanel.setGlassEnabled(false);
 			loadingMessagePopupPanel.hide();
 		}
 	}
 
-	private void showLoadingMessage() {
+	void showLoadingMessage() {
 		loadingMessagePopupPanel.setGlassEnabled(true);
 
 		if (isPopupCentered) {
@@ -153,24 +153,11 @@ public abstract class AbstractMethodCallback<T> implements MethodCallback<T> {
 	public void execute() {
 		showLoadingMessage();
 
-		// Execute
-		callService(new MethodCallback<T>() {
+		// Execute callback
+		final MethodCallback<T> methodCallback = new MethodCallback<T>() {
 			@Override
 			public void onFailure(Method method, Throwable exception) {
-				boolean isTimeoutError = checkTimeoutError(exception);
-
-				if (!isTimeoutError) {
-					String exceptionText = exception.getMessage();
-					if (exceptionText.contains(
-							ERROR_TEXT_RESPONSE_WAS_NOT_A_VALID_JSON)) {
-						logger.info(
-								"Response was NOT a valid JSON. Please check your date format and enum for RestyGWT.");
-					}
-
-					AbstractMethodCallback.this.onFailure(method, exception);
-				}
-
-				hideLoadingMessage(true);
+				executeOnFailure(method, exception);
 			}
 
 			@Override
@@ -178,7 +165,30 @@ public abstract class AbstractMethodCallback<T> implements MethodCallback<T> {
 				hideLoadingMessage(isHidingMessagePopupPanel);
 				AbstractMethodCallback.this.onSuccess(method, response);
 			}
-		});
+		};
+
+		executeCallService(methodCallback);
+	}
+
+	void executeOnFailure(Method method, Throwable exception) {
+		boolean isTimeoutError = checkTimeoutError(exception);
+
+		if (!isTimeoutError) {
+			String exceptionText = exception.getMessage();
+			if (exceptionText
+					.contains(ERROR_TEXT_RESPONSE_WAS_NOT_A_VALID_JSON)) {
+				logger.info(
+						"Response was NOT a valid JSON. Please check your date format and enum for RestyGWT.");
+			}
+
+			AbstractMethodCallback.this.onFailure(method, exception);
+		}
+
+		hideLoadingMessage(true);
+	}
+
+	void executeCallService(MethodCallback<T> methodCallback) {
+		callService(methodCallback);
 	}
 
 	boolean checkTimeoutError(Throwable exception) {

@@ -18,13 +18,21 @@
  */
 package com.lofidewanto.demo.client.common;
 
-import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Answers;
+import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyBoolean;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doReturn;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AbstractMethodCallbackTest {
@@ -32,31 +40,63 @@ public class AbstractMethodCallbackTest {
 	@Spy
 	private AbstractMethodCallback abstractMethodCallback;
 
-	private LoadingMessagePopupPanel loadingMessagePopupPanel;
-
-	private ErrorFormatter errorFormatter;
+	@Mock(answer = Answers.RETURNS_DEEP_STUBS)
+	private Exception exception;
 
 	@Before
 	public void setUp() throws Exception {
-		abstractMethodCallback = new AbstractMethodCallback() {
-			@Override
-			protected void callService(MethodCallback methodCallback) {
-			}
-
-			@Override
-			public void onSuccess(Method method, Object response) {
-			}
-		};
 	}
 
 	@Test
-	public void callService() throws Exception {
+	public void checkTimeoutErrorWithJsonErrorText() throws Exception {
+		final boolean isTimeout = abstractMethodCallback.checkTimeoutError(
+				new Exception(
+						AbstractMethodCallback.ERROR_TEXT_RESPONSE_WAS_NOT_A_VALID_JSON));
+
+		assertEquals(false, isTimeout);
 	}
 
 	@Test
-	public void checkTimeoutError() throws Exception {
-		abstractMethodCallback.checkTimeoutError(new Exception(
-				AbstractMethodCallback.ERROR_TEXT_RESPONSE_WAS_NOT_A_VALID_JSON));
+	public void checkTimeoutErrorWithTimeoutError() throws Exception {
+		doNothing().when(abstractMethodCallback).redirectToLogin();
+
+		final boolean isTimeout = abstractMethodCallback.checkTimeoutError(
+				new Exception(AbstractMethodCallback.ERROR_TEXT_LOGIN_FORM));
+
+		assertEquals(true, isTimeout);
 	}
 
+	@Test
+	public void execute() {
+		doNothing().when(abstractMethodCallback).showLoadingMessage();
+
+		abstractMethodCallback.execute();
+	}
+
+	@Test
+	public void executeCallService() {
+		Exception exception = new Exception(
+				AbstractMethodCallback.ERROR_TEXT_RESPONSE_WAS_NOT_A_VALID_JSON);
+
+		doAnswer(invocationOnMock -> {
+			((MethodCallback) invocationOnMock.getArguments()[1])
+					.onFailure(null, exception);
+			return null;
+		}).when(abstractMethodCallback)
+				.executeCallService(any(MethodCallback.class));
+	}
+
+	@Test
+	public void executeOnFailure() {
+		doReturn(false).when(abstractMethodCallback)
+				.checkTimeoutError(exception);
+		doReturn(
+				AbstractMethodCallback.ERROR_TEXT_RESPONSE_WAS_NOT_A_VALID_JSON)
+				.when(exception).getMessage();
+		doNothing().when(abstractMethodCallback).onFailure(any(), any());
+		doNothing().when(abstractMethodCallback)
+				.hideLoadingMessage(anyBoolean());
+
+		abstractMethodCallback.executeOnFailure(null, exception);
+	}
 }
