@@ -33,6 +33,8 @@ import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AbstractMethodCallbackTest {
@@ -98,5 +100,7 @@ public class AbstractMethodCallbackTest {
 				.hideLoadingMessage(anyBoolean());
 
 		abstractMethodCallback.executeOnFailure(null, exception);
+
+		verify(abstractMethodCallback, times(1)).onFailure(any(), any());
 	}
 }
