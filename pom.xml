@@ -205,7 +205,7 @@
 					<sourceLevel>1.8</sourceLevel>
 					<module>com.lofidewanto.demo.DemoGwt</module>
 					<extraJvmArgs>-Xmx1024M -Xss1024k</extraJvmArgs>
-					<runTarget>demogwt.html</runTarget>
+					<runTarget>index.html</runTarget>
 					<persistentunitcachedir>${project.build.directory}</persistentunitcachedir>
 					<webappDirectory>${project.build.directory}/classes/public</webappDirectory>
 					<deploy>${project.build.directory}/gwt-deploy</deploy>
