@@ -189,7 +189,7 @@ That's it. You can just push *Dev Mode On* to run the transpiler directly and th
 Go to the application URL with a web browser:
 
 ```java
-http://localhost:9014/demogwt/demogwt.html
+http://localhost:9014/demogwt/index.html
 ```
 
 ### Heroku: Test the Webapp from Heroku
