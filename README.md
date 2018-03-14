@@ -182,7 +182,7 @@ Now you can go to the given address and boomark the *Dev Mode On* through *drag 
 
 That's it. You can just push *Dev Mode On* to run the transpiler directly and the WebApp will be reloaded automatically. 
 
-![GWT SuperDev Mode](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/gwt-compiler.png)
+![GWT SuperDev Mode](https://raw.github.com/lofidewanto/demo-gwt-springboot/master/src/main/docs/gwt-compiler.png =250x)
 
 ### Browser: Call the WebApp demo-gwt-springboot from a web browser
 
