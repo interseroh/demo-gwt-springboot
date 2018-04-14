@@ -198,7 +198,8 @@ http://localhost:9014/demogwt
 
 ### Heroku: Test the Webapp from Heroku
 
-The webapp is installed at Heroku PaaS and you can test it from this address: [Demo Webapp](https://demo-gwt-springboot.herokuapp.com/demogwt)
+The webapp is installed at Heroku PaaS and you can test it from this address: 
+<a href="https://demo-gwt-springboot.herokuapp.com/demogwt/" target="_blank">Demo Webapp</a>
 
 ## Logging
 
