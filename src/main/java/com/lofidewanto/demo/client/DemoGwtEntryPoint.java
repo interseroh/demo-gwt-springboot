@@ -43,7 +43,7 @@ public class DemoGwtEntryPoint implements EntryPoint {
 		servicePreparator.prepare(DemoGwtServiceEndpoint.SERVER_CONTEXT_PATH);
 
         // Create webapp
-        DemoGwtWebApp demoGwtWebApp = injector.getDemoGwtWebApp();
-    }
+		injector.getDemoGwtWebApp();
+	}
 
 }
