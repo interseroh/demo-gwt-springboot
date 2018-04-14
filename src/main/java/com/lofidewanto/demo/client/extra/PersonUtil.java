@@ -18,17 +18,19 @@
  */
 package com.lofidewanto.demo.client.extra;
 
+import java.util.logging.Logger;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
 import com.google.web.bindery.event.shared.binder.EventBinder;
 import com.google.web.bindery.event.shared.binder.EventHandler;
-import com.lofidewanto.demo.client.ui.event.FilterEvent;
-import com.lofidewanto.demo.client.ui.event.SearchEvent;
-import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
-import java.util.logging.Logger;
+import com.lofidewanto.demo.client.event.FilterEvent;
+import com.lofidewanto.demo.client.event.SearchEvent;
 
 @Singleton
 public class PersonUtil {

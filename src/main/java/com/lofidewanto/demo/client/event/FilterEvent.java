@@ -16,7 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.lofidewanto.demo.client.ui.event;
+package com.lofidewanto.demo.client.event;
 
-public class SearchEvent extends FilterEvent {
+import com.google.web.bindery.event.shared.binder.GenericEvent;
+
+public class FilterEvent extends GenericEvent {
 }

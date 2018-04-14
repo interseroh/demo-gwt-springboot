@@ -18,6 +18,19 @@
  */
 package com.lofidewanto.demo.client.ui.main;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Logger;
+
+import javax.inject.Singleton;
+
+import org.gwtbootstrap3.client.ui.AnchorButton;
+import org.gwtbootstrap3.client.ui.Column;
+import org.gwtbootstrap3.client.ui.Image;
+import org.gwtbootstrap3.client.ui.Popover;
+import org.gwtbootstrap3.client.ui.constants.IconSize;
+import org.gwtbootstrap3.client.ui.constants.IconType;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -31,19 +44,8 @@ import com.lofidewanto.demo.client.common.ErrorFormatter;
 import com.lofidewanto.demo.client.common.LoadingMessagePopupPanel;
 import com.lofidewanto.demo.client.common.Startable;
 import com.lofidewanto.demo.client.common.WidgetName;
-import com.lofidewanto.demo.client.ui.event.ChangeViewEvent;
+import com.lofidewanto.demo.client.event.ChangeViewEvent;
 import com.lofidewanto.demo.client.ui.person.PersonPanelView;
-import org.gwtbootstrap3.client.ui.AnchorButton;
-import org.gwtbootstrap3.client.ui.Column;
-import org.gwtbootstrap3.client.ui.Image;
-import org.gwtbootstrap3.client.ui.Popover;
-import org.gwtbootstrap3.client.ui.constants.IconSize;
-import org.gwtbootstrap3.client.ui.constants.IconType;
-
-import javax.inject.Singleton;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Logger;
 
 @Singleton
 public class MainPanelView extends Composite {
