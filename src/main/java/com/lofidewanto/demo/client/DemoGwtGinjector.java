@@ -18,31 +18,15 @@
  */
 package com.lofidewanto.demo.client;
 
-import java.util.logging.Logger;
+import com.google.gwt.inject.client.GinModules;
+import com.google.gwt.inject.client.Ginjector;
+import com.lofidewanto.demo.client.common.ServicePreparator;
 
-import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.GWT;
-import com.lofidewanto.demo.shared.DemoGwtServiceEndpoint;
+@GinModules(DemoGwtGinModule.class)
+public interface DemoGwtGinjector extends Ginjector {
 
-public class DemoGwtEntryPoint implements EntryPoint {
+	DemoGwtWebApp getDemoGwtWebApp();
 
-    private static Logger logger = Logger
-            .getLogger(DemoGwtEntryPoint.class.getName());
-
-    // Create Gin Injector
-	private final DemoGwtGinjector injector = GWT
-			.create(DemoGwtGinjector.class);
-
-    @Override
-    public void onModuleLoad() {
-        logger.info("DemoGwtEntryPoint onModuleLoad...");
-
-        // We need to prepare the services with RestyGwt before...
-		injector.getServicePreparator()
-				.prepare(DemoGwtServiceEndpoint.SERVER_CONTEXT_PATH);
-
-        // Create webapp
-		injector.getDemoGwtWebApp();
-	}
+	ServicePreparator getServicePreparator();
 
 }
