@@ -18,6 +18,17 @@
  */
 package com.lofidewanto.demo.server.service.person;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.lofidewanto.demo.server.domain.Address;
 import com.lofidewanto.demo.server.domain.AddressImpl;
 import com.lofidewanto.demo.server.domain.Person;
@@ -25,21 +36,11 @@ import com.lofidewanto.demo.server.domain.PersonImpl;
 import com.lofidewanto.demo.server.exception.CreatePersonException;
 import com.lofidewanto.demo.server.repository.AddressRepository;
 import com.lofidewanto.demo.server.repository.PersonRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 @Service
 public class PersonServiceImpl implements PersonService {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(PersonServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(PersonServiceImpl.class);
 
 	@Autowired
 	private PersonRepository personRepository;
@@ -48,17 +49,15 @@ public class PersonServiceImpl implements PersonService {
 	private AddressRepository addressRepository;
 
 	@Override
-	public Person createAddressFromPerson(Address address, Person person)
-			throws CreatePersonException {
+	@Transactional
+	public Person createAddressFromPerson(Address address, Person person) throws CreatePersonException {
 		// Create a Person and add an Address to it
-		Address addressSaved = addressRepository
-				.save((AddressImpl) address);
-		
-		logger.info(
-				"Following address created: " + addressSaved.getStreet());
-		
+		Address addressSaved = addressRepository.save((AddressImpl) address);
+
+		logger.info("Following address created: " + addressSaved.getStreet());
+
 		person.addAddress(address);
-		
+
 		try {
 			Person personSaved = personRepository.save((PersonImpl) person);
 
@@ -66,13 +65,13 @@ public class PersonServiceImpl implements PersonService {
 
 			return personSaved;
 		} catch (Exception e) {
-			logger.error(
-					"Error saving the person and address - exception: " + e);
+			logger.error("Error saving the person and address - exception: " + e);
 			throw new CreatePersonException();
 		}
 	}
 
 	@Override
+	@Transactional
 	public Collection<Person> findAllPersons(Integer start, Integer length) {
 		Collection<Person> personsAsCollection = new ArrayList<>();
 		Pageable pageable = new PageRequest(start, length);
@@ -81,10 +80,9 @@ public class PersonServiceImpl implements PersonService {
 		persons.forEach(person -> {
 			personsAsCollection.add(person);
 		});
-		
-		logger.info("Find all persons with start and length amount: "
-				+ personsAsCollection.size());
-		
+
+		logger.info("Find all persons with start and length amount: " + personsAsCollection.size());
+
 		return personsAsCollection;
 	}
 
