@@ -103,21 +103,27 @@ You can take a look the GWT [configuration file](https://github.com/lofidewanto/
 
 ### Mock Mechanism
 
-The idea is to be able to develop the UI without any dependencies to the functionality of the REST API. It should be
+The idea is to be able to develop the UI without any dependencies to the functionality of the REST API. We should be
 able to mock the data which come from the REST API.
 
 Following points are important to know:
 - All the REST API call should be first implemented using POJO interface so this interface does not
-extend RestyGWT `RestService` interface. Example: [UserClient.java](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/java/com/lofidewanto/demo/client/domain/UserClient.java).
-We also need to do the same thing for the [ServicePreparator](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/java/com/lofidewanto/demo/client/common/ServicePreparator.java) class.
+extend the RestyGWT `RestService` interface. Example: [UserClient.java](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/java/com/lofidewanto/demo/client/domain/UserClient.java).
+- Following is the mock implementation of [MockUserClient.java](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/java/com/lofidewanto/demo/mock/domain/MockUserClient.java) 
+and real implementation [RestUserClient.java](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/java/com/lofidewanto/demo/client/domain/RestUserClient.java).
+- We also need to do the same thing for the [ServicePreparator](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/java/com/lofidewanto/demo/client/common/ServicePreparator.java) class.
 - We need a Maven profile `development-mock`. In this profile we call a special GWT module file which will be used to transpile the Java code: 
-   - Maven [pom.xml](https://github.com/interseroh/demo-gwt-springboot/blob/master/pom.xml) with profile: `development-mock`.
+   - Maven [pom.xml](https://github.com/interseroh/demo-gwt-springboot/blob/master/pom.xml) with a profile: `development-mock`.
    - GWT Module [DemoGwtDevelopmentMock](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwtDevelopmentMock.gwt.xml). 
      In this GWT module file we define the `src path` to transpile the `mock` package. 
      Also we define what EntryPoint `DemoGwtMockEntryPoint` class we would like to use in this profile.
    - In the Dependency Injection Gin module we instantiate the correct implementation
-     for the ["standard"](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/java/com/lofidewanto/demo/client/DemoGwtGinModule.java) or for the ["mock"](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/java/com/lofidewanto/demo/mock/DemoGwtMockWebAppGinModule.java).
+     for the ["real"](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/java/com/lofidewanto/demo/client/DemoGwtGinModule.java) 
+     or for the ["mock"](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/java/com/lofidewanto/demo/mock/DemoGwtMockWebAppGinModule.java).
    
+With this mechanism we can develop the UI very fast and we don't need to wait for the REST API to 
+be implemented.
+
 
 ## Run the WebApp for Development
 
