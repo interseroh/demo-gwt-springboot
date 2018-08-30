@@ -84,7 +84,7 @@ All the GWT (UI and REST client) classes should be located in this package. GWT 
 The package consists of the mock implementation of the REST services at the client side (GWT). Instead of calling the real REST services 
 it will create the mock data. For this purpose you can use the *development-mock* profile of Maven. It will compile the mock package 
 and uses the mock implementation to handle the services. If you want to call the real REST services you can use *development* profile 
-and GWT transpiler will remove the mock part.
+and GWT transpiler will remove the mock part. Please take a look the mock mechanism below.
 
 #### Shared
 
@@ -99,6 +99,24 @@ All the *controller*, *service*, *repository* and *domain* classes - based on Sp
 All the themes for GWTBootstrap3 and general Bootstrap themes like Bootswatch should be located in this package. 
 
 You can take a look the GWT [configuration file](https://github.com/lofidewanto/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwt.gwt.xml) to see which packages will be included in GWT transpiler.
+
+### Mock Mechanism
+
+The idea is to be able to develop the UI without any dependencies to the functionality of the REST API. It should be
+able to mock the data which come from the REST API.
+
+Following points are important to know:
+- All the REST API call should be first implemented using POJO interface so this interface does not
+extend RestyGWT `RestService` interface. Example: [UserClient.java](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/java/com/lofidewanto/demo/client/domain/UserClient.java).
+We also need to do the same thing for the [ServicePreparator](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/java/com/lofidewanto/demo/client/common/ServicePreparator.java) class.
+- We need a Maven profile `development-mock`. In this profile we call a special GWT module file which will be used to transpile the Java code: 
+   - Maven [pom.xml](https://github.com/interseroh/demo-gwt-springboot/blob/master/pom.xml) with profile: `development-mock`.
+   - GWT Module [DemoGwtDevelopmentMock](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwtDevelopmentMock.gwt.xml). 
+     In this GWT module file we define the `src path` to transpile the `mock` package. 
+     Also we define what EntryPoint `DemoGwtMockEntryPoint` class we would like to use in this profile.
+   - In the Dependency Injection Gin module we instantiate the correct implementation
+     for the ["standard"](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/java/com/lofidewanto/demo/client/DemoGwtGinModule.java) or for the ["mock"](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/java/com/lofidewanto/demo/mock/DemoGwtMockWebAppGinModule.java).
+   
 
 ## Run the WebApp for Development
 
@@ -168,6 +186,12 @@ Starting GWT SuperDev Mode Compiler from command line or within the development 
 
 ```java
 mvn -P development gwt:run-codeserver
+```
+
+To start with Mock:
+
+```java
+mvn -P development-mock gwt:run-codeserver
 ```
 
 At the end you can see following message:
