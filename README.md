@@ -116,10 +116,12 @@ and real implementation [RestUserClient.java](https://github.com/interseroh/demo
    - Maven [pom.xml](https://github.com/interseroh/demo-gwt-springboot/blob/master/pom.xml) with a profile: `development-mock`.
    - GWT Module [DemoGwtDevelopmentMock](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/resources/com/lofidewanto/demo/DemoGwtDevelopmentMock.gwt.xml). 
      In this GWT module file we define the `src path` to transpile the `mock` package. 
-     Also we define what EntryPoint `DemoGwtMockEntryPoint` class we would like to use in this profile.
+     Also we define what EntryPoint `DemoGwtMockEntryPoint` class we would like to use in this profile:
+        - Real EntryPoint: [DemoGwtEntryPoint.java](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/java/com/lofidewanto/demo/client/DemoGwtEntryPoint.java)
+        - Mock EntryPoint: [DemoGwtMockEntryPoint.java](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/java/com/lofidewanto/demo/mock/DemoGwtMockEntryPoint.java)
    - In the Dependency Injection Gin module we instantiate the correct implementation
-     for the ["real"](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/java/com/lofidewanto/demo/client/DemoGwtGinModule.java) 
-     or for the ["mock"](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/java/com/lofidewanto/demo/mock/DemoGwtMockWebAppGinModule.java).
+     for the ["real - DemoGwtGinModule.java"](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/java/com/lofidewanto/demo/client/DemoGwtGinModule.java) 
+     or for the ["mock - DemoGwtMockWebAppGinModule.java"](https://github.com/interseroh/demo-gwt-springboot/blob/master/src/main/java/com/lofidewanto/demo/mock/DemoGwtMockWebAppGinModule.java).
    
 With this mechanism we can develop the UI very fast and we don't need to wait for the REST API to 
 be implemented.
