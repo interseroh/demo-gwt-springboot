@@ -3,7 +3,6 @@
 ## Build Status
 
 [![Build Status](https://travis-ci.org/interseroh/demo-gwt-springboot.svg?branch=master)](https://travis-ci.org/interseroh/demo-gwt-springboot)
-[![Heroku](https://heroku-badge.herokuapp.com/?app=demo-gwt-springboot&root=demogwt/)](https://demo-gwt-springboot.herokuapp.com/demogwt/index.html)
 
 ## Table of Contents
 
@@ -27,6 +26,10 @@
 - [Unit and Integration Testing](#unit-and-integration-testing)
     - [Server: Spring Test](#server-spring-test)
     - [Client: GWT Mockito](#client-gwt-mockito)
+
+## Demo in Heroku
+
+- [Spring GWT Demo in Heroku](https://demo-gwt-springboot.herokuapp.com/demogwt/index.html)
 
 ## Introduction
 
