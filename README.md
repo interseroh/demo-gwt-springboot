@@ -6,6 +6,7 @@
 
 ## Table of Contents
 
+- [Demo in Heroku](#demo-in-heroku)
 - [Introduction](#introduction)
 - [Architecture](#architecture)
 	- [Model for Services and Domains](#model-for-services-and-domains)
